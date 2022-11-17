@@ -1,0 +1,15 @@
+<div class="alert alert-embebido alert-{{type}}" role="alert">
+    <div *ngIf="type=='success'">
+        <span class="feather icon-check-circle"></span>
+    </div>
+    <div *ngIf="type=='danger'">
+        <span class="feather icon-slash"></span>
+    </div>
+    <div *ngIf="type=='info'">
+        <span class="feather icon-info"></span>
+    </div>
+    
+    <div class="w-100 mx-3 d-flex flex-column">
+      {{message}}   
+    </div>
+</div>

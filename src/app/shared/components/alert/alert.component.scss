@@ -1,0 +1,88 @@
+@import "./../../../../assets/siaf/variables";
+
+::ng-deep {
+  .ngb-toasts {
+    top: 0;
+    right: 0;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    position: fixed;
+    z-index: 1200;
+    background-color: transparent;
+
+    .toast__animation {
+
+      // animation: slideTop 1s;
+      // animation-delay: 1s;
+      .toast {
+        margin: 0 auto 0;
+        animation: slideTop 0.5s ease;
+        backdrop-filter: blur(0);
+        background-color: transparent;
+        box-shadow: none;
+        border: none;
+
+        .toast-body {
+          padding-top: 0;
+          padding-bottom: 1.5rem;
+          box-shadow: none;
+        }
+      }
+    }
+
+    @keyframes slideTop {
+      0% {
+        transform: translateY(-100%);
+      }
+
+      100% {
+        transform: translateY(0);
+      }
+    }
+  }
+
+  // .toast-body {
+  // 	padding: 0.75rem 0.75rem 0.75rem 0;
+  // }
+  // .toast__text {
+  // 	line-height: 15px;
+  // 	padding-right: 0.5rem;
+  // }
+  // .toast__close {
+  // 	font-size: 18px;
+  // }
+  // .bg {
+  // 	&-warning,
+  // 	&-danger,
+  // 	&-success,
+  // 	&-info {
+  // 		box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.2);
+  // 		border-radius: 8px;
+  // 		width: 350px;
+  // 		border-top: none;
+  // 		border-right: none;
+  // 		border-bottom: none;
+  // 	}
+
+  // 	&-warning {
+  // 		background-color: $siaf-naranja-luz !important;
+  // 		border-left: 9px solid $siaf-naranja;
+  // 	}
+
+  // 	&-danger {
+  // 		background-color: $siaf-rojo-luz !important;
+  // 		border-left: 9px solid $siaf-rojo;
+  // 	}
+
+  // 	&-success {
+  // 		background: $siaf-verde-luz !important;
+  // 		border-left: 9px solid $siaf-verde;
+  // 	}
+
+  // 	&-info {
+  // 		background: $siaf-celeste-luz !important;
+  // 		border-left: 9px solid $siaf-celeste;
+  // 	}
+  // }
+}

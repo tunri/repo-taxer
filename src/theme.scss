@@ -1,0 +1,22 @@
+
+// @use '@angular/material'as mat;
+
+// @include mat.core();
+
+// @import './palette.scss';
+
+
+// $my-primary: mat.define-palette($mat-red-nsrtm);
+// $my-secondary: mat.define-palette($mat-secondary-nsrtm);
+// $my-warn: mat.define-palette(mat.$red-palette);
+
+
+// $my-theme: mat.define-light-theme((
+//  color: (
+//    primary: $my-primary,
+//    accent: $my-secondary,
+//    warn: $my-warn,
+//  )
+// ));
+
+// @include mat.all-component-themes($my-theme);

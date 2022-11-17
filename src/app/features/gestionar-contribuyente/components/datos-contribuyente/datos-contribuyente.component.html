@@ -1,0 +1,219 @@
+<div class="container px-0">
+	<div class="siaf-card p-4">
+		<form [formGroup]="formulario">
+			<ng-container *ngIf="!loading; else tmpLoading">
+
+				<div class="row g-2 g-sm-3 mb-4">
+
+					<div class="col-12">
+						<h5>DATOS DE LA DECLARACIÓN</h5>
+					</div>
+
+					<div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2">
+						<div class="form-group">
+							<label for="codigoContribuyente" class="form-label">Código de contribuyente</label>
+							<input type="text" class="form-control" [value]="numContribuyente" id="codigoContribuyente"
+								placeholder="(Autogenerado)" disabled>
+						</div>
+					</div>
+
+					<div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2">
+						<div class="form-group">
+							<label for="numeroDeclaracion" class="form-label">Número de declaración</label>
+							<input type="text" class="form-control" [value]="numeroDj" id="numeroDeclaracion"
+								placeholder="(Autogenerado)" disabled>
+						</div>
+					</div>
+
+					<div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2">
+						<div class="form-group">
+							<label for="fechaRegistro" class="form-label">Fecha del registro</label>
+							<input id="fechaRegistro" autocomplete="off" class="form-control form-icon calendar"
+								[value]="fechaDj" placeholder="(Autogenerado)" name="dpFechaDJ" disabled>
+						</div>
+					</div>
+
+					<div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2">
+						<div class="form-group required">
+							<label class="form-label" for="tipMedDeterminaId">Medio de determinación</label>
+							<ng-select [searchable]="false" formControlName="tipMedDeterminaId" [clearable]="false"
+								id="tipMedDeterminaId" [items]="tiposMedDeterminacion" bindLabel="descripcion"
+								bindValue="maestroId">
+							</ng-select>
+						</div>
+					</div>
+
+					<div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2">
+						<div class="form-group required">
+							<label class="form-label" for="medDeterminaId">Medio de presentación</label>
+							<ng-select [searchable]="false" formControlName="medDeterminaId" [clearable]="false"
+								id="medDeterminaId" [items]="tiposMedPresentacion" bindValue="maestroId"
+								bindLabel="descripcion">
+							</ng-select>
+						</div>
+					</div>
+
+					<div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2">
+						<div class="form-group">
+							<label class="form-label" for="modOficio">Modifcación de oficio</label>
+							<ng-select [searchable]="false" [items]="tiposModalidadOficios" bindLabel="value"
+								bindValue="key" formControlName="modOficio" [clearable]="false" id="modOficio">
+								<!-- <ng-option>Opcion 1</ng-option> -->
+							</ng-select>
+						</div>
+					</div>
+
+					<div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2">
+						<div class="form-group required" [ngClass]="{ 'invalid' : invalidControl(fecInscripcion) }">
+							<label for="fechaPresentacion" class="form-label">Fecha de Presentación</label>
+							<input id="fechaPresentacion" autocomplete="off" class="form-control form-icon calendar"
+								formControlName="fecInscripcion" (click)="dpFechaPresentacion.toggle()"
+								placeholder="yyyy-mm-dd" name="dpFechaPresentacion" ngbDatepicker
+								#dpFechaPresentacion="ngbDatepicker">
+						</div>
+					</div>
+
+					<div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2">
+						<div class="form-group required" [ngClass]="{ 'invalid' : invalidControl(tipoContribuyente) }">
+							<label class="form-label" for="tipoContribuyente">Tipo de Contribuyente</label>
+							<ng-select [searchable]="false" formControlName="tipPersonaId" [clearable]="false"
+								id="tipoContribuyente" [items]="tiposContribuyente" bindValue="maestroId"
+								bindLabel="descripcion" (ngModelChange)="onChangeTipoContribuyente($event)">
+							</ng-select>
+						</div>
+					</div>
+
+					<div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2">
+						<div class="form-group required" [ngClass]="{ 'invalid' : invalidControl(segmentacion) }">
+							<label class="form-label" for="segmentacion">Segmentación</label>
+							<ng-select [searchable]="false" [clearable]="false" id="segmentacion"
+								formControlName="segContribuyenteId" [items]="tiposSegmentacion" bindValue="maestroId"
+								bindLabel="descripcion">
+							</ng-select>
+						</div>
+					</div>
+
+				</div>
+
+				<div class="row g-2 g-sm-3">
+					<div class="col-12">
+						<h5>DATOS PERSONALES</h5>
+					</div>
+
+					<div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2">
+						<div class="form-group required">
+							<label class="form-label" for="tipoDocumento">Tipo de Documento</label>
+							<ng-select [searchable]="false" formControlName="docIdentidadId" [clearable]="false"
+								id="tipoDocumento" [items]="tiposDocumento" bindValue="maestroId"
+								bindLabel="descripcion">
+							</ng-select>
+						</div>
+					</div>
+
+					<div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2">
+						<div class="form-group required" [ngClass]="{ 'invalid' : invalidControl(numDocIdentidad) }">
+							<label for="numeroDocumento" class="form-label">N° de Documento</label>
+							<input type="text" class="form-control" id="numeroDocumento"
+								formControlName="numDocIdentidad">
+						</div>
+					</div>
+
+					<!-- <ng-container formGroupName="datosPersonales"> -->
+
+					<ng-container *ngIf="!esContribuyenteJuridico">
+						<div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2">
+							<div class="form-group required" [ngClass]="{ 'invalid' : invalidControl(apePaterno) }">
+								<label for="apellidoPaterno" class="form-label">Apellido Paterno</label>
+								<input type="text" class="form-control" formControlName="apePaterno"
+									id="apellidoPaterno">
+							</div>
+						</div>
+
+						<div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2">
+							<div class="form-group required" [ngClass]="{ 'invalid' : invalidControl(apeMaterno) }">
+								<label for="apellidoMaterno" class="form-label">Apellido Materno</label>
+								<input type="text" class="form-control" formControlName="apeMaterno"
+									id="apellidoMaterno">
+							</div>
+						</div>
+
+						<div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2">
+							<div class="form-group required" [ngClass]="{ 'invalid' : invalidControl(nombres) }">
+								<label for="nombres" class="form-label">Nombres</label>
+								<input type="text" class="form-control" id="nombres" formControlName="nombres">
+							</div>
+						</div>
+
+						<div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2">
+							<div class="form-group required" [ngClass]="{ 'invalid' : invalidControl(fecNacimiento) }">
+								<label for="fechaNacimiento" class="form-label">Fecha de Nacimiento</label>
+								<input id="fechaNacimiento" formControlName=fecNacimiento autocomplete="off"
+									class="form-control form-icon calendar" (click)="dpFechaNacimiento.toggle()"
+									placeholder="yyyy-mm-dd" name="dpFechaNacimiento" ngbDatepicker
+									#dpFechaNacimiento="ngbDatepicker">
+							</div>
+						</div>
+
+						<div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2">
+							<div class="form-group">
+								<label class="form-label" for="estadoCivil">Estado Civil</label>
+								<ng-select [searchable]="false" formControlName="estCivilTipId" [clearable]="false"
+									id="estadoCivil" [items]="tiposEstadosCiviles" bindValue="maestroId"
+									bindLabel="descripcion">
+
+								</ng-select>
+							</div>
+						</div>
+
+						<div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2">
+							<div class="form-group">
+								<label class="form-label" for="fallecio">¿Falleció?</label>
+								<ng-select [searchable]="false" [clearable]="false" id="fallecio"
+									[items]="tiposFallecio" bindLabel="value" bindValue="key" formControlName="fallecio"
+									(ngModelChange)="onChangeFallecio($event)">
+								</ng-select>
+							</div>
+						</div>
+
+						<div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2">
+							<div class="form-group " [ngClass]="className(fecFallecimiento)">
+								<label for="fechaFallecimiento" class="form-label">Fecha de Fallecimiento</label>
+								<input id="fechaFallecimiento" autocomplete="off"
+									class="form-control form-icon calendar" formControlName="fecFallecimiento"
+									(click)="dpFechaFallecimiento.toggle()" placeholder="yyyy-mm-dd"
+									name="dpFechaFallecimiento" ngbDatepicker #dpFechaFallecimiento="ngbDatepicker">
+							</div>
+						</div>
+
+						<div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2">
+							<div class="form-group">
+								<label class="form-label" for="genero">Genero</label>
+								<ng-select [searchable]="false" [clearable]="false" id="genero" [items]="tiposGeneros"
+									bindLabel="value" bindValue="key" formControlName="genero">
+								</ng-select>
+							</div>
+						</div>
+					</ng-container>
+
+					<ng-container *ngIf="esContribuyenteJuridico">
+						<div class="col-12 col-sm-6 col-md-4 col-lg-6">
+							<div class="form-group required" [ngClass]="{ 'invalid' : invalidControl(razonSocial) }">
+								<label for="razonSocial" class="form-label">Razón Social</label>
+								<input type="text" formControlName="razonSocial" class="form-control" id="razonSocial">
+							</div>
+						</div>
+					</ng-container>
+					<!-- </ng-container> -->
+				</div>
+			</ng-container>
+
+			<ng-template #tmpLoading>
+				<div class="py-5">
+					<nsrtm-loading></nsrtm-loading>
+				</div>
+			</ng-template>
+
+		</form>
+
+	</div>
+</div>

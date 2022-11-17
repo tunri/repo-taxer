@@ -1,0 +1,32 @@
+// // ======== 1. IMPORT VENDORS ==========
+@import 'assets/siaf/siaf';
+
+@import "~@ng-select/ng-select/themes/default.theme.css";
+@import '~bootstrap/scss/bootstrap';
+
+
+
+// // ======================================
+
+
+// // ======== 2. CONFIG TO SIAF ==========
+
+@import 'assets/icons/css/iconfont.css';
+
+body {
+  font-family: 'Calibri', Arial, sans-serif;
+  font-style: normal;
+  font-weight: normal;
+}
+
+// // ======================================
+
+
+
+
+
+// // ========= 3. STYLES MY PROJECT ==========
+
+@import 'assets/styles/_main.scss';
+
+// // =========================================

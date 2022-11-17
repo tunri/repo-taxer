@@ -1,0 +1,2405 @@
+{
+	"openapi": "3.0.3",
+	"info": {
+		"title": "Servicio API de Contribuyente",
+		"description": "Servicio de contribuyente, domicilio, condicion, relacionado y documentos de sustento.",
+		"version": "0.0.1-SNAPSHOT"
+	},
+	"servers": [
+		{ "url": "http://104.237.131.179:8082", "description": "Inferred Url" }
+	],
+	"tags": [
+		{
+			"name": "condicion-contribuyente-controller",
+			"description": "Condicion Contribuyente Controller"
+		},
+		{
+			"name": "contacto-contribuyente-controller",
+			"description": "Contacto Contribuyente Controller"
+		},
+		{
+			"name": "contribuyente-controller",
+			"description": "Contribuyente Controller"
+		},
+		{
+			"name": "documento-sustento-controller",
+			"description": "Documento Sustento Controller"
+		},
+		{
+			"name": "domicilio-contribuyente-controller",
+			"description": "Domicilio Contribuyente Controller"
+		},
+		{
+			"name": "domicilio-relacionado-controller",
+			"description": "Domicilio Relacionado Controller"
+		},
+		{ "name": "persona-controller", "description": "Persona Controller" },
+		{
+			"name": "relacionado-controller",
+			"description": "Relacionado Controller"
+		}
+	],
+	"paths": {
+		"/v1/nsrtm-services-contribuyentes/condicion/guardarCondicion": {
+			"post": {
+				"tags": ["condicion-contribuyente-controller"],
+				"summary": "guardar",
+				"operationId": "guardarUsingPOST",
+				"requestBody": {
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/CondicionContribuyenteRequest"
+							}
+						}
+					}
+				},
+				"responses": {
+					"200": {
+						"description": "OK",
+						"content": {
+							"application/json": { "schema": { "type": "object" } }
+						}
+					},
+					"201": { "description": "Created" },
+					"401": { "description": "Unauthorized" },
+					"403": { "description": "Forbidden" },
+					"404": { "description": "Not Found" }
+				}
+			}
+		},
+		"/v1/nsrtm-services-contribuyentes/condicion/obtenerCondicion": {
+			"post": {
+				"tags": ["condicion-contribuyente-controller"],
+				"summary": "obtener",
+				"operationId": "obtenerUsingPOST",
+				"requestBody": {
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/CondicionContribuyenteObtenerRequest"
+							}
+						}
+					}
+				},
+				"responses": {
+					"200": {
+						"description": "OK",
+						"content": {
+							"application/json": { "schema": { "type": "object" } }
+						}
+					},
+					"201": { "description": "Created" },
+					"401": { "description": "Unauthorized" },
+					"403": { "description": "Forbidden" },
+					"404": { "description": "Not Found" }
+				}
+			}
+		},
+		"/v1/nsrtm-services-contribuyentes/condicion/quitarCondicion": {
+			"put": {
+				"tags": ["condicion-contribuyente-controller"],
+				"summary": "quitar",
+				"operationId": "quitarUsingPUT",
+				"requestBody": {
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/CondicionContribuyenteIdRequest"
+							}
+						}
+					}
+				},
+				"responses": {
+					"200": {
+						"description": "OK",
+						"content": {
+							"application/json": { "schema": { "type": "object" } }
+						}
+					},
+					"201": { "description": "Created" },
+					"401": { "description": "Unauthorized" },
+					"403": { "description": "Forbidden" },
+					"404": { "description": "Not Found" }
+				}
+			}
+		},
+		"/v1/nsrtm-services-contribuyentes/contactos/listarPorContribuyente/{municipalidadId}/{contribuyenteNumero}": {
+			"get": {
+				"tags": ["contacto-contribuyente-controller"],
+				"summary": "listarPorContribuyente",
+				"operationId": "listarPorContribuyenteUsingGET",
+				"parameters": [
+					{
+						"name": "municipalidadId",
+						"in": "path",
+						"description": "municipalidadId",
+						"required": true,
+						"style": "simple",
+						"schema": { "type": "integer", "format": "int64" }
+					},
+					{
+						"name": "contribuyenteNumero",
+						"in": "path",
+						"description": "contribuyenteNumero",
+						"required": true,
+						"style": "simple",
+						"schema": { "type": "integer", "format": "int64" }
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"content": {
+							"application/json": {
+								"schema": {
+									"type": "array",
+									"items": {
+										"$ref": "#/components/schemas/ContactoContribuyenteListaResponse"
+									}
+								}
+							}
+						}
+					},
+					"401": { "description": "Unauthorized" },
+					"403": { "description": "Forbidden" },
+					"404": { "description": "Not Found" }
+				}
+			}
+		},
+		"/v1/nsrtm-services-contribuyentes/contactos/{municipalidadId}/{contribuyenteNumero}": {
+			"post": {
+				"tags": ["contacto-contribuyente-controller"],
+				"summary": "crear",
+				"operationId": "crearUsingPOST",
+				"parameters": [
+					{
+						"name": "municipalidadId",
+						"in": "path",
+						"description": "municipalidadId",
+						"required": true,
+						"style": "simple",
+						"schema": { "type": "integer", "format": "int64" }
+					},
+					{
+						"name": "contribuyenteNumero",
+						"in": "path",
+						"description": "contribuyenteNumero",
+						"required": true,
+						"style": "simple",
+						"schema": { "type": "integer", "format": "int64" }
+					}
+				],
+				"requestBody": {
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/ContactoContribuyenteRequest"
+							}
+						}
+					}
+				},
+				"responses": {
+					"200": {
+						"description": "OK",
+						"content": {
+							"application/json": { "schema": { "type": "object" } }
+						}
+					},
+					"201": { "description": "Created" },
+					"401": { "description": "Unauthorized" },
+					"403": { "description": "Forbidden" },
+					"404": { "description": "Not Found" }
+				}
+			}
+		},
+		"/v1/nsrtm-services-contribuyentes/contactos/{municipalidadId}/{contribuyenteNumero}/{medConContribuyenteId}": {
+			"get": {
+				"tags": ["contacto-contribuyente-controller"],
+				"summary": "obtener",
+				"operationId": "obtenerUsingGET",
+				"parameters": [
+					{
+						"name": "municipalidadId",
+						"in": "path",
+						"description": "municipalidadId",
+						"required": true,
+						"style": "simple",
+						"schema": { "type": "integer", "format": "int64" }
+					},
+					{
+						"name": "contribuyenteNumero",
+						"in": "path",
+						"description": "contribuyenteNumero",
+						"required": true,
+						"style": "simple",
+						"schema": { "type": "integer", "format": "int64" }
+					},
+					{
+						"name": "medConContribuyenteId",
+						"in": "path",
+						"description": "medConContribuyenteId",
+						"required": true,
+						"style": "simple",
+						"schema": { "type": "integer", "format": "int64" }
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"content": {
+							"application/json": { "schema": { "type": "object" } }
+						}
+					},
+					"401": { "description": "Unauthorized" },
+					"403": { "description": "Forbidden" },
+					"404": { "description": "Not Found" }
+				}
+			},
+			"put": {
+				"tags": ["contacto-contribuyente-controller"],
+				"summary": "actualizar",
+				"operationId": "actualizarUsingPUT",
+				"parameters": [
+					{
+						"name": "municipalidadId",
+						"in": "path",
+						"description": "municipalidadId",
+						"required": true,
+						"style": "simple",
+						"schema": { "type": "integer", "format": "int64" }
+					},
+					{
+						"name": "contribuyenteNumero",
+						"in": "path",
+						"description": "contribuyenteNumero",
+						"required": true,
+						"style": "simple",
+						"schema": { "type": "integer", "format": "int64" }
+					},
+					{
+						"name": "medConContribuyenteId",
+						"in": "path",
+						"description": "medConContribuyenteId",
+						"required": true,
+						"style": "simple",
+						"schema": { "type": "integer", "format": "int64" }
+					}
+				],
+				"requestBody": {
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/ContactoContribuyenteRequest"
+							}
+						}
+					}
+				},
+				"responses": {
+					"200": {
+						"description": "OK",
+						"content": {
+							"application/json": { "schema": { "type": "object" } }
+						}
+					},
+					"201": { "description": "Created" },
+					"401": { "description": "Unauthorized" },
+					"403": { "description": "Forbidden" },
+					"404": { "description": "Not Found" }
+				}
+			},
+			"delete": {
+				"tags": ["contacto-contribuyente-controller"],
+				"summary": "quitar",
+				"operationId": "quitarUsingDELETE",
+				"parameters": [
+					{
+						"name": "municipalidadId",
+						"in": "path",
+						"description": "municipalidadId",
+						"required": true,
+						"style": "simple",
+						"schema": { "type": "integer", "format": "int64" }
+					},
+					{
+						"name": "contribuyenteNumero",
+						"in": "path",
+						"description": "contribuyenteNumero",
+						"required": true,
+						"style": "simple",
+						"schema": { "type": "integer", "format": "int64" }
+					},
+					{
+						"name": "medConContribuyenteId",
+						"in": "path",
+						"description": "medConContribuyenteId",
+						"required": true,
+						"style": "simple",
+						"schema": { "type": "integer", "format": "int64" }
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"content": {
+							"application/json": { "schema": { "type": "object" } }
+						}
+					},
+					"204": { "description": "No Content" },
+					"401": { "description": "Unauthorized" },
+					"403": { "description": "Forbidden" }
+				}
+			}
+		},
+		"/v1/nsrtm-services-contribuyentes/contribuyentes": {
+			"get": {
+				"tags": ["contribuyente-controller"],
+				"summary": "Permite buscar contribuyentes",
+				"description": "Retorna una lista de contribuyentes que coinciden con filtro",
+				"operationId": "buscarUsingGET",
+				"parameters": [
+					{
+						"name": "municipalidadId",
+						"in": "query",
+						"description": "municipalidadId",
+						"required": false,
+						"style": "form",
+						"schema": { "type": "integer", "format": "int64" }
+					},
+					{
+						"name": "contribuyenteNumero",
+						"in": "query",
+						"description": "contribuyenteNumero",
+						"required": false,
+						"style": "form",
+						"schema": { "type": "integer", "format": "int64" }
+					},
+					{
+						"name": "docIdentidadId",
+						"in": "query",
+						"description": "docIdentidadId",
+						"required": false,
+						"style": "form",
+						"schema": { "type": "integer", "format": "int32" }
+					},
+					{
+						"name": "numDocIdentidad",
+						"in": "query",
+						"description": "numDocIdentidad",
+						"required": false,
+						"style": "form",
+						"schema": { "type": "string" }
+					},
+					{
+						"name": "apeNomRs",
+						"in": "query",
+						"description": "apeNomRs",
+						"required": false,
+						"style": "form",
+						"schema": { "type": "string" }
+					},
+					{
+						"name": "page",
+						"in": "query",
+						"description": "page",
+						"required": false,
+						"style": "form",
+						"schema": { "type": "integer", "format": "int32" }
+					},
+					{
+						"name": "pageSize",
+						"in": "query",
+						"description": "pageSize",
+						"required": false,
+						"style": "form",
+						"schema": { "type": "integer", "format": "int32" }
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/PaginaResponseOfListOfContribuyenteBuscarResponse"
+								}
+							}
+						}
+					},
+					"401": { "description": "Unauthorized" },
+					"403": { "description": "Forbidden" },
+					"404": { "description": "Not Found" }
+				}
+			}
+		},
+		"/v1/nsrtm-services-contribuyentes/contribuyentes/buscarPorDocumento": {
+			"get": {
+				"tags": ["contribuyente-controller"],
+				"summary": "buscarPorDocumento",
+				"operationId": "buscarPorDocumentoUsingGET",
+				"requestBody": {
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/DocumentoRequest"
+							}
+						}
+					}
+				},
+				"responses": {
+					"200": {
+						"description": "OK",
+						"content": {
+							"application/json": {
+								"schema": {
+									"type": "array",
+									"items": {
+										"$ref": "#/components/schemas/BuscarPorDocumentoResponse"
+									}
+								}
+							}
+						}
+					},
+					"401": { "description": "Unauthorized" },
+					"403": { "description": "Forbidden" },
+					"404": { "description": "Not Found" }
+				}
+			}
+		},
+		"/v1/nsrtm-services-contribuyentes/contribuyentes/consultar/{municipalidadId}/{contribuyenteNumero}": {
+			"get": {
+				"tags": ["contribuyente-controller"],
+				"summary": "Permite consultar contribuyente",
+				"description": "Retorna datos del contribuyente en base a su código",
+				"operationId": "consultarUsingGET",
+				"parameters": [
+					{
+						"name": "municipalidadId",
+						"in": "path",
+						"description": "municipalidadId",
+						"required": true,
+						"style": "simple",
+						"schema": { "type": "integer", "format": "int64" }
+					},
+					{
+						"name": "contribuyenteNumero",
+						"in": "path",
+						"description": "contribuyenteNumero",
+						"required": true,
+						"style": "simple",
+						"schema": { "type": "integer", "format": "int64" }
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"content": {
+							"application/json": { "schema": { "type": "object" } }
+						}
+					},
+					"401": { "description": "Unauthorized" },
+					"403": { "description": "Forbidden" },
+					"404": { "description": "Not Found" }
+				}
+			}
+		},
+		"/v1/nsrtm-services-contribuyentes/contribuyentes/consultarDecJurContribuyente/{municipalidadId}/{contribuyenteNumero}": {
+			"get": {
+				"tags": ["contribuyente-controller"],
+				"summary": "Permite consultar datos contribuyente - Declaración Jurada de Contribuyente",
+				"description": "Permite consultar datos del contribuyente para la Declaración Jurada de Contribuyente (Datos generales, domicilio Fiscal, Relacionado, Domicilio de Relacionado) ",
+				"operationId": "consultarDecJurContribuyenteUsingGET",
+				"parameters": [
+					{
+						"name": "municipalidadId",
+						"in": "path",
+						"description": "municipalidadId",
+						"required": true,
+						"style": "simple",
+						"schema": { "type": "integer", "format": "int64" }
+					},
+					{
+						"name": "contribuyenteNumero",
+						"in": "path",
+						"description": "contribuyenteNumero",
+						"required": true,
+						"style": "simple",
+						"schema": { "type": "integer", "format": "int64" }
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"content": {
+							"application/json": {
+								"schema": {
+									"type": "array",
+									"items": {
+										"$ref": "#/components/schemas/DecJurContribuyenteResponse"
+									}
+								}
+							}
+						}
+					},
+					"401": { "description": "Unauthorized" },
+					"403": { "description": "Forbidden" },
+					"404": { "description": "Not Found" }
+				}
+			}
+		},
+		"/v1/nsrtm-services-contribuyentes/contribuyentes/exportarPDFDecJurContribuyente/{municipalidadId}/{contribuyenteNumero}": {
+			"get": {
+				"tags": ["contribuyente-controller"],
+				"summary": "Permite exportar a PDF datos contribuyente",
+				"description": "Permite exportar a formato PDF los datos del contribuyente en la Declaración Jurada de Contribuyente",
+				"operationId": "exportarPDFDecJurContribuyenteUsingGET",
+				"parameters": [
+					{
+						"name": "municipalidadId",
+						"in": "path",
+						"description": "municipalidadId",
+						"required": true,
+						"style": "simple",
+						"schema": { "type": "integer", "format": "int64" }
+					},
+					{
+						"name": "contribuyenteNumero",
+						"in": "path",
+						"description": "contribuyenteNumero",
+						"required": true,
+						"style": "simple",
+						"schema": { "type": "integer", "format": "int64" }
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"content": {
+							"application/json": {
+								"schema": { "$ref": "#/components/schemas/Resource" }
+							}
+						}
+					},
+					"401": { "description": "Unauthorized" },
+					"403": { "description": "Forbidden" },
+					"404": { "description": "Not Found" }
+				}
+			}
+		},
+		"/v1/nsrtm-services-contribuyentes/contribuyentes/procesarActualizarDJ/{municipalidadId}/{contribuyenteNumero}": {
+			"put": {
+				"tags": ["contribuyente-controller"],
+				"summary": "Permite procesar DJ actualizada de contribuyente",
+				"description": "Proceso que ingresa datos del contribuytente de cada sección y valida datos para luego actualizar el Numero de DJ",
+				"operationId": "procesarActualizarDJUsingPUT",
+				"parameters": [
+					{
+						"name": "municipalidadId",
+						"in": "path",
+						"description": "municipalidadId",
+						"required": true,
+						"style": "simple",
+						"schema": { "type": "integer", "format": "int64" }
+					},
+					{
+						"name": "contribuyenteNumero",
+						"in": "path",
+						"description": "contribuyenteNumero",
+						"required": true,
+						"style": "simple",
+						"schema": { "type": "integer", "format": "int64" }
+					}
+				],
+				"requestBody": {
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/DeclaracionJuradaContribuyente"
+							}
+						}
+					}
+				},
+				"responses": {
+					"200": {
+						"description": "OK",
+						"content": {
+							"application/json": { "schema": { "type": "object" } }
+						}
+					},
+					"201": { "description": "Created" },
+					"401": { "description": "Unauthorized" },
+					"403": { "description": "Forbidden" },
+					"404": { "description": "Not Found" }
+				}
+			}
+		},
+		"/v1/nsrtm-services-contribuyentes/contribuyentes/procesarCrearDJ/{municipalidadId}/{contribuyenteNumero}": {
+			"put": {
+				"tags": ["contribuyente-controller"],
+				"summary": "Permite procesar DJ creada de contribuyente",
+				"description": "Proceso que valida datos de contribuyente y Genera el Numero de DJ",
+				"operationId": "procesarCrearDJUsingPUT",
+				"parameters": [
+					{
+						"name": "municipalidadId",
+						"in": "path",
+						"description": "municipalidadId",
+						"required": true,
+						"style": "simple",
+						"schema": { "type": "integer", "format": "int64" }
+					},
+					{
+						"name": "contribuyenteNumero",
+						"in": "path",
+						"description": "contribuyenteNumero",
+						"required": true,
+						"style": "simple",
+						"schema": { "type": "integer", "format": "int64" }
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"content": {
+							"application/json": { "schema": { "type": "object" } }
+						}
+					},
+					"201": { "description": "Created" },
+					"401": { "description": "Unauthorized" },
+					"403": { "description": "Forbidden" },
+					"404": { "description": "Not Found" }
+				}
+			}
+		},
+		"/v1/nsrtm-services-contribuyentes/contribuyentes/{municipalidadId}": {
+			"post": {
+				"tags": ["contribuyente-controller"],
+				"summary": "Permite crear contribuyente",
+				"description": "Retorna contribuyente creado",
+				"operationId": "crearUsingPOST_1",
+				"parameters": [
+					{
+						"name": "municipalidadId",
+						"in": "path",
+						"description": "municipalidadId",
+						"required": true,
+						"style": "simple",
+						"schema": { "type": "integer", "format": "int64" }
+					}
+				],
+				"requestBody": {
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/ContribuyentePersonaRequest"
+							}
+						}
+					}
+				},
+				"responses": {
+					"201": {
+						"description": "Created",
+						"content": {
+							"application/json": { "schema": { "type": "object" } }
+						}
+					},
+					"401": { "description": "Unauthorized" },
+					"403": { "description": "Forbidden" },
+					"404": { "description": "Not Found" }
+				}
+			}
+		},
+		"/v1/nsrtm-services-contribuyentes/contribuyentes/{municipalidadId}/{contribuyenteNumero}": {
+			"put": {
+				"tags": ["contribuyente-controller"],
+				"summary": "Permite actualizar contribuyente",
+				"description": "Retorna contribuyente actualizado",
+				"operationId": "actualizarUsingPUT_1",
+				"parameters": [
+					{
+						"name": "municipalidadId",
+						"in": "path",
+						"description": "municipalidadId",
+						"required": true,
+						"style": "simple",
+						"schema": { "type": "integer", "format": "int64" }
+					},
+					{
+						"name": "contribuyenteNumero",
+						"in": "path",
+						"description": "contribuyenteNumero",
+						"required": true,
+						"style": "simple",
+						"schema": { "type": "integer", "format": "int64" }
+					}
+				],
+				"requestBody": {
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/ContribuyentePersonaRequest"
+							}
+						}
+					}
+				},
+				"responses": {
+					"200": {
+						"description": "OK",
+						"content": {
+							"application/json": { "schema": { "type": "object" } }
+						}
+					},
+					"201": { "description": "Created" },
+					"401": { "description": "Unauthorized" },
+					"403": { "description": "Forbidden" },
+					"404": { "description": "Not Found" }
+				}
+			},
+			"delete": {
+				"tags": ["contribuyente-controller"],
+				"summary": "Permite anular contribuyente",
+				"description": "Retorna contribuyente anulado",
+				"operationId": "anularUsingDELETE",
+				"parameters": [
+					{
+						"name": "municipalidadId",
+						"in": "path",
+						"description": "municipalidadId",
+						"required": true,
+						"style": "simple",
+						"schema": { "type": "integer", "format": "int64" }
+					},
+					{
+						"name": "contribuyenteNumero",
+						"in": "path",
+						"description": "contribuyenteNumero",
+						"required": true,
+						"style": "simple",
+						"schema": { "type": "integer", "format": "int64" }
+					}
+				],
+				"responses": {
+					"204": {
+						"description": "No Content",
+						"content": {
+							"application/json": { "schema": { "type": "object" } }
+						}
+					},
+					"401": { "description": "Unauthorized" },
+					"403": { "description": "Forbidden" }
+				}
+			}
+		},
+		"/v1/nsrtm-services-contribuyentes/sustentos/listarPorContribuyente/{municipalidadId}/{contribuyenteNumero}": {
+			"get": {
+				"tags": ["documento-sustento-controller"],
+				"summary": "listarPorContribuyente",
+				"operationId": "listarPorContribuyenteUsingGET_1",
+				"parameters": [
+					{
+						"name": "municipalidadId",
+						"in": "path",
+						"description": "municipalidadId",
+						"required": true,
+						"style": "simple",
+						"schema": { "type": "integer", "format": "int64" }
+					},
+					{
+						"name": "contribuyenteNumero",
+						"in": "path",
+						"description": "contribuyenteNumero",
+						"required": true,
+						"style": "simple",
+						"schema": { "type": "integer", "format": "int64" }
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"content": {
+							"application/json": {
+								"schema": {
+									"type": "array",
+									"items": {
+										"$ref": "#/components/schemas/DocumentoSustentoBuscarResponse"
+									}
+								}
+							}
+						}
+					},
+					"401": { "description": "Unauthorized" },
+					"403": { "description": "Forbidden" },
+					"404": { "description": "Not Found" }
+				}
+			}
+		},
+		"/v1/nsrtm-services-contribuyentes/sustentos/{municipalidadId}/{contribuyenteNumero}": {
+			"post": {
+				"tags": ["documento-sustento-controller"],
+				"summary": "crear",
+				"operationId": "crearUsingPOST_2",
+				"parameters": [
+					{
+						"name": "municipalidadId",
+						"in": "path",
+						"description": "municipalidadId",
+						"required": true,
+						"style": "simple",
+						"schema": { "type": "integer", "format": "int64" }
+					},
+					{
+						"name": "contribuyenteNumero",
+						"in": "path",
+						"description": "contribuyenteNumero",
+						"required": true,
+						"style": "simple",
+						"schema": { "type": "integer", "format": "int64" }
+					}
+				],
+				"requestBody": {
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/DocumentoSustentoRequest"
+							}
+						}
+					}
+				},
+				"responses": {
+					"200": {
+						"description": "OK",
+						"content": {
+							"application/json": { "schema": { "type": "object" } }
+						}
+					},
+					"201": { "description": "Created" },
+					"401": { "description": "Unauthorized" },
+					"403": { "description": "Forbidden" },
+					"404": { "description": "Not Found" }
+				}
+			}
+		},
+		"/v1/nsrtm-services-contribuyentes/sustentos/{municipalidadId}/{contribuyenteNumero}/{docSusContribuyenteId}": {
+			"get": {
+				"tags": ["documento-sustento-controller"],
+				"summary": "obtener",
+				"operationId": "obtenerUsingGET_1",
+				"parameters": [
+					{
+						"name": "municipalidadId",
+						"in": "path",
+						"description": "municipalidadId",
+						"required": true,
+						"style": "simple",
+						"schema": { "type": "integer", "format": "int64" }
+					},
+					{
+						"name": "contribuyenteNumero",
+						"in": "path",
+						"description": "contribuyenteNumero",
+						"required": true,
+						"style": "simple",
+						"schema": { "type": "integer", "format": "int64" }
+					},
+					{
+						"name": "docSusContribuyenteId",
+						"in": "path",
+						"description": "docSusContribuyenteId",
+						"required": true,
+						"style": "simple",
+						"schema": { "type": "integer", "format": "int64" }
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"content": {
+							"application/json": { "schema": { "type": "object" } }
+						}
+					},
+					"401": { "description": "Unauthorized" },
+					"403": { "description": "Forbidden" },
+					"404": { "description": "Not Found" }
+				}
+			},
+			"put": {
+				"tags": ["documento-sustento-controller"],
+				"summary": "actualizar",
+				"operationId": "actualizarUsingPUT_2",
+				"parameters": [
+					{
+						"name": "municipalidadId",
+						"in": "path",
+						"description": "municipalidadId",
+						"required": true,
+						"style": "simple",
+						"schema": { "type": "integer", "format": "int64" }
+					},
+					{
+						"name": "contribuyenteNumero",
+						"in": "path",
+						"description": "contribuyenteNumero",
+						"required": true,
+						"style": "simple",
+						"schema": { "type": "integer", "format": "int64" }
+					},
+					{
+						"name": "docSusContribuyenteId",
+						"in": "path",
+						"description": "docSusContribuyenteId",
+						"required": true,
+						"style": "simple",
+						"schema": { "type": "integer", "format": "int64" }
+					}
+				],
+				"requestBody": {
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/DocumentoSustentoRequest"
+							}
+						}
+					}
+				},
+				"responses": {
+					"200": {
+						"description": "OK",
+						"content": {
+							"application/json": { "schema": { "type": "object" } }
+						}
+					},
+					"201": { "description": "Created" },
+					"401": { "description": "Unauthorized" },
+					"403": { "description": "Forbidden" },
+					"404": { "description": "Not Found" }
+				}
+			},
+			"delete": {
+				"tags": ["documento-sustento-controller"],
+				"summary": "anular",
+				"operationId": "anularUsingDELETE_1",
+				"parameters": [
+					{
+						"name": "municipalidadId",
+						"in": "path",
+						"description": "municipalidadId",
+						"required": true,
+						"style": "simple",
+						"schema": { "type": "integer", "format": "int64" }
+					},
+					{
+						"name": "contribuyenteNumero",
+						"in": "path",
+						"description": "contribuyenteNumero",
+						"required": true,
+						"style": "simple",
+						"schema": { "type": "integer", "format": "int64" }
+					},
+					{
+						"name": "docSusContribuyenteId",
+						"in": "path",
+						"description": "docSusContribuyenteId",
+						"required": true,
+						"style": "simple",
+						"schema": { "type": "integer", "format": "int64" }
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"content": {
+							"application/json": { "schema": { "type": "object" } }
+						}
+					},
+					"204": { "description": "No Content" },
+					"401": { "description": "Unauthorized" },
+					"403": { "description": "Forbidden" }
+				}
+			}
+		},
+		"/v1/nsrtm-services-contribuyentes/domicilios/listarPorContribuyente/{municipalidadId}/{contribuyenteNumero}": {
+			"get": {
+				"tags": ["domicilio-contribuyente-controller"],
+				"summary": "listarPorContribuyente",
+				"operationId": "listarPorContribuyenteUsingGET_2",
+				"parameters": [
+					{
+						"name": "municipalidadId",
+						"in": "path",
+						"description": "municipalidadId",
+						"required": true,
+						"style": "simple",
+						"schema": { "type": "integer", "format": "int64" }
+					},
+					{
+						"name": "contribuyenteNumero",
+						"in": "path",
+						"description": "contribuyenteNumero",
+						"required": true,
+						"style": "simple",
+						"schema": { "type": "integer", "format": "int64" }
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"content": {
+							"application/json": {
+								"schema": {
+									"type": "array",
+									"items": {
+										"$ref": "#/components/schemas/DomicilioBuscarResponse"
+									}
+								}
+							}
+						}
+					},
+					"401": { "description": "Unauthorized" },
+					"403": { "description": "Forbidden" },
+					"404": { "description": "Not Found" }
+				}
+			}
+		},
+		"/v1/nsrtm-services-contribuyentes/domicilios/{municipalidadId}/{contribuyenteNumero}": {
+			"post": {
+				"tags": ["domicilio-contribuyente-controller"],
+				"summary": "crear",
+				"operationId": "crearUsingPOST_3",
+				"parameters": [
+					{
+						"name": "municipalidadId",
+						"in": "path",
+						"description": "municipalidadId",
+						"required": true,
+						"style": "simple",
+						"schema": { "type": "integer", "format": "int64" }
+					},
+					{
+						"name": "contribuyenteNumero",
+						"in": "path",
+						"description": "contribuyenteNumero",
+						"required": true,
+						"style": "simple",
+						"schema": { "type": "integer", "format": "int64" }
+					}
+				],
+				"requestBody": {
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/DomicilioRequest"
+							}
+						}
+					}
+				},
+				"responses": {
+					"200": {
+						"description": "OK",
+						"content": {
+							"application/json": { "schema": { "type": "object" } }
+						}
+					},
+					"201": { "description": "Created" },
+					"401": { "description": "Unauthorized" },
+					"403": { "description": "Forbidden" },
+					"404": { "description": "Not Found" }
+				}
+			}
+		},
+		"/v1/nsrtm-services-contribuyentes/domicilios/{municipalidadId}/{contribuyenteNumero}/{domicilioContribuyenteNumero}": {
+			"get": {
+				"tags": ["domicilio-contribuyente-controller"],
+				"summary": "obtener",
+				"operationId": "obtenerUsingGET_2",
+				"parameters": [
+					{
+						"name": "municipalidadId",
+						"in": "path",
+						"description": "municipalidadId",
+						"required": true,
+						"style": "simple",
+						"schema": { "type": "integer", "format": "int64" }
+					},
+					{
+						"name": "contribuyenteNumero",
+						"in": "path",
+						"description": "contribuyenteNumero",
+						"required": true,
+						"style": "simple",
+						"schema": { "type": "integer", "format": "int64" }
+					},
+					{
+						"name": "domicilioContribuyenteNumero",
+						"in": "path",
+						"description": "domicilioContribuyenteNumero",
+						"required": true,
+						"style": "simple",
+						"schema": { "type": "integer", "format": "int64" }
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"content": {
+							"application/json": { "schema": { "type": "object" } }
+						}
+					},
+					"401": { "description": "Unauthorized" },
+					"403": { "description": "Forbidden" },
+					"404": { "description": "Not Found" }
+				}
+			},
+			"put": {
+				"tags": ["domicilio-contribuyente-controller"],
+				"summary": "actualizar",
+				"operationId": "actualizarUsingPUT_3",
+				"parameters": [
+					{
+						"name": "municipalidadId",
+						"in": "path",
+						"description": "municipalidadId",
+						"required": true,
+						"style": "simple",
+						"schema": { "type": "integer", "format": "int64" }
+					},
+					{
+						"name": "contribuyenteNumero",
+						"in": "path",
+						"description": "contribuyenteNumero",
+						"required": true,
+						"style": "simple",
+						"schema": { "type": "integer", "format": "int64" }
+					},
+					{
+						"name": "domicilioContribuyenteNumero",
+						"in": "path",
+						"description": "domicilioContribuyenteNumero",
+						"required": true,
+						"style": "simple",
+						"schema": { "type": "integer", "format": "int64" }
+					}
+				],
+				"requestBody": {
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/DomicilioRequest"
+							}
+						}
+					}
+				},
+				"responses": {
+					"200": {
+						"description": "OK",
+						"content": {
+							"application/json": { "schema": { "type": "object" } }
+						}
+					},
+					"201": { "description": "Created" },
+					"401": { "description": "Unauthorized" },
+					"403": { "description": "Forbidden" },
+					"404": { "description": "Not Found" }
+				}
+			},
+			"delete": {
+				"tags": ["domicilio-contribuyente-controller"],
+				"summary": "anular",
+				"operationId": "anularUsingDELETE_2",
+				"parameters": [
+					{
+						"name": "municipalidadId",
+						"in": "path",
+						"description": "municipalidadId",
+						"required": true,
+						"style": "simple",
+						"schema": { "type": "integer", "format": "int64" }
+					},
+					{
+						"name": "contribuyenteNumero",
+						"in": "path",
+						"description": "contribuyenteNumero",
+						"required": true,
+						"style": "simple",
+						"schema": { "type": "integer", "format": "int64" }
+					},
+					{
+						"name": "domicilioContribuyenteNumero",
+						"in": "path",
+						"description": "domicilioContribuyenteNumero",
+						"required": true,
+						"style": "simple",
+						"schema": { "type": "integer", "format": "int64" }
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"content": {
+							"application/json": { "schema": { "type": "object" } }
+						}
+					},
+					"204": { "description": "No Content" },
+					"401": { "description": "Unauthorized" },
+					"403": { "description": "Forbidden" }
+				}
+			}
+		},
+		"/v1/nsrtm-services-contribuyentes/relacionados/domicilios/listar/{municipalidadId}/{contribuyenteNumero}/{relContribuyenteNumero}": {
+			"get": {
+				"tags": ["domicilio-relacionado-controller"],
+				"summary": "Listar Domicilios por Relacionado",
+				"description": "Permite listar los domicilios activos por código de Relacionado",
+				"operationId": "listarUsingGET",
+				"parameters": [
+					{
+						"name": "municipalidadId",
+						"in": "path",
+						"description": "municipalidadId",
+						"required": true,
+						"style": "simple",
+						"schema": { "type": "integer", "format": "int64" }
+					},
+					{
+						"name": "contribuyenteNumero",
+						"in": "path",
+						"description": "contribuyenteNumero",
+						"required": true,
+						"style": "simple",
+						"schema": { "type": "integer", "format": "int64" }
+					},
+					{
+						"name": "relContribuyenteNumero",
+						"in": "path",
+						"description": "relContribuyenteNumero",
+						"required": true,
+						"style": "simple",
+						"schema": { "type": "integer", "format": "int64" }
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"content": {
+							"application/json": {
+								"schema": {
+									"type": "array",
+									"items": {
+										"$ref": "#/components/schemas/DomicilioRelacionadoBuscarResponse"
+									}
+								}
+							}
+						}
+					},
+					"401": { "description": "Unauthorized" },
+					"403": { "description": "Forbidden" },
+					"404": { "description": "Not Found" }
+				}
+			}
+		},
+		"/v1/nsrtm-services-contribuyentes/relacionados/domicilios/{municipalidadId}/{contribuyenteNumero}": {
+			"put": {
+				"tags": ["domicilio-relacionado-controller"],
+				"summary": "actualizar",
+				"operationId": "actualizarUsingPUT_4",
+				"parameters": [
+					{
+						"name": "municipalidadId",
+						"in": "path",
+						"description": "municipalidadId",
+						"required": true,
+						"style": "simple",
+						"schema": { "type": "integer", "format": "int64" }
+					},
+					{
+						"name": "contribuyenteNumero",
+						"in": "path",
+						"description": "contribuyenteNumero",
+						"required": true,
+						"style": "simple",
+						"schema": { "type": "integer", "format": "int64" }
+					}
+				],
+				"requestBody": {
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/DomicilioRelacionadoRequest"
+							}
+						}
+					}
+				},
+				"responses": {
+					"200": {
+						"description": "OK",
+						"content": {
+							"application/json": { "schema": { "type": "object" } }
+						}
+					},
+					"201": { "description": "Created" },
+					"401": { "description": "Unauthorized" },
+					"403": { "description": "Forbidden" },
+					"404": { "description": "Not Found" }
+				}
+			},
+			"post": {
+				"tags": ["domicilio-relacionado-controller"],
+				"summary": "crear",
+				"operationId": "crearUsingPOST_4",
+				"parameters": [
+					{
+						"name": "municipalidadId",
+						"in": "path",
+						"description": "municipalidadId",
+						"required": true,
+						"style": "simple",
+						"schema": { "type": "integer", "format": "int64" }
+					},
+					{
+						"name": "contribuyenteNumero",
+						"in": "path",
+						"description": "contribuyenteNumero",
+						"required": true,
+						"style": "simple",
+						"schema": { "type": "integer", "format": "int64" }
+					}
+				],
+				"requestBody": {
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/DomicilioRelacionadoRequest"
+							}
+						}
+					}
+				},
+				"responses": {
+					"200": {
+						"description": "OK",
+						"content": {
+							"application/json": { "schema": { "type": "object" } }
+						}
+					},
+					"201": { "description": "Created" },
+					"401": { "description": "Unauthorized" },
+					"403": { "description": "Forbidden" },
+					"404": { "description": "Not Found" }
+				}
+			}
+		},
+		"/v1/nsrtm-services-contribuyentes/relacionados/domicilios/{municipalidadId}/{contribuyenteNumero}/{relContribuyenteNumero}/{domRelacionadoNumero}": {
+			"get": {
+				"tags": ["domicilio-relacionado-controller"],
+				"summary": "Consultar Domicilio del Relacionado",
+				"description": "Permite consultar el domicilio del Relacionado por el código de Domicilio-Relacionado",
+				"operationId": "consultarUsingGET_1",
+				"parameters": [
+					{
+						"name": "municipalidadId",
+						"in": "path",
+						"description": "municipalidadId",
+						"required": true,
+						"style": "simple",
+						"schema": { "type": "integer", "format": "int64" }
+					},
+					{
+						"name": "contribuyenteNumero",
+						"in": "path",
+						"description": "contribuyenteNumero",
+						"required": true,
+						"style": "simple",
+						"schema": { "type": "integer", "format": "int64" }
+					},
+					{
+						"name": "relContribuyenteNumero",
+						"in": "path",
+						"description": "relContribuyenteNumero",
+						"required": true,
+						"style": "simple",
+						"schema": { "type": "integer", "format": "int64" }
+					},
+					{
+						"name": "domRelacionadoNumero",
+						"in": "path",
+						"description": "domRelacionadoNumero",
+						"required": true,
+						"style": "simple",
+						"schema": { "type": "integer", "format": "int64" }
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"content": {
+							"application/json": {
+								"schema": {
+									"type": "array",
+									"items": {
+										"$ref": "#/components/schemas/DomicilioRelacionadoResponse"
+									}
+								}
+							}
+						}
+					},
+					"401": { "description": "Unauthorized" },
+					"403": { "description": "Forbidden" },
+					"404": { "description": "Not Found" }
+				}
+			},
+			"delete": {
+				"tags": ["domicilio-relacionado-controller"],
+				"summary": "anular",
+				"operationId": "anularUsingDELETE_3",
+				"parameters": [
+					{
+						"name": "municipalidadId",
+						"in": "path",
+						"description": "municipalidadId",
+						"required": true,
+						"style": "simple",
+						"schema": { "type": "integer", "format": "int64" }
+					},
+					{
+						"name": "contribuyenteNumero",
+						"in": "path",
+						"description": "contribuyenteNumero",
+						"required": true,
+						"style": "simple",
+						"schema": { "type": "integer", "format": "int64" }
+					},
+					{
+						"name": "relContribuyenteNumero",
+						"in": "path",
+						"description": "relContribuyenteNumero",
+						"required": true,
+						"style": "simple",
+						"schema": { "type": "integer", "format": "int64" }
+					},
+					{
+						"name": "domRelacionadoNumero",
+						"in": "path",
+						"description": "domRelacionadoNumero",
+						"required": true,
+						"style": "simple",
+						"schema": { "type": "integer", "format": "int64" }
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"content": {
+							"application/json": { "schema": { "type": "object" } }
+						}
+					},
+					"204": { "description": "No Content" },
+					"401": { "description": "Unauthorized" },
+					"403": { "description": "Forbidden" }
+				}
+			}
+		},
+		"/v1/nsrtm-services-contribuyentes/api/v1/personas/buscarPorDocumento": {
+			"get": {
+				"tags": ["persona-controller"],
+				"summary": "buscarPorDocumento",
+				"operationId": "buscarPorDocumentoUsingGET_1",
+				"requestBody": {
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/DocumentoRequest"
+							}
+						}
+					}
+				},
+				"responses": {
+					"200": {
+						"description": "OK",
+						"content": {
+							"application/json": { "schema": { "type": "object" } }
+						}
+					},
+					"401": { "description": "Unauthorized" },
+					"403": { "description": "Forbidden" },
+					"404": { "description": "Not Found" }
+				}
+			}
+		},
+		"/v1/nsrtm-services-contribuyentes/api/v1/personas/procesar": {
+			"post": {
+				"tags": ["persona-controller"],
+				"summary": "procesar",
+				"operationId": "procesarUsingPOST",
+				"requestBody": {
+					"content": {
+						"application/json": {
+							"schema": { "$ref": "#/components/schemas/PersonaRequest" }
+						}
+					}
+				},
+				"responses": {
+					"200": {
+						"description": "OK",
+						"content": {
+							"application/json": { "schema": { "type": "object" } }
+						}
+					},
+					"201": { "description": "Created" },
+					"401": { "description": "Unauthorized" },
+					"403": { "description": "Forbidden" },
+					"404": { "description": "Not Found" }
+				}
+			}
+		},
+		"/v1/nsrtm-services-contribuyentes/relacionados/{municipalidadId}/{contribuyenteNumero}": {
+			"get": {
+				"tags": ["relacionado-controller"],
+				"summary": "listar",
+				"operationId": "listarUsingGET_1",
+				"parameters": [
+					{
+						"name": "municipalidadId",
+						"in": "path",
+						"description": "municipalidadId",
+						"required": true,
+						"style": "simple",
+						"schema": { "type": "integer", "format": "int64" }
+					},
+					{
+						"name": "contribuyenteNumero",
+						"in": "path",
+						"description": "contribuyenteNumero",
+						"required": true,
+						"style": "simple",
+						"schema": { "type": "integer", "format": "int64" }
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"content": {
+							"application/json": {
+								"schema": {
+									"type": "array",
+									"items": {
+										"$ref": "#/components/schemas/RelacionadoBuscarResponse"
+									}
+								}
+							}
+						}
+					},
+					"401": { "description": "Unauthorized" },
+					"403": { "description": "Forbidden" },
+					"404": { "description": "Not Found" }
+				}
+			},
+			"post": {
+				"tags": ["relacionado-controller"],
+				"summary": "crear",
+				"operationId": "crearUsingPOST_5",
+				"parameters": [
+					{
+						"name": "municipalidadId",
+						"in": "path",
+						"description": "municipalidadId",
+						"required": true,
+						"style": "simple",
+						"schema": { "type": "integer", "format": "int64" }
+					},
+					{
+						"name": "contribuyenteNumero",
+						"in": "path",
+						"description": "contribuyenteNumero",
+						"required": true,
+						"style": "simple",
+						"schema": { "type": "integer", "format": "int64" }
+					}
+				],
+				"requestBody": {
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/RelacionadoPersonaRequest"
+							}
+						}
+					}
+				},
+				"responses": {
+					"200": {
+						"description": "OK",
+						"content": {
+							"application/json": { "schema": { "type": "object" } }
+						}
+					},
+					"201": { "description": "Created" },
+					"401": { "description": "Unauthorized" },
+					"403": { "description": "Forbidden" },
+					"404": { "description": "Not Found" }
+				}
+			}
+		},
+		"/v1/nsrtm-services-contribuyentes/relacionados/{municipalidadId}/{contribuyenteNumero}/{relContribuyenteNumero}": {
+			"put": {
+				"tags": ["relacionado-controller"],
+				"summary": "actualizar",
+				"operationId": "actualizarUsingPUT_5",
+				"parameters": [
+					{
+						"name": "municipalidadId",
+						"in": "path",
+						"description": "municipalidadId",
+						"required": true,
+						"style": "simple",
+						"schema": { "type": "integer", "format": "int64" }
+					},
+					{
+						"name": "contribuyenteNumero",
+						"in": "path",
+						"description": "contribuyenteNumero",
+						"required": true,
+						"style": "simple",
+						"schema": { "type": "integer", "format": "int64" }
+					},
+					{
+						"name": "relContribuyenteNumero",
+						"in": "path",
+						"description": "relContribuyenteNumero",
+						"required": true,
+						"style": "simple",
+						"schema": { "type": "integer", "format": "int64" }
+					}
+				],
+				"requestBody": {
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/RelacionadoPersonaRequest"
+							}
+						}
+					}
+				},
+				"responses": {
+					"200": {
+						"description": "OK",
+						"content": {
+							"application/json": { "schema": { "type": "object" } }
+						}
+					},
+					"201": { "description": "Created" },
+					"401": { "description": "Unauthorized" },
+					"403": { "description": "Forbidden" },
+					"404": { "description": "Not Found" }
+				}
+			},
+			"delete": {
+				"tags": ["relacionado-controller"],
+				"summary": "anular",
+				"operationId": "anularUsingDELETE_4",
+				"parameters": [
+					{
+						"name": "municipalidadId",
+						"in": "path",
+						"description": "municipalidadId",
+						"required": true,
+						"style": "simple",
+						"schema": { "type": "integer", "format": "int64" }
+					},
+					{
+						"name": "contribuyenteNumero",
+						"in": "path",
+						"description": "contribuyenteNumero",
+						"required": true,
+						"style": "simple",
+						"schema": { "type": "integer", "format": "int64" }
+					},
+					{
+						"name": "relContribuyenteNumero",
+						"in": "path",
+						"description": "relContribuyenteNumero",
+						"required": true,
+						"style": "simple",
+						"schema": { "type": "integer", "format": "int64" }
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"content": {
+							"application/json": { "schema": { "type": "object" } }
+						}
+					},
+					"204": { "description": "No Content" },
+					"401": { "description": "Unauthorized" },
+					"403": { "description": "Forbidden" }
+				}
+			}
+		}
+	},
+	"components": {
+		"schemas": {
+			"BuscarPorDocumentoResponse": {
+				"title": "BuscarPorDocumentoResponse",
+				"type": "object",
+				"properties": {
+					"contador": { "type": "integer", "format": "int64" },
+					"contribuyenteNumero": { "type": "integer", "format": "int64" },
+					"municipalidadId": { "type": "integer", "format": "int64" },
+					"nombreCompleto": { "type": "string" },
+					"nombreCompletoConyuge": { "type": "string" },
+					"numOperacionId": { "type": "integer", "format": "int64" },
+					"personaId": { "type": "integer", "format": "int64" },
+					"relContribuyenteNumero": { "type": "string" }
+				}
+			},
+			"CondicionContribuyenteIdRequest": {
+				"title": "CondicionContribuyenteIdRequest",
+				"type": "object",
+				"properties": {
+					"agenciaModificacion": { "type": "integer", "format": "int64" },
+					"areaModificacion": { "type": "integer", "format": "int32" },
+					"conContribuyenteId": { "type": "integer", "format": "int64" },
+					"contribuyenteNumero": { "type": "integer", "format": "int64" },
+					"municipalidadId": { "type": "integer", "format": "int64" },
+					"terminalModificacion": { "type": "string" },
+					"usuarioModificacion": { "type": "integer", "format": "int64" }
+				}
+			},
+			"CondicionContribuyenteObtenerRequest": {
+				"title": "CondicionContribuyenteObtenerRequest",
+				"type": "object",
+				"properties": {
+					"contribuyenteNumero": { "type": "integer", "format": "int64" },
+					"municipalidadId": { "type": "integer", "format": "int64" }
+				}
+			},
+			"CondicionContribuyenteRequest": {
+				"title": "CondicionContribuyenteRequest",
+				"type": "object",
+				"properties": {
+					"activo": { "type": "integer", "format": "int64" },
+					"agenciaCreacion": { "type": "integer", "format": "int64" },
+					"agenciaModificacion": { "type": "integer", "format": "int64" },
+					"areaCreacion": { "type": "integer", "format": "int32" },
+					"areaModificacion": { "type": "integer", "format": "int32" },
+					"conContribuyenteId": { "type": "integer", "format": "int64" },
+					"contribuyenteNumero": { "type": "integer", "format": "int64" },
+					"desDocumento": { "type": "string" },
+					"fecExpediente": { "type": "string", "format": "date-time" },
+					"fecFinal": { "type": "string", "format": "date-time" },
+					"fechaDj": { "type": "string", "format": "date-time" },
+					"fechaDocumento": { "type": "string", "format": "date-time" },
+					"fechaInicial": { "type": "string", "format": "date-time" },
+					"impPension": { "type": "number", "format": "double" },
+					"municipalidadId": { "type": "integer", "format": "int64" },
+					"numDocumento": { "type": "string" },
+					"numExpediente": { "type": "string" },
+					"numLicencia": { "type": "string" },
+					"numeroDj": { "type": "integer", "format": "int64" },
+					"terminalCreacion": { "type": "string" },
+					"terminalModificacion": { "type": "string" },
+					"tipConConcursalId": { "type": "integer", "format": "int64" },
+					"tipConInafectacionId": { "type": "integer", "format": "int64" },
+					"tipDocumentoId": { "type": "integer", "format": "int64" },
+					"usuarioCreacion": { "type": "integer", "format": "int64" },
+					"usuarioModificacion": { "type": "integer", "format": "int64" }
+				}
+			},
+			"ContactoContribuyenteListaResponse": {
+				"title": "ContactoContribuyenteListaResponse",
+				"type": "object",
+				"properties": {
+					"activo": { "type": "integer", "format": "int64" },
+					"claMedAbreviatura": { "type": "string" },
+					"claMedContactoId": { "type": "integer", "format": "int64" },
+					"claMedDescripcion": { "type": "string" },
+					"contribuyenteNumero": { "type": "integer", "format": "int64" },
+					"descripcion": { "type": "string" },
+					"estadoDsc": { "type": "string" },
+					"medConContribuyenteId": {
+						"type": "integer",
+						"format": "int64"
+					},
+					"municipalidadId": { "type": "integer", "format": "int64" },
+					"principal": { "type": "integer", "format": "int64" },
+					"tipMedAbreviatura": { "type": "string" },
+					"tipMedContactoId": { "type": "integer", "format": "int64" },
+					"tipMedDescripcion": { "type": "string" }
+				}
+			},
+			"ContactoContribuyenteRequest": {
+				"title": "ContactoContribuyenteRequest",
+				"type": "object",
+				"properties": {
+					"accion": {
+						"type": "string",
+						"enum": ["ACTUALIZAR", "CREAR", "ELIMINAR"]
+					},
+					"claMedContactoId": { "type": "integer", "format": "int64" },
+					"descripcion": { "type": "string" },
+					"medConContribuyenteId": {
+						"type": "integer",
+						"format": "int64"
+					},
+					"principal": { "type": "integer", "format": "int64" },
+					"tipMedContactoId": { "type": "integer", "format": "int64" }
+				}
+			},
+			"ContribuyenteBuscarResponse": {
+				"title": "ContribuyenteBuscarResponse",
+				"type": "object",
+				"properties": {
+					"areaUsuaria": { "type": "string" },
+					"contribuyenteNumero": { "type": "integer", "format": "int64" },
+					"desCondicion": { "type": "string" },
+					"desDocIdentidad": { "type": "string" },
+					"desTipoContribuyente": { "type": "string" },
+					"estadoDJ": { "type": "string" },
+					"fechaDJ": { "type": "string", "format": "date-time" },
+					"fechaInscripcion": { "type": "string", "format": "date-time" },
+					"fechaRegistro": { "type": "string" },
+					"municipalidadId": { "type": "integer", "format": "int64" },
+					"nombreCompleto": { "type": "string" },
+					"numDocIdentidad": { "type": "string" },
+					"numFila": { "type": "integer", "format": "int64" },
+					"numeroDJ": { "type": "integer", "format": "int64" },
+					"razonSocial": { "type": "string" },
+					"terminal": { "type": "string" },
+					"usuario": { "type": "string" }
+				}
+			},
+			"ContribuyentePersonaRequest": {
+				"title": "ContribuyentePersonaRequest",
+				"required": [
+					"docIdentidadId",
+					"fecInscripcion",
+					"medDeterminaId",
+					"numDocIdentidad",
+					"segContribuyenteId",
+					"tipMedDeterminaId",
+					"tipPersonaId"
+				],
+				"type": "object",
+				"properties": {
+					"apeMaterno": { "type": "string" },
+					"apePaterno": { "type": "string" },
+					"docIdentidadId": { "type": "integer", "format": "int32" },
+					"estCivilTipId": { "type": "integer", "format": "int32" },
+					"fallecio": { "type": "integer", "format": "int32" },
+					"fecFallecimiento": { "type": "string", "format": "date" },
+					"fecInscripcion": { "type": "string", "format": "date" },
+					"fecNacimiento": { "type": "string", "format": "date" },
+					"fuenteInfoId": { "type": "integer", "format": "int32" },
+					"genero": { "type": "string" },
+					"medDeterminaId": { "type": "integer", "format": "int32" },
+					"modOficio": { "type": "integer", "format": "int32" },
+					"nombres": { "type": "string" },
+					"numDocIdentidad": {
+						"maxLength": 13,
+						"minLength": 8,
+						"type": "string"
+					},
+					"numOperacionId": { "type": "integer", "format": "int64" },
+					"personaId": { "type": "integer", "format": "int64" },
+					"razonSocial": { "type": "string" },
+					"segContribuyenteId": { "type": "integer", "format": "int32" },
+					"tipMedDeterminaId": { "type": "integer", "format": "int32" },
+					"tipPersonaId": { "type": "integer", "format": "int32" }
+				}
+			},
+			"DecJurContribuyenteResponse": {
+				"title": "DecJurContribuyenteResponse",
+				"type": "object",
+				"properties": {
+					"abreviatura": { "type": "string" },
+					"abreviaturaC": { "type": "string" },
+					"contribuyenteNumero": { "type": "integer", "format": "int64" },
+					"correoElectronicoC": { "type": "string" },
+					"desDocIdentidadId": { "type": "string" },
+					"desDocIdentidadIdC": { "type": "string" },
+					"desEstCivilTipId": { "type": "string" },
+					"desMotivoDjId": { "type": "string" },
+					"desTipPersonaId": { "type": "string" },
+					"desTipRelacionadoId": { "type": "string" },
+					"docIdentidadId": { "type": "integer", "format": "int32" },
+					"domFiscal": { "type": "string" },
+					"domReferencia": { "type": "string" },
+					"fecInscripcion": { "type": "string", "format": "date" },
+					"fecNacimientoC": { "type": "string", "format": "date" },
+					"fecNacimientoConstitucion": {
+						"type": "string",
+						"format": "date"
+					},
+					"fecVigInicial": { "type": "string", "format": "date" },
+					"fechaDj": { "type": "string", "format": "date" },
+					"municipalidadId": { "type": "integer", "format": "int64" },
+					"nombreCompletoC": { "type": "string" },
+					"nombreCompletoU": { "type": "string" },
+					"nombreRazonSocial": { "type": "string" },
+					"numDocIdentidad": { "type": "string" },
+					"numDocIdentidadC": { "type": "string" },
+					"numeroDj": { "type": "integer", "format": "int64" },
+					"textoCorreos": { "type": "string" },
+					"textoNumContacto": { "type": "string" },
+					"textoNumContactoC": { "type": "string" },
+					"tipPersonaId": { "type": "integer", "format": "int32" }
+				}
+			},
+			"DeclaracionJuradaContribuyente": {
+				"title": "DeclaracionJuradaContribuyente",
+				"type": "object",
+				"properties": {
+					"contactos": {
+						"type": "array",
+						"items": {
+							"$ref": "#/components/schemas/ContactoContribuyenteRequest"
+						}
+					},
+					"contribuyente": {
+						"$ref": "#/components/schemas/ContribuyentePersonaRequest"
+					},
+					"domicilioRelacionado": {
+						"type": "array",
+						"items": {
+							"$ref": "#/components/schemas/DomicilioRelacionadoRequest"
+						}
+					},
+					"domicilios": {
+						"type": "array",
+						"items": { "$ref": "#/components/schemas/DomicilioRequest" }
+					},
+					"relacionados": {
+						"type": "array",
+						"items": {
+							"$ref": "#/components/schemas/RelacionadoPersonaRequest"
+						}
+					},
+					"sustentos": {
+						"type": "array",
+						"items": {
+							"$ref": "#/components/schemas/DocumentoSustentoRequest"
+						}
+					}
+				}
+			},
+			"DocumentoRequest": {
+				"title": "DocumentoRequest",
+				"required": [
+					"docIdentidadId",
+					"municipalidadId",
+					"numDocIdentidad"
+				],
+				"type": "object",
+				"properties": {
+					"docIdentidadId": { "type": "integer", "format": "int32" },
+					"docIdentidadIdRel": { "type": "integer", "format": "int32" },
+					"municipalidadId": { "type": "integer", "format": "int64" },
+					"numDocIdentidad": {
+						"maxLength": 13,
+						"minLength": 8,
+						"type": "string"
+					},
+					"numDocIdentidadRel": { "type": "string" },
+					"tipPersonaId": { "type": "integer", "format": "int32" },
+					"tipRelacionadoId": { "type": "integer", "format": "int32" }
+				}
+			},
+			"DocumentoSustentoBuscarResponse": {
+				"title": "DocumentoSustentoBuscarResponse",
+				"type": "object",
+				"properties": {
+					"activo": { "type": "integer", "format": "int32" },
+					"contribuyenteNumero": { "type": "integer", "format": "int64" },
+					"docSusContribuyenteId": {
+						"type": "integer",
+						"format": "int64"
+					},
+					"estadoDsc": { "type": "string" },
+					"folios": { "type": "integer", "format": "int32" },
+					"forPresentacionId": { "type": "integer", "format": "int32" },
+					"municipalidadId": { "type": "integer", "format": "int64" },
+					"nroDocSustento": { "type": "string" },
+					"rowNum": { "type": "integer", "format": "int64" },
+					"tipDocSustentoId": { "type": "integer", "format": "int32" },
+					"tipoDocumentoDsc": { "type": "string" },
+					"tipoPresentacionDsc": { "type": "string" }
+				}
+			},
+			"DocumentoSustentoRequest": {
+				"title": "DocumentoSustentoRequest",
+				"required": [
+					"docSusContribuyenteId",
+					"folios",
+					"forPresentacionId",
+					"nroDocSustento",
+					"tipDocSustentoId"
+				],
+				"type": "object",
+				"properties": {
+					"accion": {
+						"type": "string",
+						"enum": ["ACTUALIZAR", "CREAR", "ELIMINAR"]
+					},
+					"docSusContribuyenteId": {
+						"type": "integer",
+						"format": "int64"
+					},
+					"folios": { "type": "integer", "format": "int32" },
+					"forPresentacionId": { "type": "integer", "format": "int32" },
+					"nroDocSustento": { "type": "string" },
+					"tipDocSustentoId": { "type": "integer", "format": "int32" }
+				}
+			},
+			"DomicilioBuscarResponse": {
+				"title": "DomicilioBuscarResponse",
+				"type": "object",
+				"properties": {
+					"contribuyenteNumero": { "type": "integer", "format": "int64" },
+					"domicilioContribuyenteNumero": {
+						"type": "integer",
+						"format": "int64"
+					},
+					"domicilioDsc": { "type": "string" },
+					"estadoDsc": { "type": "string" },
+					"municipalidadId": { "type": "integer", "format": "int64" },
+					"rowNum": { "type": "integer", "format": "int64" },
+					"tipoDomicilioDsc": { "type": "string" },
+					"tipoPredioDsc": { "type": "string" }
+				}
+			},
+			"DomicilioRelacionadoBuscarResponse": {
+				"title": "DomicilioRelacionadoBuscarResponse",
+				"type": "object",
+				"properties": {
+					"activo": { "type": "integer", "format": "int32" },
+					"contribuyenteNumero": { "type": "integer", "format": "int64" },
+					"domRelacionadoNumero": { "type": "integer", "format": "int64" },
+					"domicilioDsc": { "type": "string" },
+					"estadoDsc": { "type": "string" },
+					"index": { "type": "integer", "format": "int64" },
+					"municipalidadId": { "type": "integer", "format": "int64" },
+					"relContribuyenteNumero": {
+						"type": "integer",
+						"format": "int64"
+					},
+					"tipoPredioDsc": { "type": "string" }
+				}
+			},
+			"DomicilioRelacionadoRequest": {
+				"title": "DomicilioRelacionadoRequest",
+				"required": [
+					"departamentoId",
+					"distritoId",
+					"domRelacionadoNumero",
+					"provinciaId",
+					"relContribuyenteNumero",
+					"tipPredioId"
+				],
+				"type": "object",
+				"properties": {
+					"accion": {
+						"type": "string",
+						"enum": ["ACTUALIZAR", "CREAR", "ELIMINAR"]
+					},
+					"carretera": {
+						"maxLength": 50,
+						"minLength": 0,
+						"type": "string"
+					},
+					"codCatastral": {
+						"maxLength": 21,
+						"minLength": 0,
+						"type": "string"
+					},
+					"departamentoId": { "type": "integer", "format": "int32" },
+					"desDomicilio": {
+						"maxLength": 100,
+						"minLength": 0,
+						"type": "string"
+					},
+					"desInterior": {
+						"maxLength": 6,
+						"minLength": 0,
+						"type": "string"
+					},
+					"distritoId": { "type": "integer", "format": "int32" },
+					"domRelacionadoNumero": { "type": "integer", "format": "int64" },
+					"edificacionId": { "type": "integer", "format": "int32" },
+					"fuenteInfoId": { "type": "integer", "format": "int32" },
+					"ingreso": { "maxLength": 6, "minLength": 0, "type": "string" },
+					"kilometro": {
+						"maxLength": 6,
+						"minLength": 0,
+						"type": "string"
+					},
+					"letra1": { "maxLength": 6, "minLength": 0, "type": "string" },
+					"letra2": { "maxLength": 6, "minLength": 0, "type": "string" },
+					"lote": { "maxLength": 6, "minLength": 0, "type": "string" },
+					"manzana": { "maxLength": 6, "minLength": 0, "type": "string" },
+					"nombrePredio": {
+						"maxLength": 100,
+						"minLength": 0,
+						"type": "string"
+					},
+					"numero1": { "type": "integer", "format": "int32" },
+					"numero2": { "type": "integer", "format": "int32" },
+					"parcela": { "maxLength": 50, "minLength": 0, "type": "string" },
+					"piso": { "maxLength": 6, "minLength": 0, "type": "string" },
+					"provinciaId": { "type": "integer", "format": "int32" },
+					"referencia": {
+						"maxLength": 100,
+						"minLength": 0,
+						"type": "string"
+					},
+					"relContribuyenteNumero": {
+						"type": "integer",
+						"format": "int64"
+					},
+					"subLote": { "type": "integer", "format": "int32" },
+					"subZonaUrbanaId": { "type": "integer", "format": "int32" },
+					"tipInteriorId": { "type": "integer", "format": "int32" },
+					"tipPreRusticoId": { "type": "integer", "format": "int32" },
+					"tipPredioId": { "type": "integer", "format": "int32" },
+					"viaDepartamentoId": { "type": "integer", "format": "int32" },
+					"viaDistritoId": { "type": "integer", "format": "int32" },
+					"viaId": { "type": "integer", "format": "int32" },
+					"viaProvinciaId": { "type": "integer", "format": "int32" },
+					"zonaUrbanaId": { "type": "integer", "format": "int32" }
+				}
+			},
+			"DomicilioRelacionadoResponse": {
+				"title": "DomicilioRelacionadoResponse",
+				"type": "object",
+				"properties": {
+					"activo": { "type": "integer", "format": "int32" },
+					"contribuyenteNumero": { "type": "integer", "format": "int64" },
+					"departamentoId": { "type": "integer", "format": "int32" },
+					"descripcionDomicilio": { "type": "string" },
+					"descripcionInterior": { "type": "string" },
+					"distritoId": { "type": "integer", "format": "int32" },
+					"domRelacionadoNumero": { "type": "integer", "format": "int64" },
+					"edificacionId": { "type": "integer", "format": "int64" },
+					"estructurado": { "type": "integer", "format": "int32" },
+					"fuenteInfoId": { "type": "integer", "format": "int32" },
+					"ingreso": { "type": "string" },
+					"kilometro": { "type": "string" },
+					"latitud": { "type": "number", "format": "double" },
+					"letra1": { "type": "string" },
+					"letra2": { "type": "string" },
+					"longitud": { "type": "number", "format": "double" },
+					"lote": { "type": "string" },
+					"manzana": { "type": "string" },
+					"municipalidadId": { "type": "integer", "format": "int64" },
+					"numero1": { "type": "integer", "format": "int32" },
+					"numero2": { "type": "integer", "format": "int32" },
+					"piso": { "type": "string" },
+					"provinciaId": { "type": "integer", "format": "int32" },
+					"referencia": { "type": "string" },
+					"relContribuyenteNumero": {
+						"type": "integer",
+						"format": "int64"
+					},
+					"subLote": { "type": "string" },
+					"subZonaUrbanaId": { "type": "integer", "format": "int64" },
+					"tipoInteriorId": { "type": "integer", "format": "int64" },
+					"tipoPredioId": { "type": "integer", "format": "int32" },
+					"viaDepartamentoId": { "type": "integer", "format": "int32" },
+					"viaDistritoId": { "type": "integer", "format": "int32" },
+					"viaId": { "type": "integer", "format": "int64" },
+					"viaProvinciaId": { "type": "integer", "format": "int32" },
+					"zonaUrbanaId": { "type": "integer", "format": "int64" }
+				}
+			},
+			"DomicilioRequest": {
+				"title": "DomicilioRequest",
+				"required": [
+					"departamentoId",
+					"distritoId",
+					"domicilioContribuyenteNumero",
+					"provinciaId",
+					"tipDomicilioId",
+					"tipoPredioId"
+				],
+				"type": "object",
+				"properties": {
+					"accion": {
+						"type": "string",
+						"enum": ["ACTUALIZAR", "CREAR", "ELIMINAR"]
+					},
+					"departamentoId": { "type": "integer", "format": "int32" },
+					"descripcionDomicilio": {
+						"maxLength": 300,
+						"minLength": 0,
+						"type": "string"
+					},
+					"descripcionInterior": {
+						"maxLength": 6,
+						"minLength": 0,
+						"type": "string"
+					},
+					"distritoId": { "type": "integer", "format": "int32" },
+					"domicilioContribuyenteNumero": {
+						"type": "integer",
+						"format": "int64"
+					},
+					"edificacionId": { "type": "integer", "format": "int64" },
+					"estructurado": { "type": "integer", "format": "int32" },
+					"fuenteInformacionId": { "type": "integer", "format": "int32" },
+					"ingreso": { "maxLength": 6, "minLength": 0, "type": "string" },
+					"kilometro": {
+						"maxLength": 6,
+						"minLength": 0,
+						"type": "string"
+					},
+					"latitud": { "type": "number", "format": "double" },
+					"letra1": { "maxLength": 6, "minLength": 0, "type": "string" },
+					"letra2": { "maxLength": 6, "minLength": 0, "type": "string" },
+					"longitud": { "type": "number", "format": "double" },
+					"lote": { "maxLength": 6, "minLength": 0, "type": "string" },
+					"manzana": { "maxLength": 6, "minLength": 0, "type": "string" },
+					"numero1": { "type": "integer", "format": "int32" },
+					"numero2": { "type": "integer", "format": "int32" },
+					"piso": { "maxLength": 6, "minLength": 0, "type": "string" },
+					"provinciaId": { "type": "integer", "format": "int32" },
+					"referencia": {
+						"maxLength": 100,
+						"minLength": 0,
+						"type": "string"
+					},
+					"subLote": { "maxLength": 6, "minLength": 0, "type": "string" },
+					"subZonaUrbanaId": { "type": "integer", "format": "int64" },
+					"tipDomicilioId": { "type": "integer", "format": "int64" },
+					"tipoInteriorId": { "type": "integer", "format": "int64" },
+					"tipoPredioId": { "type": "integer", "format": "int32" },
+					"viaDepartamentoId": { "type": "integer", "format": "int32" },
+					"viaDistritoId": { "type": "integer", "format": "int32" },
+					"viaId": { "type": "integer", "format": "int64" },
+					"viaProvinciaId": { "type": "integer", "format": "int32" },
+					"zonaUrbanaId": { "type": "integer", "format": "int64" }
+				}
+			},
+			"InputStream": { "title": "InputStream", "type": "object" },
+			"PaginaResponseOfListOfContribuyenteBuscarResponse": {
+				"title": "PaginaResponseOfListOfContribuyenteBuscarResponse",
+				"type": "object",
+				"properties": {
+					"data": {
+						"type": "array",
+						"items": {
+							"$ref": "#/components/schemas/ContribuyenteBuscarResponse"
+						}
+					},
+					"nroPage": { "type": "integer", "format": "int32" },
+					"size": { "type": "integer", "format": "int32" },
+					"totalRows": { "type": "integer", "format": "int32" }
+				}
+			},
+			"PersonaRequest": {
+				"title": "PersonaRequest",
+				"type": "object",
+				"properties": {
+					"activo": { "type": "integer", "format": "int32" },
+					"apeMaterno": { "type": "string" },
+					"apePaterno": { "type": "string" },
+					"docIdentidadId": { "type": "integer", "format": "int32" },
+					"estCivilTipId": { "type": "integer", "format": "int32" },
+					"fallecio": { "type": "integer", "format": "int32" },
+					"fecFallecimiento": { "type": "string", "format": "date" },
+					"fecNacimiento": { "type": "string", "format": "date" },
+					"genero": { "type": "string" },
+					"municipalidadId": { "type": "integer", "format": "int64" },
+					"nombres": { "type": "string" },
+					"numDocIdentidad": { "type": "string" },
+					"numOperacionId": { "type": "integer", "format": "int64" },
+					"personaId": { "type": "integer", "format": "int64" },
+					"razonSocial": { "type": "string" }
+				}
+			},
+			"RelacionadoBuscarResponse": {
+				"title": "RelacionadoBuscarResponse",
+				"type": "object",
+				"properties": {
+					"contribuyenteNumero": { "type": "integer", "format": "int64" },
+					"estadoDsc": { "type": "string" },
+					"index": { "type": "integer", "format": "int64" },
+					"municipalidadId": { "type": "integer", "format": "int64" },
+					"nombreCompleto": { "type": "string" },
+					"numDocIdentidad": { "type": "string" },
+					"relContribuyenteNumero": {
+						"type": "integer",
+						"format": "int64"
+					},
+					"tipoDocumentoDsc": { "type": "string" },
+					"tipoRelacionadoDsc": { "type": "string" }
+				}
+			},
+			"RelacionadoPersonaRequest": {
+				"title": "RelacionadoPersonaRequest",
+				"required": [
+					"docIdentidadId",
+					"fecVigInicial",
+					"numDocIdentidad",
+					"tipRelacionadoId"
+				],
+				"type": "object",
+				"properties": {
+					"accion": {
+						"type": "string",
+						"enum": ["ACTUALIZAR", "CREAR", "ELIMINAR"]
+					},
+					"anexo": { "maxLength": 20, "minLength": 0, "type": "string" },
+					"apeMaterno": {
+						"maxLength": 50,
+						"minLength": 0,
+						"type": "string"
+					},
+					"apePaterno": {
+						"maxLength": 50,
+						"minLength": 0,
+						"type": "string"
+					},
+					"correoElectronico": {
+						"maxLength": 100,
+						"minLength": 0,
+						"type": "string"
+					},
+					"docIdentidadId": { "type": "integer", "format": "int32" },
+					"fecVigFinal": { "type": "string", "format": "date" },
+					"fecVigInicial": { "type": "string", "format": "date" },
+					"nombres": {
+						"maxLength": 100,
+						"minLength": 0,
+						"type": "string"
+					},
+					"numDocIdentidad": { "type": "string" },
+					"relContribuyenteNumero": {
+						"type": "integer",
+						"format": "int64"
+					},
+					"telefonoCelular": {
+						"maxLength": 20,
+						"minLength": 0,
+						"type": "string"
+					},
+					"telefonoFijo": {
+						"maxLength": 20,
+						"minLength": 0,
+						"type": "string"
+					},
+					"tipRelacionadoId": { "type": "integer", "format": "int32" }
+				}
+			},
+			"Resource": {
+				"title": "Resource",
+				"type": "object",
+				"properties": {
+					"description": { "type": "string" },
+					"file": { "type": "string", "format": "binary" },
+					"filename": { "type": "string" },
+					"inputStream": { "$ref": "#/components/schemas/InputStream" },
+					"open": { "type": "boolean" },
+					"readable": { "type": "boolean" },
+					"uri": { "type": "string", "format": "uri" },
+					"url": { "type": "string", "format": "url" }
+				}
+			}
+		}
+	}
+}

@@ -1,0 +1,62 @@
+<form [formGroup]="formulario">
+  <div class="modal-header">
+    <h6 class="modal-title w-100" id="title">
+      {{ isModeEdit ? 'Editar' : 'Nuevo'}} Medio de Contacto
+    </h6>
+    <button type="button" class="btn-close" aria-label="Close" (click)="close()"></button>
+  </div>
+  <div class="modal-body">
+    <div class="siaf-card">
+      <div class="container-fluid px-0">
+        <div class="row align-items-end">
+          <div class="col-12 col-sm-6 col-lg-3">
+            <div class="form-group required" [ngClass]="{ 'invalid' : invalidControl(tipoContacto) }">
+              <label class="form-label" for="mcTiposContacto">Tipos Contacto</label>
+              <ng-select [searchable]="false" id="mcTiposContacto" formControlName="tipoContacto" [clearable]="false"
+                [items]="tiposContacto" bindLabel="descripcion" bindValue="maestroId">
+              </ng-select>
+            </div>
+          </div>
+
+          <div class="col-12 col-sm-6 col-lg-3">
+            <div class="form-group required" [ngClass]="{ 'invalid' : invalidControl(medioContacto) }">
+              <label class="form-label" for="mcMedioContacto">Medio de Contacto</label>
+              <ng-select [searchable]="false" formControlName="medioContacto" [clearable]="false" id="mcMedioContacto"
+                [items]="tiposMedioContacto" bindLabel="descripcion" bindValue="maestroId">
+              </ng-select>
+            </div>
+          </div>
+
+          <div class="col-12 col-sm-12 col-lg-3">
+            <div class="form-group required" [ngClass]="{ 'invalid' : invalidControl(detalle) }">
+              <label class="form-label" for="mcDetalle">Detalle</label>
+              <input type="text" class="form-control" formControlName="detalle" id="mcDetalle" placeholder="">
+            </div>
+          </div>
+
+          <div class="col-12 col-sm-12 col-lg-3">
+            <div class="form-group">
+              <div class="form-check">
+                <input type="checkbox" class="form-check-input" id="mcPrincipal" formControlName="principal">
+                <label class="form-check-label" for="mcPrincipal">Principal</label>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="close()">
+      <span class="feather icon-x me-1"></span>
+      Cancelar
+    </button>
+    <button type="button" class="btn btn-primary" [disabled]="loading" ngbAutofocus (click)="onSubmit()">
+      <span class="feather icon-check me-1" *ngIf="!loading; else iconLoading"></span>
+      <ng-template #iconLoading>
+        <div class="spinner-border spinner-border-sm me-2" role="status"></div>
+      </ng-template>
+      {{ loading ? 'Grabando...' : 'Grabar' }}
+    </button>
+  </div>
+</form>

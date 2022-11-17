@@ -1,0 +1,166 @@
+@import '../../../assets/siaf/variables';
+
+.title-page{
+    font-size: 1.4rem;
+    font-weight: bold;
+    background-color: #FFF;
+    padding: 0.8rem;
+}
+.title{
+    font-weight: bold;
+}
+.fila-filtro{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 0.5rem;
+    width: 100%;
+    flex-wrap: wrap;
+}
+
+.filtro-codigo{
+    width: 10rem; 
+}
+
+.filtro-tipo-documento{
+    width: 10rem; 
+}
+
+.filtro-documento{
+    width: 10rem; 
+}
+ 
+.filtro-nombres{
+    width: 25rem; 
+}
+ 
+.filtro-footer{
+    border-top: 1px solid #e2e2e4;
+
+    width: 100%;
+    padding-top: 0.3rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+}
+
+.filtro-footer .opciones{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 12rem;
+}
+
+.resultado-header{
+    width: 100%;
+    padding-top: 0.3rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.resultado-header .opciones{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+    width: 15rem;
+}
+
+.resultado-content{
+    display: flex;
+    flex-direction: column;
+    margin: 1rem;
+    min-height: 10rem;
+}
+.btn-outline-secondary{
+    color: rgb(119, 118, 118);
+    border: 0.1rem solid rgb(163, 163, 163);
+}
+
+.resultado-header .opciones-selected{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    width: 23rem;
+    background-color: #FFF;
+    &.opciones{
+        justify-content: space-evenly;
+    } 
+}
+
+.resultado-vacio{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    height: 10rem;
+    width: 100%;
+}
+
+
+//////////////////////////////
+.opcion-buscar{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    width: 10rem;
+}
+
+.barra-opciones{
+    width: 60rem;
+    height: 5rem;
+    padding: 1rem;
+}
+
+.div-inclinado{
+    width: 100%;
+    height: 100%;    
+    border: 1px solid rgb(110, 110, 110);  
+    -ms-transform: skew(-30deg); /* IE 9 */
+    -webkit-transform: skew(-30deg); /* Chrome, Safari, Opera */
+    transform: skew(-30deg); /* Standard syntax */
+    border-bottom-left-radius: 1rem;
+    border-bottom-right-radius: 1rem;     
+}
+
+.div-inclinado .contenido{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    -ms-transform: skew(30deg); /* IE 9 */
+    -webkit-transform: skew(30deg); /* Chrome, Safari, Opera */
+    transform: skew(30deg); /* Standard syntax */
+    padding-left: 1rem;
+}
+
+.contenido .items{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    width: 20rem;
+}
+
+.btn-primary{
+    color: #FFF;
+}
+
+tbody > tr {
+    cursor: pointer;
+    &:hover {
+      color: $siaf-red;
+      background: $siaf-red-ligth;
+    }
+    &.active {
+      background: $siaf-red-ligth;
+      > td {
+        color: $siaf-red;
+      }
+    }
+}

@@ -1,0 +1,205 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Servicio API de Datos Comunes",
+    "description": "Servicio de datos comunes.",
+    "version": "0.0.1-SNAPSHOT"
+  },
+  "servers": [
+    { "url": "http://104.237.131.179:8083", "description": "Inferred Url" }
+  ],
+  "tags": [
+    { "name": "comun-controller", "description": "Comun Controller" },
+    { "name": "comun-tipo-controller", "description": "Comun Tipo Controller" }
+  ],
+  "paths": {
+    "/api/v1/comunes/filtrarportipo": {
+      "get": {
+        "tags": ["comun-controller"],
+        "summary": "obtenerPorTipo",
+        "operationId": "obtenerPorTipoUsingGET",
+        "parameters": [
+          {
+            "name": "tipoMaestroId",
+            "in": "query",
+            "description": "tipoMaestroId",
+            "required": false,
+            "style": "form",
+            "schema": { "type": "integer", "format": "int32" }
+          },
+          {
+            "name": "municipalidadId",
+            "in": "query",
+            "description": "municipalidadId",
+            "required": false,
+            "style": "form",
+            "schema": { "type": "integer", "format": "int64" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": { "$ref": "#/components/schemas/ComunResponse" }
+                }
+              }
+            }
+          },
+          "401": { "description": "Unauthorized" },
+          "403": { "description": "Forbidden" },
+          "404": { "description": "Not Found" }
+        }
+      }
+    },
+    "/api/v1/tipocomunes/crear": {
+      "post": {
+        "tags": ["comun-tipo-controller"],
+        "summary": "crear",
+        "operationId": "crearUsingPOST",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/ComunTipoEntity" }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": { "schema": { "type": "object" } }
+            }
+          },
+          "201": { "description": "Created" },
+          "401": { "description": "Unauthorized" },
+          "403": { "description": "Forbidden" },
+          "404": { "description": "Not Found" }
+        }
+      }
+    },
+    "/api/v1/tipocomunes/editar": {
+      "post": {
+        "tags": ["comun-tipo-controller"],
+        "summary": "editar",
+        "operationId": "editarUsingPOST",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/ComunTipoEntity" }
+            }
+          }
+        },
+        "responses": {
+          "200": { "description": "OK" },
+          "201": { "description": "Created" },
+          "401": { "description": "Unauthorized" },
+          "403": { "description": "Forbidden" },
+          "404": { "description": "Not Found" }
+        }
+      }
+    },
+    "/api/v1/tipocomunes/eliminar": {
+      "post": {
+        "tags": ["comun-tipo-controller"],
+        "summary": "eliminar",
+        "operationId": "eliminarUsingPOST",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "description": "id",
+            "required": false,
+            "style": "form",
+            "schema": { "type": "integer", "format": "int32" }
+          }
+        ],
+        "responses": {
+          "200": { "description": "OK" },
+          "201": { "description": "Created" },
+          "401": { "description": "Unauthorized" },
+          "403": { "description": "Forbidden" },
+          "404": { "description": "Not Found" }
+        }
+      }
+    },
+    "/api/v1/tipocomunes/listar": {
+      "get": {
+        "tags": ["comun-tipo-controller"],
+        "summary": "todos",
+        "operationId": "todosUsingGET",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": { "$ref": "#/components/schemas/ComunTipoEntity" }
+                }
+              }
+            }
+          },
+          "401": { "description": "Unauthorized" },
+          "403": { "description": "Forbidden" },
+          "404": { "description": "Not Found" }
+        }
+      }
+    },
+    "/api/v1/tipocomunes/obtener": {
+      "get": {
+        "tags": ["comun-tipo-controller"],
+        "summary": "obtenerPorId",
+        "operationId": "obtenerPorIdUsingGET",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "description": "id",
+            "required": false,
+            "style": "form",
+            "schema": { "type": "integer", "format": "int32" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ComunTipoEntity" }
+              }
+            }
+          },
+          "401": { "description": "Unauthorized" },
+          "403": { "description": "Forbidden" },
+          "404": { "description": "Not Found" }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "ComunResponse": {
+        "title": "ComunResponse",
+        "type": "object",
+        "properties": {
+          "abreviatura": { "type": "string" },
+          "descripcion": { "type": "string" },
+          "descripcionSecundario": { "type": "string" },
+          "maestroId": { "type": "integer", "format": "int32" },
+          "maestroSecundarioId": { "type": "integer", "format": "int32" }
+        }
+      },
+      "ComunTipoEntity": {
+        "title": "ComunTipoEntity",
+        "type": "object",
+        "properties": {
+          "nombre": { "type": "string" },
+          "tipoMaestroId": { "type": "integer", "format": "int32" }
+        }
+      }
+    }
+  }
+}

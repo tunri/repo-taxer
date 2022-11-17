@@ -1,0 +1,79 @@
+.siaf {
+  .table-heading,
+  .table-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-height: 48px;
+  }
+  .table-sticky {
+    height: 300px;
+    &.table-sticky--height {
+      height: 450px;
+    }
+    overflow-y: auto;
+    thead {
+      th {
+        top: 0;
+        position: sticky;
+        background-color: $siaf-white;
+      }
+    }
+  }
+  .table {
+    &.table-consult {
+      tbody > tr {
+        &:hover {
+          color: $siaf-black;
+          background: transparent;
+        }
+      }
+    }
+    thead {
+      th {
+        height: 48px;
+        font-size: 12px;
+        color: $siaf-grey-30;
+        border: none;
+        background-color: $siaf-white;
+        // z-index: 2;
+      }
+    }
+    tbody > tr {
+      cursor: pointer !important;
+      &:hover {
+        color: $siaf-red;
+        background: $siaf-red-ligth;
+      }
+      &.active {
+        background: $siaf-red-ligth;
+        > td {
+          color: $siaf-red;
+        }
+      }
+    }
+    td,
+    th {
+      vertical-align: middle;
+      height: 40px;
+      &.monto, &.monto > input {
+        text-align: right !important;
+      }
+    }
+    &.table-sm {
+      td, th {
+        height: auto;
+        padding: 0.2rem 0.25rem !important;
+      }
+    }
+    &.table-consulta {
+      tbody > tr {
+        cursor: inherit;
+        &:hover {
+          color: $siaf-black;
+          background: transparent;
+        }
+      }
+    }
+  }
+}

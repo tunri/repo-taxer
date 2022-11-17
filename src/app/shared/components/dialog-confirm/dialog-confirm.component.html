@@ -1,0 +1,22 @@
+<div class="dialog-confirm">
+  <div class="modal-body">
+    <div>
+      <span class="dialog-confirm__icon feather icon-trash-2"></span>
+    </div>
+    <h3 class="dialog-confirm__title">{{options.title}}</h3>
+    <p class="dialog-confirm__message">{{options.message}}</p>
+  </div>
+  <div class="modal-footer justify-content-center">
+    <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="onClose()">
+      <span class="feather icon-x me-1"></span>
+      Cancelar
+    </button>
+    <button type="button" class="btn btn-primary" [disabled]="loading" ngbAutofocus (click)="onOk()">
+      <span class="feather icon-check me-1" *ngIf="!loading; else iconLoading"></span>
+      <ng-template #iconLoading>
+        <div class="spinner-border spinner-border-sm me-2" role="status"></div>
+      </ng-template>
+      {{ loading ? 'Grabando...' : 'Confimar' }}
+    </button>
+  </div>
+</div>

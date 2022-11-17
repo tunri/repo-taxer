@@ -1,0 +1,63 @@
+<div class="modal-header">
+  <h6 class="modal-title w-100" id="title">
+    {{ isModeEdit ? 'Editar' : 'Nuevo'}} Documento Sustento
+  </h6>
+  <button type="button" class="btn-close" aria-label="Close" (click)="close()"></button>
+</div>
+<div class="modal-body">
+
+  <form [formGroup]="formulario">
+    <div class="siaf-card">
+      <div class="container-fluid px-0">
+        <div class="row">
+          <div class="col-12 col-sm-6 col-lg-3">
+            <div class="form-group required" [ngClass]="{ 'invalid' : invalidControl(documentoId) }">
+              <label class="form-label" for="msDocumento">Documento</label>
+              <ng-select [searchable]="false" formControlName="documentoId" [clearable]="false" id="msDocumento"
+                [items]="tiposDocumento" bindLabel="descripcion" bindValue="maestroId">
+              </ng-select>
+            </div>
+          </div>
+
+          <div class="col-12 col-sm-6 col-lg-3">
+            <div class="form-group required" [ngClass]="{ 'invalid' : invalidControl(numDocumento) }">
+              <label class="form-label" for="msNumDocumento">Número de documento</label>
+              <input type="text" class="form-control" formControlName="numDocumento" id="msNumDocumento" placeholder="">
+            </div>
+          </div>
+
+          <div class="col-12 col-sm-6 col-lg-3">
+            <div class="form-group required" [ngClass]="{ 'invalid' : invalidControl(folio) }">
+              <label class="form-label" for="msFolio">Folio</label>
+              <input type="number" min="0" class="form-control" formControlName="folio" id="msFolio" placeholder="">
+            </div>
+          </div>
+
+          <div class="col-12 col-sm-6 col-lg-3">
+            <div class="form-group required" [ngClass]="{ 'invalid' : invalidControl(tipoPresentacionId) }">
+              <label class="form-label" for="msTipoPresentacion">Tipo de presentación</label>
+              <ng-select [searchable]="false" formControlName="tipoPresentacionId" [clearable]="false"
+                id="msTipoPresentacion" [items]="tiposPresentacion" bindLabel="descripcion" bindValue="maestroId">
+              </ng-select>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </form>
+
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="close()">
+    <span class="feather icon-x me-1"></span>
+    Cancelar
+  </button>
+  <button type="button" class="btn btn-primary" [disabled]="loading" ngbAutofocus (click)="onSubmit()">
+    <span class="feather icon-check me-1" *ngIf="!loading; else iconLoading"></span>
+    <ng-template #iconLoading>
+      <div class="spinner-border spinner-border-sm me-2"  role="status"></div>
+    </ng-template>
+    {{ loading ? 'Grabando...' : 'Grabar' }}
+  </button>
+</div>

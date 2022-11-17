@@ -1,0 +1,101 @@
+<div class="view-registro-contribuyente">
+	<div class="registro-banner">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-12">
+					<nav aria-label="breadcrumb">
+						<ol class="breadcrumb">
+							<li class="breadcrumb-item"><a href="#">Módulos</a></li>
+							<li class="breadcrumb-item">
+								<a href="#">Módulo de Registro Predial</a>
+							</li>
+							<li class="breadcrumb-item">Registro</li>
+							<li class="breadcrumb-item active" aria-current="page">
+								Gestionar Contribuyente
+							</li>
+						</ol>
+					</nav>
+				</div>
+			</div>
+			<div class="row justify-content-between">
+				<div class="col-12 col-sm-auto">
+					<h4 class="fw-bold">NUEVO CONTRIBUYENTE </h4>
+				</div>
+				<div class="col-12 col-sm-auto">
+					<div class="d-grid gap-2 grid-buttons">
+						<button type="button" class="btn btn-secondary" (click)="onCancel()">
+							<span class="feather icon-x me-1"></span>
+							Cancelar
+						</button>
+						<button type="button" class="btn btn-primary" [disabled]="loading" ngbAutofocus
+							(click)="onNext(activeTab)">
+							{{ getTextNext() }}
+							<ng-template #iconLoading>
+								<div class="spinner-border spinner-border-sm me-2" role="status"></div>
+							</ng-template>
+							<span class="feather icon-arrow-right ms-1" *ngIf="!loading; else iconLoading"></span>
+						</button>
+					</div>
+				</div>
+			</div>
+			<!-- TABS -->
+			<ul ngbNav #nav="ngbNav" [(activeId)]="activeTab" class="nav-tabs d-flex flex-nowrap">
+				<li [ngbNavItem]="1">
+					<a ngbNavLink class="px-3" ngbTooltip="Datos del contribuyente" placement="bottom">
+						<span class="feather icon-file-text icon-md"></span>
+						<span class="ms-1">Datos del contribuyente</span>
+					</a>
+					<ng-template ngbNavContent>
+						<taxer-datos-contribuyente #contribuyente [municipalidadId]="municipalidadId"
+							[numContribuyente]="numContribuyente">
+						</taxer-datos-contribuyente>
+					</ng-template>
+				</li>
+				<li [ngbNavItem]="2" [disabled]="!numContribuyente">
+					<a ngbNavLink class="px-3" ngbTooltip="Domicilio" placement="bottom">
+						<span class="feather icon-file-text icon-md"></span>
+						<span class="ms-1">Domicilio</span>
+					</a>
+					<ng-template ngbNavContent>
+						<app-crud-domicilio [numContribuyente]="numContribuyente" [municipalidadId]="municipalidadId">
+						</app-crud-domicilio>
+					</ng-template>
+				</li>
+				<li [ngbNavItem]="3" [disabled]="!numContribuyente">
+					<a ngbNavLink class="px-3" ngbTooltip="Relacionado" placement="bottom">
+						<span class="feather icon-file-text icon-md"></span>
+						<span class="ms-1">Relacionado</span>
+					</a>
+					<ng-template ngbNavContent>
+						<app-gestion-relacionado [numContribuyente]="numContribuyente"
+							[municipalidadId]="municipalidadId">
+						</app-gestion-relacionado>
+					</ng-template>
+				</li>
+				<li [ngbNavItem]="4" [disabled]="!numContribuyente">
+					<a ngbNavLink class="px-3" ngbTooltip="Medios de contacto" placement="bottom">
+						<span class="feather icon-file-text icon-md"></span>
+						<span class="ms-1">Medios de contacto</span>
+					</a>
+					<ng-template ngbNavContent>
+						<crud-medios-contacto [numContribuyente]="numContribuyente" [municipalidadId]="municipalidadId">
+						</crud-medios-contacto>
+					</ng-template>
+				</li>
+				<li [ngbNavItem]="5" [disabled]="!numContribuyente">
+					<a ngbNavLink class="px-3" ngbTooltip="Sustento" placement="bottom">
+						<span class="feather icon-file-text icon-md"></span>
+						<span class="ms-1">Sustento</span>
+					</a>
+					<ng-template ngbNavContent>
+						<crud-sustento [numContribuyente]="numContribuyente" [municipalidadId]="municipalidadId">
+						</crud-sustento>
+					</ng-template>
+				</li>
+			</ul>
+		</div>
+	</div>
+	<div class="flex-grow-1 bg-secondary p-4">
+		<div [ngbNavOutlet]="nav"></div>
+	</div>
+</div>

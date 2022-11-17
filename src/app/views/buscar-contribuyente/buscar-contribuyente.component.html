@@ -1,0 +1,157 @@
+<section>
+  <div class="title-page">
+    Gestionar Contribuyente
+  </div> 
+  <div class="flex-grow-1 bg-secondary p-4">    
+    <div class="siaf-card p-4">
+      <ngb-accordion #acc="ngbAccordion" activeIds="ngb-panel-0">
+        <ngb-panel>
+          <ng-template ngbPanelTitle>
+            <span class="title">Filtros de búsqueda</span>
+          </ng-template>
+          <ng-template ngbPanelContent>
+            <form [formGroup]="form">  
+              <div class="row g-2 g-sm-3 mb-4">
+
+                <div class="col-12 col-sm-6 col-md-2 col-lg-2">
+                  <label for="codigo">Código contribuyente</label>
+                  <input formControlName="codigo" class="form-control form-control-md" id="codigo" type="text" 
+                  mask="0*" placeholder="Código contribuyente"/>
+                </div>
+                <div class="col-12 col-sm-6 col-md-3 col-lg-3">
+                  <label for="tipoDocumento">Tipo de documento</label>
+                  <ng-select class="text" [items]="cars" bindLabel="name" bindValue="id"
+                    id="tipoDocumento" placeholder="Tipo de documento"
+                    [searchable]="false" [clearable]="false" formControlName="tipoDocumento">
+                  </ng-select>
+                </div>
+                <div class="col-12 col-sm-6 col-md-3 col-lg-3">
+                  <label for="nroDocumento">Número de documento</label>
+                  <input formControlName="nroDocumento" class="form-control form-control-md" id="nroDocumento" type="text" placeholder="Número de documento"/>
+                </div>
+                <div class="col-12 col-sm-6 col-md-4 col-lg-4">
+                  <label for="nombres">Nombres y apellidos/Razón social</label>
+                  <input formControlName="nombres" class="form-control form-control-md" id="nombres" type="text" placeholder="Nombres y apellidos/Razón social"/>
+                </div>
+
+
+              </div>
+            </form>
+            
+            <div *ngIf="buscarError">
+              <app-nsrtm-alert-form [message]="buscarError" [type]="'danger'"></app-nsrtm-alert-form>
+            </div>
+            <br/>
+            <div class="filtro-footer">
+              <div class="opciones">
+                <button type="button" class="btn btn-secondary" (click)="limpiar()">
+                  <span class="feather icon-refresh-ccw me-1"></span>
+                  Limpiar
+                </button>
+                <button type="button" class="btn btn-primary" (click)="buscar()">
+                  <span class="feather icon-search"></span>
+                  Buscar
+                </button>
+              </div>
+            </div>
+          </ng-template>
+        </ngb-panel>
+      </ngb-accordion>
+    </div>
+    <br/>
+    <div class="siaf-card p-4">
+      <div class="resultado-header">
+        <div class="opciones-selected">
+          <div  class="opciones-selected opciones" *ngIf="selected">
+            
+            <div ngbDropdown>
+              <button type="button" class="btn btn-primary" id="dropdownBasic1" ngbDropdownToggle>
+                Declaraciones
+              </button>
+              <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+                <button ngbDropdownItem>Declaración 1</button>
+                <button ngbDropdownItem>Declaración 2</button>
+                <button ngbDropdownItem>Declaración 3</button>
+              </div>
+            </div>
+            
+            <button type="button" class="btn btn-primary">
+              <span class="feather icon-navigation me-1"></span>
+              Notificación
+            </button>
+            <button type="button" class="btn btn-primary">
+              <span class="feather icon-navigation me-1"></span>
+              Condición
+            </button>
+          </div>
+        </div>
+        
+        <div class="opciones">
+          <div ngbDropdown>
+            <button type="button" class="btn btn-outline-secondary" id="dropdownBasic2" ngbDropdownToggle>
+              <span class="feather icon-more-vertical me-1"></span>
+            </button>
+            <div ngbDropdownMenu aria-labelledby="dropdownBasic2">
+              <button ngbDropdownItem>Opción 1</button>
+              <button ngbDropdownItem>Opción 2</button>
+              <button ngbDropdownItem>Opción 3</button>
+            </div>
+          </div>
+          
+          <button type="button" class="btn btn-outline-secondary">
+            <span class="feather icon-trash me-1"></span>
+          </button>
+          <button type="button" class="btn btn-outline-secondary" (click)="editarContribuyente(selected)">
+            <span class="feather icon-edit-2 me-1"></span>
+          </button>
+          <button type="button" class="btn btn-primary" (click)="nuevoContribuyente()">
+            <span class="feather icon-plus me-1"></span>
+          </button>
+        </div>
+      </div>
+      <div class="resultado-content">
+        <div class="siaf-card border-0 py-1  mb-4">
+          <div class="table-sticky">
+            <table class="table m-0">
+              <thead>
+                <tr>
+                  <th>CÓDIGO</th>
+                  <th>F. REGISTRO</th>
+                  <th>ESTADO</th>
+                  <th>APELLIDOS Y NOMBRES / RAZÓN SOCIAL</th>
+                  <th>TIPO DOC.</th>
+                  <th>NRO. DOC.</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr class="c-pointer-none">
+                    <td colspan="6">
+                        <app-nsrtm-loading *ngIf="isLoading"></app-nsrtm-loading>
+                    </td>
+                </tr>
+                <tr class="c-pointer-none" *ngIf="!isLoading && lista.length==0">
+                  <td colspan="6">
+                      <span class="m-0 d-block text-center">(Sin registros)</span>
+                  </td>
+                </tr>
+                <tr *ngFor="let item of lista" (click)="select(item)" [ngClass]="{'active': item.activo === true }">             
+                  <td>{{item.contribuyenteNumero}}</td>
+                  <td>{{item.fechaInscripcion}}</td>
+                  <td>
+                    <span class="labels labels-pendiente">
+                      <span class="labels_circle"></span>
+                      <span class="text-capitalize">Registrado</span>
+                   </span>
+                  </td>
+                  <td>{{item.nombreCompleto}}</td>
+                  <td>{{item.desDocIdentidad}}</td>
+                  <td>{{item.numDocIdentidad}}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div> 
+      </div>
+    </div>
+  </div>
+</section>

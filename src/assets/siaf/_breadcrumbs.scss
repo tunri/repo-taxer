@@ -1,0 +1,28 @@
+.siaf {
+  .breadcrumb {
+    margin: 0;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 130%;
+    color: $siaf-grey-30;
+    padding: 0.72rem 0;
+    background-color: transparent;
+    .breadcrumb-item {
+      padding-left: 0.15rem;
+      + .breadcrumb-item::before {
+        padding: 0 0.3rem;
+        content: " > ";
+        color: $siaf-grey-30;
+        font-size: 80%;
+      }
+    }
+    a {
+      color: $siaf-grey-30;
+      text-decoration: none;
+      &:hover {
+        color: $siaf-red;
+      }
+    }
+  }
+}

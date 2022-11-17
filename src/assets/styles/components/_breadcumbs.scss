@@ -1,0 +1,17 @@
+.nsrtm .breadcrumb {
+
+  .breadcrumb-item {
+    +.breadcrumb-item::before {
+      content: "\e931";
+      color: $siaf-grey-30;
+      font-size: 100%;
+      font-family: 'feather';
+      font-weight: 600;
+    }
+  }
+
+  .active {
+    font-weight: bold;
+    color: $siaf-black;
+  }
+}

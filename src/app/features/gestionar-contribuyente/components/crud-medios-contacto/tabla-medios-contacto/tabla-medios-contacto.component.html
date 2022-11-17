@@ -1,0 +1,68 @@
+<div class="table-responsive overflow-hidden">
+  <div class="table-sticky">
+    <table class="table m-0">
+      <thead>
+        <tr>
+          <th>NÚMERO</th>
+          <th>TIPO DE CONTACTO</th>
+          <th>MEDIO DE CONTACTO</th>
+          <th>DETALLE</th>
+          <th class="text-center">PRINCIPAL</th>
+          <th class="text-end">ESTADO</th>
+        </tr>
+      </thead>
+      <tbody *ngIf="!loading">
+
+        <tr class="c-inherit" *ngFor="let item of tablePaginacion" (click)="select(item)"
+          [ngClass]="{'active': item.selected === true }">
+          <td>{{item.index}}</td>
+          <td>{{item.tipMedDescripcion}}</td>
+          <td>{{item.claMedDescripcion}}</td>
+          <td>{{item.descripcion}}</td>
+          <td class="text-center">{{item.principal === 0 ? 'NO' : 'SI'}}</td>
+          <td class="text-end">
+            <span class="labels" [ngClass]="getClassNameStatus(item)">
+              <span class="labels_circle"></span>
+              <span class="text-capitalize">{{item.estadoDsc}}</span>
+            </span>
+          </td>
+        </tr>
+
+        <tr *ngIf="!tablePaginacion.length">
+          <td colspan="6">
+            <nsrtm-no-results></nsrtm-no-results>
+          </td>
+        </tr>
+
+      </tbody>
+    </table>
+    <ng-container *ngIf="loading">
+      <nsrtm-loading></nsrtm-loading>
+    </ng-container>
+
+  </div>
+
+  <!-- PAGINATE -->
+  <div class="table-footer border-top px-2">
+    <div class="d-flex align-items-center">
+      <span class="label-regular me-2">Filas</span>
+      <select class="form-control form-select" [(ngModel)]="pageSize" (ngModelChange)="onChangePaginate()">
+        <option *ngFor="let size of pageSizes" [ngValue]="size">{{size}}</option>
+      </select>
+    </div>
+    <div class="content-pagination">
+      <span class="label-regular">{{to}} a {{from}} de {{_dataSource.length}} registros</span>
+      <ngb-pagination [maxSize]="3" [rotate]="true" [ellipses]="false" [collectionSize]="_dataSource.length"
+        [(page)]="page" [pageSize]="pageSize" (pageChange)="onChangePaginate()">
+        <ng-template ngbPaginationPrevious>
+          <span class="feather icon-chevron-left"></span>
+        </ng-template>
+        <ng-template ngbPaginationNext>
+          <span class="feather icon-chevron-right"></span>
+        </ng-template>
+      </ngb-pagination>
+    </div>
+  </div>
+
+
+</div>

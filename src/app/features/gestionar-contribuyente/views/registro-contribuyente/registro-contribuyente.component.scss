@@ -1,0 +1,15 @@
+.view-registro-contribuyente {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.grid-buttons {
+  grid-template-columns: auto auto;
+}
+
+.registro-banner {
+  position: relative;
+  z-index: 10;
+  box-shadow: 0px 3px 7px rgba(0, 0, 0, 0.07);
+}

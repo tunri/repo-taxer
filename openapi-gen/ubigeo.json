@@ -1,0 +1,409 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Servicio API Ubigeo",
+    "description": "Servicio de departamento, provincia y distrito.",
+    "version": "0.0.1-SNAPSHOT"
+  },
+  "servers": [
+    {
+      "url": "http://104.237.131.179:8085",
+      "description": "Inferred Url"
+    }
+  ],
+  "tags": [
+    {
+      "name": "departamento-controller",
+      "description": "Departamento Controller"
+    },
+    {
+      "name": "distrito-controller",
+      "description": "Distrito Controller"
+    },
+    {
+      "name": "provincia-controller",
+      "description": "Provincia Controller"
+    }
+  ],
+  "paths": {
+    "/api/v1/departamentos": {
+      "get": {
+        "tags": [
+          "departamento-controller"
+        ],
+        "summary": "todos",
+        "operationId": "todosUsingGET",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/DepartamentoEntity"
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/api/v1/departamentos/obtener/{idDepartamento}": {
+      "get": {
+        "tags": [
+          "departamento-controller"
+        ],
+        "summary": "obtenerPorId",
+        "operationId": "obtenerPorIdUsingGET",
+        "parameters": [
+          {
+            "name": "idDepartamento",
+            "in": "path",
+            "description": "idDepartamento",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DepartamentoEntity"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/api/v1/distritos/filtrarporprovincia/{idDepartamento}/{idProvincia}": {
+      "get": {
+        "tags": [
+          "distrito-controller"
+        ],
+        "summary": "filtrarPorProvincia",
+        "operationId": "filtrarPorProvinciaUsingGET",
+        "parameters": [
+          {
+            "name": "idDepartamento",
+            "in": "path",
+            "description": "idDepartamento",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "idProvincia",
+            "in": "path",
+            "description": "idProvincia",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/DistritoEntity"
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/api/v1/distritos/obtener/{idDepartamento}/{idProvincia}/{idDistrito}": {
+      "get": {
+        "tags": [
+          "distrito-controller"
+        ],
+        "summary": "obtenerPorId",
+        "operationId": "obtenerPorIdUsingGET_1",
+        "parameters": [
+          {
+            "name": "idDepartamento",
+            "in": "path",
+            "description": "idDepartamento",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "idProvincia",
+            "in": "path",
+            "description": "idProvincia",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "idDistrito",
+            "in": "path",
+            "description": "idDistrito",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DistritoEntity"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/api/v1/provincias/filtrarpordepartamento/{idDepartamento}": {
+      "get": {
+        "tags": [
+          "provincia-controller"
+        ],
+        "summary": "filtrarPorDepartamento",
+        "operationId": "filtrarPorDepartamentoUsingGET",
+        "parameters": [
+          {
+            "name": "idDepartamento",
+            "in": "path",
+            "description": "idDepartamento",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ProvinciaEntity"
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/api/v1/provincias/obtener/{idDepartamento}/{idProvincia}": {
+      "get": {
+        "tags": [
+          "provincia-controller"
+        ],
+        "summary": "obtenerPorId",
+        "operationId": "obtenerPorIdUsingGET_2",
+        "parameters": [
+          {
+            "name": "idDepartamento",
+            "in": "path",
+            "description": "idDepartamento",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "idProvincia",
+            "in": "path",
+            "description": "idProvincia",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProvinciaEntity"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "DepartamentoEntity": {
+        "title": "DepartamentoEntity",
+        "type": "object",
+        "properties": {
+          "abreviatura": {
+            "type": "string"
+          },
+          "activo": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "departamentoId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "descripcion": {
+            "type": "string"
+          },
+          "ubigeo": {
+            "type": "string"
+          }
+        }
+      },
+      "DistritoEntity": {
+        "title": "DistritoEntity",
+        "type": "object",
+        "properties": {
+          "abreviatura": {
+            "type": "string"
+          },
+          "activo": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "departamentoId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "descripcion": {
+            "type": "string"
+          },
+          "distritoId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "provinciaId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "ubigeo": {
+            "type": "string"
+          }
+        }
+      },
+      "ProvinciaEntity": {
+        "title": "ProvinciaEntity",
+        "type": "object",
+        "properties": {
+          "abreviatura": {
+            "type": "string"
+          },
+          "departamentoId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "descripcion": {
+            "type": "string"
+          },
+          "provinciaId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "ubigeo": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}

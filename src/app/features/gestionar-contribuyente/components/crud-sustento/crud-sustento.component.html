@@ -1,0 +1,56 @@
+<div class="container px-0">
+	<div class="siaf-card p-4">
+		<div class="row justify-content-between mb-4">
+			<div class="col-auto">
+				<h5 class="fw-bold">Nuevo Documento de Sustento</h5>
+			</div>
+			<div class="col-auto">
+				<div class="row g-2">
+					<div class="col-auto">
+						<button
+							type="button"
+							class="btn btn-icon btn-outline-primary"
+							placement="bottom"
+							ngbTooltip="Agregar"
+							(click)="onShowCreate()"
+						>
+							<span class="feather icon-plus"></span>
+						</button>
+					</div>
+					<div class="col-auto">
+						<button
+							type="button"
+							class="btn btn-icon btn-outline-secondary"
+							placement="bottom"
+							ngbTooltip="Editar"
+							(click)="selectedItem && onShowUpdate(selectedItem)"
+						>
+							<span class="feather icon-edit-2"></span>
+						</button>
+					</div>
+					<div class="col-auto">
+						<button
+							type="button"
+							class="btn btn-icon btn-outline-secondary"
+							placement="bottom"
+							ngbTooltip="Eliminar"
+							(click)="onRemoveItem(selectedItem)"
+						>
+							<span class="feather icon-trash-2"></span>
+						</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-12">
+				<tabla-sustento
+					[dataSource]="dataSource"
+					[loading]="loading"
+					(selected)="onSelectedItem($event)"
+				>
+				</tabla-sustento>
+			</div>
+		</div>
+	</div>
+</div>

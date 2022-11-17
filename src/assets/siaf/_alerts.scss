@@ -1,0 +1,103 @@
+.siaf {
+  .ngb-toasts {
+    margin: 0;
+  }
+  .alert {
+    padding: 0.75rem;
+    border-radius: 4px;
+    display: flex;
+    &-flotante {
+      width: 360px;
+      box-shadow: $box-shadow-lg;
+      max-width: 100%;
+      margin: 0 auto;
+    }
+    &-embebido {
+      border-top: 0;
+      border-left: 0;
+      border-right: 0;
+      border-radius: 0;
+    }
+    &-success {
+      color: $siaf-black;
+      background-color: $siaf-green-ligth;
+      border-color: $siaf-green;
+      .feather {
+        font-size: 18px;
+        color: $siaf-green;
+      }
+    }
+    &-info {
+      color: $siaf-black;
+      background-color: $siaf-blue-ligth;
+      border-color: $siaf-blue;
+      .feather {
+        font-size: 18px;
+        color: $siaf-blue;
+      }
+    }
+    &-warning {
+      color: $siaf-black;
+      background-color: $siaf-orange-ligth;
+      border-color: $siaf-orange;
+      .feather {
+        font-size: 18px;
+        color: $siaf-orange;
+      }
+    }
+    &-danger {
+      color: $siaf-black;
+      background-color: $siaf-red-ligth;
+      border-color: $siaf-red;
+      .feather {
+        font-size: 18px;
+        color: $siaf-red;
+      }
+    }
+  }
+
+  .bg-alert-info {
+    .alert {
+      color: $siaf-black;
+      background-color: $siaf-blue-ligth;
+      border-color: $siaf-blue;
+      .feather {
+        font-size: 18px;
+        color: $siaf-blue;
+      }
+    }
+  }
+  .bg-alert-warning {
+    .alert {
+      color: $siaf-black;
+      background-color: $siaf-orange-ligth;
+      border-color: $siaf-orange;
+      .feather {
+        font-size: 18px;
+        color: $siaf-orange;
+      }
+    }
+  }
+  .bg-alert-danger {
+    .alert {
+      color: $siaf-black;
+      background-color: $siaf-red-ligth;
+      border-color: $siaf-red;
+      .feather {
+        font-size: 18px;
+        color: $siaf-red;
+      }
+    }
+  }
+  .bg-alert-success {
+    .alert {
+      color: $siaf-black;
+      background-color: $siaf-green-ligth;
+      border-color: $siaf-green;
+      .feather {
+        font-size: 18px;
+        color: $siaf-green;
+      }
+    }
+  }
+}

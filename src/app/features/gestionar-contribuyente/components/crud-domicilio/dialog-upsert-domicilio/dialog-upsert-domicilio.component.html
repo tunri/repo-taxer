@@ -1,0 +1,294 @@
+<form [formGroup]="formulario">
+    <div class="modal-header">
+        <h6 class="modal-title w-100" id="title">
+            {{ isModeEdit ? 'Editar' : 'Nuevo'}} Domicilio
+          </h6>
+        <button type="button" class="btn-close" aria-label="Close" (click)="activeModal.close('Close click')"></button>
+      </div>
+      <div class="modal-body">
+        <h5 class="siaf-card p-3">
+          <div class="container-fluid px-0">
+            <div class="row align-items-end">
+              <div class="col-12">
+                <h5>DATOS DEL UBIGEO</h5>
+              </div>
+              <div class="col-12 col-sm-6 col-md-4 col-lg-2">
+                <div class="form-group required">
+                  <label class="form-label" for="mcDepartamento">Departamento</label>
+                  <ng-select [searchable]="false" formControlName="departamentoId" [clearable]="false" 
+                  (click)="changeDepartamento($event)"
+                    id="departamentoId" [items]="departamentos" bindLabel="descripcion" bindValue="departamentoId">
+                  </ng-select>
+                </div>
+              </div>
+              <div class="col-12 col-sm-6 col-md-4 col-lg-2">
+                <div class="form-group required">
+                  <label class="form-label" for="mcProvincia">Provincia</label>
+                  <ng-select [searchable]="false" formControlName="provinciaId" [clearable]="false"
+                  (click)="changeProvincia($event)"  
+                  id="provinciaId" [items]="provincias" bindLabel="descripcion" bindValue="provinciaId">
+                  </ng-select>
+                </div>
+              </div>
+              <div class="col-12 col-sm-6 col-md-4 col-lg-2">
+                <div class="form-group required">
+                  <label class="form-label" for="mcDistrito">Distrito</label>
+                  <ng-select [searchable]="false" formControlName="distritoId" [clearable]="false"
+                    id="distritoId" [items]="distritos" bindLabel="descripcion" bindValue="distritoId">
+                  </ng-select>
+                </div>
+              </div>
+            </div>
+    
+            <div class="row align-items-end pt-3">
+                <div class="col-12">
+                  <h5>DATOS DEL DOMICILIO</h5>
+                </div>
+                <div class="col-12 col-sm-6 col-md-4 col-lg-2">
+                    <div class="form-group required">
+                      <label class="form-label" for="mcTipoDomicilio">Tipo de domicilio</label>
+                      <ng-select [searchable]="false" formControlName="tipoDomicilioId" [clearable]="false"
+                        id="tipoDomicilioId" [items]="tipoDomicilio" bindLabel="descripcion" bindValue="maestroId">
+                      </ng-select>
+                    </div>
+                </div>
+                <div class="col-12 col-sm-6 col-md-4 col-lg-2">
+                    <div class="form-group required">
+                      <label class="form-label" for="mcTipoPredio">Tipo de predio</label>
+                      <ng-select [searchable]="false" formControlName="tipoPredioId" [clearable]="false"
+                        id="tipoPredioId" [items]="tipoPredio" bindLabel="descripcion" bindValue="maestroId">
+                      </ng-select>
+                    </div>
+                </div>
+            </div>
+    
+            <div class="row align-items-end pt-3">
+                <div class="col-12">
+                    <h5>DATOS DE LA UBICACIÓN</h5>
+                </div>
+                <div class="col-12 col-sm-6 col-md-4 col-lg-2">
+                    <div class="form-group required">
+                        <label class="form-label" for="mcTipoVia">Tipo de vía</label>
+                        <ng-select [searchable]="false" formControlName="tipoViaId" [clearable]="false"
+                        id="tipoViaId" [items]="tipoVia" bindLabel="descripcion" bindValue="maestroId">
+                        </ng-select>
+                    </div>
+                </div>
+    
+                <div class="col-12 col-sm-6 col-md-4 col-lg-2">
+                <div class="form-group required">
+                    <label class="form-label" for="mcdesVia">Descripción de la vía</label>
+                    <input type="text" class="form-control" formControlName="desVia" id="mcdesVia"
+                    placeholder="">
+                </div>
+                </div>
+                <div class="col-12 col-sm-6 col-md-4 col-lg-2">
+                    <div class="form-group">
+                    <label class="form-label" for="mcnumeroPrincipal">Número principal</label>
+                    <input type="text" class="form-control" formControlName="numeroPrincipal" id="mcnumeroPrincipal"
+                    mask="0*" placeholder="">
+                    </div>
+                </div>
+    
+                <div class="col-12 col-sm-6 col-md-4 col-lg-2">
+                    <div class="form-group">
+                    <label class="form-label" for="mcnumeroAlterno">Número alterno</label>
+                    <input type="text" class="form-control" formControlName="numeroAlterno" id="mcnumeroAlterno"
+                        placeholder="">
+                    </div>
+                </div>
+    
+                <div class="col-12 col-sm-6 col-md-4 col-lg-2">
+                    <div class="form-group">
+                    <label class="form-label" for="mcletra1">Letra 1</label>
+                    <input type="text" class="form-control" formControlName="letra1" id="mcletra1"
+                        placeholder="">
+                    </div>
+                </div>
+    
+                <div class="col-12 col-sm-6 col-md-4 col-lg-2">
+                    <div class="form-group">
+                    <label class="form-label" for="mcletra2">Letra 2</label>
+                    <input type="text" class="form-control" formControlName="letra2" id="mcletra2"
+                        placeholder="">
+                    </div>
+                </div>
+    
+                <div class="col-12 col-sm-6 col-md-4 col-lg-2">
+                    <div class="form-group">
+                    <label class="form-label" for="mcmanzana">Manzana</label>
+                    <input type="text" class="form-control" formControlName="manzana" id="mcmanzana"
+                        placeholder="">
+                    </div>
+                </div>
+    
+                <div class="col-12 col-sm-6 col-md-4 col-lg-2">
+                    <div class="form-group">
+                    <label class="form-label" for="mclote">Lote</label>
+                    <input type="text" class="form-control" formControlName="lote" id="mclote"
+                        placeholder="">
+                    </div>
+                </div>
+    
+                <div class="col-12 col-sm-6 col-md-4 col-lg-2">
+                    <div class="form-group">
+                    <label class="form-label" for="mcsubLote">Sub lote</label>
+                    <input type="text" class="form-control" formControlName="subLote" id="mcsubLote"
+                        placeholder="">
+                    </div>
+                </div>
+    
+                <div class="col-12 col-sm-6 col-md-4 col-lg-2">
+                    <div class="form-group">
+                        <label class="form-label" for="mczonaUrbana">Zona urbana</label>
+                        <ng-select [searchable]="false" formControlName="zonaUrbanaId" [clearable]="false"
+                        id="zonaUrbanaId" [items]="tipoZonaUrbana" bindLabel="descripcion" bindValue="maestroId">
+                        </ng-select>
+                    </div>
+                </div>
+    
+                <div class="col-12 col-sm-6 col-md-4 col-lg-2">
+                    <div class="form-group">
+                    <label class="form-label" for="mcdesZona">Descripción de la zona</label>
+                    <input type="text" class="form-control" formControlName="desZona" id="mcdesZona"
+                        placeholder="">
+                    </div>
+                </div>
+    
+                <div class="col-12 col-sm-6 col-md-4 col-lg-2">
+                    <div class="form-group">
+                        <label class="form-label" for="mcsubZona">Sub zona</label>
+                        <ng-select [searchable]="false" formControlName="subZonaId" [clearable]="false"
+                        id="subZonaId" [items]="tipoSubZona" bindLabel="descripcion" bindValue="maestroId">
+                        </ng-select>
+                    </div>
+                </div>
+    
+                <div class="col-12 col-sm-6 col-md-4 col-lg-2">
+                    <div class="form-group">
+                    <label class="form-label" for="mcdesSubSona">Descripción de la sub zona</label>
+                    <input type="text" class="form-control" formControlName="desSubSona" id="mcdesSubSona"
+                        placeholder="">
+                    </div>
+                </div>
+    
+                <div class="col-12 col-sm-6 col-md-4 col-lg-2">
+                    <div class="form-group">
+                        <label class="form-label" for="mcedificacion">Edificación</label>
+                        <ng-select [searchable]="false" formControlName="edificacionId" [clearable]="false"
+                        id="edificacionId" [items]="tipoEdificacion" bindLabel="descripcion" bindValue="maestroId">
+                        </ng-select>
+                    </div>
+                </div>
+    
+                <div class="col-12 col-sm-6 col-md-4 col-lg-2">
+                    <div class="form-group">
+                    <label class="form-label" for="mcdesEdificacion">Descrip. de la edificación</label>
+                    <input type="text" class="form-control" formControlName="desEdificacion" id="mcdesEdificacion"
+                        placeholder="">
+                    </div>
+                </div>
+    
+                <div class="col-12 col-sm-6 col-md-4 col-lg-2">
+                    <div class="form-group">
+                        <label class="form-label" for="mcinterior">Interior</label>
+                        <ng-select [searchable]="false" formControlName="interiorId" [clearable]="false"
+                        id="interiorId" [items]="tipoInterior" bindLabel="descripcion" bindValue="maestroId">
+                        </ng-select>
+                    </div>
+                </div>
+    
+                <div class="col-12 col-sm-6 col-md-4 col-lg-2">
+                    <div class="form-group">
+                    <label class="form-label" for="mcdesInterior">Descripción del interior</label>
+                    <input type="text" class="form-control" formControlName="desInterior" id="mcdesInterior"
+                        placeholder="">
+                    </div>
+                </div>
+    
+                <div class="col-12 col-sm-6 col-md-4 col-lg-2">
+                    <div class="form-group">
+                    <label class="form-label" for="mcpiso">Piso</label>
+                    <input type="text" class="form-control" formControlName="piso" id="mcpiso"
+                        placeholder="">
+                    </div>
+                </div>
+    
+                <div class="col-12 col-sm-6 col-md-4 col-lg-2">
+                    <div class="form-group">
+                    <label class="form-label" for="mcingreso">Ingreso</label>
+                    <input type="text" class="form-control" formControlName="ingreso" id="mcingreso"
+                        placeholder="">
+                    </div>
+                </div>
+    
+                <div class="col-12 col-sm-6 col-md-4 col-lg-2">
+                    <div class="form-group">
+                        <label class="form-label" for="mckilometro">Kilómetro</label>
+                        <input type="text" class="form-control" formControlName="kilometro" id="mckilometro"
+                        placeholder="">
+                    </div>
+                </div>
+    
+                <div class="col-12 col-sm-12 col-md-8">
+                    <div class="form-group">
+                    <label class="form-label" for="mcreferencia">Referencia</label>
+                    <input type="text" class="form-control" formControlName="referencia" id="mcreferencia"
+                        placeholder="">
+                    </div>
+                </div>
+    
+            </div>
+
+            <div class="row align-items-end pt-3">
+                
+                <div class="invalid-feedback" *ngIf="letra1.errors?.['maxlength']">
+                    Letra 1 debe tener como máximo 6 caracteres
+                </div>
+                <div class="invalid-feedback" *ngIf="letra2.errors?.['maxlength']">
+                    Letra 2 debe tener como máximo 6 caracteres
+                </div>
+                <div class="invalid-feedback" *ngIf="manzana.errors?.['maxlength']">
+                    Manzana debe tener como máximo 6 caracteres
+                </div>
+                <div class="invalid-feedback" *ngIf="lote.errors?.['maxlength']">
+                    Lote debe tener como máximo 6 caracteres
+                </div>
+                <div class="invalid-feedback" *ngIf="subLote.errors?.['maxlength']">
+                    Sub lote debe tener como máximo 6 caracteres
+                </div>
+                <div class="invalid-feedback" *ngIf="desInterior.errors?.['maxlength']">
+                    Descripción interior debe tener como máximo 6 caracteres
+                </div>
+                <div class="invalid-feedback" *ngIf="piso.errors?.['maxlength']">
+                    Piso debe tener como máximo 6 caracteres
+                </div>
+                <div class="invalid-feedback" *ngIf="ingreso.errors?.['maxlength']">
+                    Ingreso debe tener como máximo 6 caracteres
+                </div>
+                <div class="invalid-feedback" *ngIf="kilometro.errors?.['maxlength']">
+                    Kilómetro debe tener como máximo 6 caracteres
+                </div>
+                <div class="invalid-feedback" *ngIf="referencia.errors?.['maxlength']">
+                    Referencia debe tener como máximo 100 caracteres
+                </div>
+             </div>
+          </div>
+        </h5>
+      </div>
+
+
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="activeModal.close('Close click')">
+          <span class="feather icon-x me-1"></span>
+          Cancelar
+        </button>
+        <button type="button" class="btn btn-primary" [disabled]="loading || !formulario.valid" ngbAutofocus (click)="onSubmit()">
+            <span class="feather icon-check me-1" *ngIf="!loading; else iconLoading"></span>
+            <ng-template #iconLoading>
+              <div class="spinner-border spinner-border-sm me-2"  role="status"></div>
+            </ng-template>
+            {{ loading ? 'Grabando...' : 'Grabar' }}
+          </button>
+    </div>
+</form>
