@@ -246,12 +246,12 @@ export class DialogUpsertDomicilioComponent implements OnInit {
     //const folios = Number(folio);
 
     return {
-      accion: 'CREAR',
+    //   accion: 'CREAR',
       departamentoId: departamentoId,
       descripcionDomicilio: '',
       descripcionInterior: desInterior,
       distritoId: distritoId,
-      domicilioContribuyenteNumero: 0,
+    //   domicilioContribuyenteNumero: 0,
       edificacionId: edificacionId,
       estructurado: 0,
       fuenteInformacionId: 1,
@@ -284,7 +284,7 @@ export class DialogUpsertDomicilioComponent implements OnInit {
   private crearDomicilio(payload: DomicilioRequest): void {
     this.loading = true;
     this.domicilioContribuyenteControllerService
-      .crearUsingPost3({
+      .crearUsingPost4({
         body: payload,
         municipalidadId: this.municipalidadId,
         contribuyenteNumero: this.contribuyenteNumero,
@@ -302,10 +302,10 @@ export class DialogUpsertDomicilioComponent implements OnInit {
 
   private actualizarDomicilio(payload: DomicilioRequest): void {
     this.loading = true;
-    payload.accion="ACTUALIZAR";
-    payload.domicilioContribuyenteNumero = this.domicilio.domicilioContribuyenteNumero!;
+    // payload.accion="ACTUALIZAR";
+    // payload.domicilioContribuyenteNumero = this.domicilio.domicilioContribuyenteNumero!;
     this.domicilioContribuyenteControllerService
-      .actualizarUsingPut3({
+      .actualizarUsingPut4({
         body: payload,
         municipalidadId: this.municipalidadId,
         contribuyenteNumero: Number(this.contribuyenteNumero),
@@ -329,7 +329,7 @@ export class DialogUpsertDomicilioComponent implements OnInit {
   private updateFormulario(domicilio: DomicilioBuscarResponse) {
     this.loading = true;
     this.domicilioContribuyenteControllerService
-      .obtenerUsingGet2({
+      .obtenerUsingGet1({
         municipalidadId: domicilio.municipalidadId!,
         contribuyenteNumero: domicilio.contribuyenteNumero!,
         domicilioContribuyenteNumero: domicilio.domicilioContribuyenteNumero!

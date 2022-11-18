@@ -1,6 +1,8 @@
 /* tslint:disable */
 /* eslint-disable */
-export interface DocumentoSustentoRequest {
+export interface DocumentoSustentoMasivoRequest {
+  accion?: 'ACTUALIZAR' | 'CREAR' | 'ELIMINAR';
+  docSusContribuyenteId?: number;
   folios: number;
   forPresentacionId: number;
   nroDocSustento: string;

@@ -38,7 +38,7 @@ export class DialogUpsertRelacionadoComponent implements OnInit {
     numDocIdentidad: ['', Validators.required],
     apePaterno: [''],
     apeMaterno: [''],
-    nombres: ['', Validators.required],    
+    nombres: ['', Validators.required],
     fecVigInicial: ['', Validators.required],
     fecVigFinal: [''],
     telefonoFijo: [''],
@@ -51,7 +51,7 @@ export class DialogUpsertRelacionadoComponent implements OnInit {
   });
 
   constructor(
-    public activeModal: NgbActiveModal, 
+    public activeModal: NgbActiveModal,
     private fb: FormBuilder,
     private comunControllerService: ComunControllerService,
     private relacionadoService: RelacionadoControllerService,
@@ -93,7 +93,7 @@ export class DialogUpsertRelacionadoComponent implements OnInit {
   private crearRelacionado(payload: RelacionadoPersonaRequest): void {
     this.loading = true;
     this.relacionadoService
-      .crearUsingPost5({
+      .crearUsingPost6({
         body: payload,
         contribuyenteNumero: this.numContribuyente,
         municipalidadId:this.municipalidadId

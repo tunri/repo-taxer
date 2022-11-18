@@ -10,6 +10,7 @@ import { Observable } from 'rxjs';
 import { map, filter } from 'rxjs/operators';
 
 import { RelacionadoBuscarResponse } from '../models/relacionado-buscar-response';
+import { RelacionadoEntity } from '../models/relacionado-entity';
 import { RelacionadoPersonaRequest } from '../models/relacionado-persona-request';
 
 
@@ -28,21 +29,21 @@ export class RelacionadoControllerService extends BaseService {
   }
 
   /**
-   * Path part for operation listarUsingGet1
+   * Path part for operation listarPorContribuyenteUsingGet3
    */
-  static readonly ListarUsingGet1Path = '/v1/nsrtm-services-contribuyentes/relacionados/{municipalidadId}/{contribuyenteNumero}';
+  static readonly ListarPorContribuyenteUsingGet3Path = '/v1/nsrtm-services-contribuyentes/relacionados/listarPorContribuyente/{municipalidadId}/{contribuyenteNumero}';
 
   /**
-   * listar.
+   * listarPorContribuyente.
    *
    *
    *
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
-   * To access only the response body, use `listarUsingGet1()` instead.
+   * To access only the response body, use `listarPorContribuyenteUsingGet3()` instead.
    *
    * This method doesn't expect any request body.
    */
-  listarUsingGet1$Response(params: {
+  listarPorContribuyenteUsingGet3$Response(params: {
 
     /**
      * municipalidadId
@@ -57,7 +58,7 @@ export class RelacionadoControllerService extends BaseService {
   }
 ): Observable<StrictHttpResponse<Array<RelacionadoBuscarResponse>>> {
 
-    const rb = new RequestBuilder(this.rootUrl, RelacionadoControllerService.ListarUsingGet1Path, 'get');
+    const rb = new RequestBuilder(this.rootUrl, RelacionadoControllerService.ListarPorContribuyenteUsingGet3Path, 'get');
     if (params) {
       rb.path('municipalidadId', params.municipalidadId, {"style":"simple"});
       rb.path('contribuyenteNumero', params.contribuyenteNumero, {"style":"simple"});
@@ -76,16 +77,16 @@ export class RelacionadoControllerService extends BaseService {
   }
 
   /**
-   * listar.
+   * listarPorContribuyente.
    *
    *
    *
    * This method provides access to only to the response body.
-   * To access the full response (for headers, for example), `listarUsingGet1$Response()` instead.
+   * To access the full response (for headers, for example), `listarPorContribuyenteUsingGet3$Response()` instead.
    *
    * This method doesn't expect any request body.
    */
-  listarUsingGet1(params: {
+  listarPorContribuyenteUsingGet3(params: {
 
     /**
      * municipalidadId
@@ -100,15 +101,15 @@ export class RelacionadoControllerService extends BaseService {
   }
 ): Observable<Array<RelacionadoBuscarResponse>> {
 
-    return this.listarUsingGet1$Response(params).pipe(
+    return this.listarPorContribuyenteUsingGet3$Response(params).pipe(
       map((r: StrictHttpResponse<Array<RelacionadoBuscarResponse>>) => r.body as Array<RelacionadoBuscarResponse>)
     );
   }
 
   /**
-   * Path part for operation crearUsingPost5
+   * Path part for operation crearUsingPost6
    */
-  static readonly CrearUsingPost5Path = '/v1/nsrtm-services-contribuyentes/relacionados/{municipalidadId}/{contribuyenteNumero}';
+  static readonly CrearUsingPost6Path = '/v1/nsrtm-services-contribuyentes/relacionados/{municipalidadId}/{contribuyenteNumero}';
 
   /**
    * crear.
@@ -116,11 +117,11 @@ export class RelacionadoControllerService extends BaseService {
    *
    *
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
-   * To access only the response body, use `crearUsingPost5()` instead.
+   * To access only the response body, use `crearUsingPost6()` instead.
    *
    * This method sends `application/json` and handles request body of type `application/json`.
    */
-  crearUsingPost5$Response(params: {
+  crearUsingPost6$Response(params: {
 
     /**
      * municipalidadId
@@ -137,7 +138,7 @@ export class RelacionadoControllerService extends BaseService {
 ): Observable<StrictHttpResponse<{
 }>> {
 
-    const rb = new RequestBuilder(this.rootUrl, RelacionadoControllerService.CrearUsingPost5Path, 'post');
+    const rb = new RequestBuilder(this.rootUrl, RelacionadoControllerService.CrearUsingPost6Path, 'post');
     if (params) {
       rb.path('municipalidadId', params.municipalidadId, {"style":"simple"});
       rb.path('contribuyenteNumero', params.contribuyenteNumero, {"style":"simple"});
@@ -163,11 +164,11 @@ export class RelacionadoControllerService extends BaseService {
    *
    *
    * This method provides access to only to the response body.
-   * To access the full response (for headers, for example), `crearUsingPost5$Response()` instead.
+   * To access the full response (for headers, for example), `crearUsingPost6$Response()` instead.
    *
    * This method sends `application/json` and handles request body of type `application/json`.
    */
-  crearUsingPost5(params: {
+  crearUsingPost6(params: {
 
     /**
      * municipalidadId
@@ -184,7 +185,7 @@ export class RelacionadoControllerService extends BaseService {
 ): Observable<{
 }> {
 
-    return this.crearUsingPost5$Response(params).pipe(
+    return this.crearUsingPost6$Response(params).pipe(
       map((r: StrictHttpResponse<{
 }>) => r.body as {
 })
@@ -192,9 +193,98 @@ export class RelacionadoControllerService extends BaseService {
   }
 
   /**
-   * Path part for operation actualizarUsingPut5
+   * Path part for operation obtenerUsingGet2
    */
-  static readonly ActualizarUsingPut5Path = '/v1/nsrtm-services-contribuyentes/relacionados/{municipalidadId}/{contribuyenteNumero}/{relContribuyenteNumero}';
+  static readonly ObtenerUsingGet2Path = '/v1/nsrtm-services-contribuyentes/relacionados/{municipalidadId}/{contribuyenteNumero}/{relContribuyenteNumero}';
+
+  /**
+   * obtener.
+   *
+   *
+   *
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `obtenerUsingGet2()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  obtenerUsingGet2$Response(params: {
+
+    /**
+     * municipalidadId
+     */
+    municipalidadId: number;
+
+    /**
+     * contribuyenteNumero
+     */
+    contribuyenteNumero: number;
+
+    /**
+     * relContribuyenteNumero
+     */
+    relContribuyenteNumero: number;
+    context?: HttpContext
+  }
+): Observable<StrictHttpResponse<RelacionadoEntity>> {
+
+    const rb = new RequestBuilder(this.rootUrl, RelacionadoControllerService.ObtenerUsingGet2Path, 'get');
+    if (params) {
+      rb.path('municipalidadId', params.municipalidadId, {"style":"simple"});
+      rb.path('contribuyenteNumero', params.contribuyenteNumero, {"style":"simple"});
+      rb.path('relContribuyenteNumero', params.relContribuyenteNumero, {"style":"simple"});
+    }
+
+    return this.http.request(rb.build({
+      responseType: 'json',
+      accept: 'application/json',
+      context: params?.context
+    })).pipe(
+      filter((r: any) => r instanceof HttpResponse),
+      map((r: HttpResponse<any>) => {
+        return r as StrictHttpResponse<RelacionadoEntity>;
+      })
+    );
+  }
+
+  /**
+   * obtener.
+   *
+   *
+   *
+   * This method provides access to only to the response body.
+   * To access the full response (for headers, for example), `obtenerUsingGet2$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  obtenerUsingGet2(params: {
+
+    /**
+     * municipalidadId
+     */
+    municipalidadId: number;
+
+    /**
+     * contribuyenteNumero
+     */
+    contribuyenteNumero: number;
+
+    /**
+     * relContribuyenteNumero
+     */
+    relContribuyenteNumero: number;
+    context?: HttpContext
+  }
+): Observable<RelacionadoEntity> {
+
+    return this.obtenerUsingGet2$Response(params).pipe(
+      map((r: StrictHttpResponse<RelacionadoEntity>) => r.body as RelacionadoEntity)
+    );
+  }
+
+  /**
+   * Path part for operation actualizarUsingPut6
+   */
+  static readonly ActualizarUsingPut6Path = '/v1/nsrtm-services-contribuyentes/relacionados/{municipalidadId}/{contribuyenteNumero}/{relContribuyenteNumero}';
 
   /**
    * actualizar.
@@ -202,11 +292,11 @@ export class RelacionadoControllerService extends BaseService {
    *
    *
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
-   * To access only the response body, use `actualizarUsingPut5()` instead.
+   * To access only the response body, use `actualizarUsingPut6()` instead.
    *
    * This method sends `application/json` and handles request body of type `application/json`.
    */
-  actualizarUsingPut5$Response(params: {
+  actualizarUsingPut6$Response(params: {
 
     /**
      * municipalidadId
@@ -228,7 +318,7 @@ export class RelacionadoControllerService extends BaseService {
 ): Observable<StrictHttpResponse<{
 }>> {
 
-    const rb = new RequestBuilder(this.rootUrl, RelacionadoControllerService.ActualizarUsingPut5Path, 'put');
+    const rb = new RequestBuilder(this.rootUrl, RelacionadoControllerService.ActualizarUsingPut6Path, 'put');
     if (params) {
       rb.path('municipalidadId', params.municipalidadId, {"style":"simple"});
       rb.path('contribuyenteNumero', params.contribuyenteNumero, {"style":"simple"});
@@ -255,11 +345,11 @@ export class RelacionadoControllerService extends BaseService {
    *
    *
    * This method provides access to only to the response body.
-   * To access the full response (for headers, for example), `actualizarUsingPut5$Response()` instead.
+   * To access the full response (for headers, for example), `actualizarUsingPut6$Response()` instead.
    *
    * This method sends `application/json` and handles request body of type `application/json`.
    */
-  actualizarUsingPut5(params: {
+  actualizarUsingPut6(params: {
 
     /**
      * municipalidadId
@@ -281,7 +371,7 @@ export class RelacionadoControllerService extends BaseService {
 ): Observable<{
 }> {
 
-    return this.actualizarUsingPut5$Response(params).pipe(
+    return this.actualizarUsingPut6$Response(params).pipe(
       map((r: StrictHttpResponse<{
 }>) => r.body as {
 })
@@ -289,9 +379,9 @@ export class RelacionadoControllerService extends BaseService {
   }
 
   /**
-   * Path part for operation anularUsingDelete4
+   * Path part for operation anularUsingDelete6
    */
-  static readonly AnularUsingDelete4Path = '/v1/nsrtm-services-contribuyentes/relacionados/{municipalidadId}/{contribuyenteNumero}/{relContribuyenteNumero}';
+  static readonly AnularUsingDelete6Path = '/v1/nsrtm-services-contribuyentes/relacionados/{municipalidadId}/{contribuyenteNumero}/{relContribuyenteNumero}';
 
   /**
    * anular.
@@ -299,11 +389,11 @@ export class RelacionadoControllerService extends BaseService {
    *
    *
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
-   * To access only the response body, use `anularUsingDelete4()` instead.
+   * To access only the response body, use `anularUsingDelete6()` instead.
    *
    * This method doesn't expect any request body.
    */
-  anularUsingDelete4$Response(params: {
+  anularUsingDelete6$Response(params: {
 
     /**
      * municipalidadId
@@ -324,7 +414,7 @@ export class RelacionadoControllerService extends BaseService {
 ): Observable<StrictHttpResponse<{
 }>> {
 
-    const rb = new RequestBuilder(this.rootUrl, RelacionadoControllerService.AnularUsingDelete4Path, 'delete');
+    const rb = new RequestBuilder(this.rootUrl, RelacionadoControllerService.AnularUsingDelete6Path, 'delete');
     if (params) {
       rb.path('municipalidadId', params.municipalidadId, {"style":"simple"});
       rb.path('contribuyenteNumero', params.contribuyenteNumero, {"style":"simple"});
@@ -350,11 +440,11 @@ export class RelacionadoControllerService extends BaseService {
    *
    *
    * This method provides access to only to the response body.
-   * To access the full response (for headers, for example), `anularUsingDelete4$Response()` instead.
+   * To access the full response (for headers, for example), `anularUsingDelete6$Response()` instead.
    *
    * This method doesn't expect any request body.
    */
-  anularUsingDelete4(params: {
+  anularUsingDelete6(params: {
 
     /**
      * municipalidadId
@@ -375,7 +465,7 @@ export class RelacionadoControllerService extends BaseService {
 ): Observable<{
 }> {
 
-    return this.anularUsingDelete4$Response(params).pipe(
+    return this.anularUsingDelete6$Response(params).pipe(
       map((r: StrictHttpResponse<{
 }>) => r.body as {
 })

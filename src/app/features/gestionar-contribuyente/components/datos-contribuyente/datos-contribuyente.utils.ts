@@ -54,9 +54,7 @@ export const formToPayload = (FormValue: any): ContribuyentePersonaRequest => {
 
 	if (tipPersonaId === SLUG_PERSONA_JURIDICA) {
 		payload.razonSocial = razonSocial;
-	}
-
-	if (tipPersonaId === SLUG_PERSONA_NATURAL) {
+	} else {
 		payload.apePaterno = apePaterno;
 		payload.apeMaterno = apeMaterno;
 		payload.nombres = nombres;

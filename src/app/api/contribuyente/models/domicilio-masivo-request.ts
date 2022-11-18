@@ -1,16 +1,15 @@
 /* tslint:disable */
 /* eslint-disable */
-export interface DomicilioRelacionadoResponse {
-  activo?: number;
-  contribuyenteNumero?: number;
-  departamentoId?: number;
+export interface DomicilioMasivoRequest {
+  accion?: 'ACTUALIZAR' | 'CREAR' | 'ELIMINAR';
+  departamentoId: number;
   descripcionDomicilio?: string;
   descripcionInterior?: string;
-  distritoId?: number;
-  domRelacionadoNumero?: number;
+  distritoId: number;
+  domicilioContribuyenteNumero?: number;
   edificacionId?: number;
   estructurado?: number;
-  fuenteInfoId?: number;
+  fuenteInformacionId?: number;
   ingreso?: string;
   kilometro?: string;
   latitud?: number;
@@ -19,17 +18,16 @@ export interface DomicilioRelacionadoResponse {
   longitud?: number;
   lote?: string;
   manzana?: string;
-  municipalidadId?: number;
   numero1?: number;
   numero2?: number;
   piso?: string;
-  provinciaId?: number;
+  provinciaId: number;
   referencia?: string;
-  relContribuyenteNumero?: number;
   subLote?: string;
   subZonaUrbanaId?: number;
+  tipDomicilioId: number;
   tipoInteriorId?: number;
-  tipoPredioId?: number;
+  tipoPredioId: number;
   viaDepartamentoId?: number;
   viaDistritoId?: number;
   viaId?: number;

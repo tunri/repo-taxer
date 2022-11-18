@@ -106,21 +106,21 @@ export class ContactoContribuyenteControllerService extends BaseService {
   }
 
   /**
-   * Path part for operation crearUsingPost
+   * Path part for operation crearUsingPost1
    */
-  static readonly CrearUsingPostPath = '/v1/nsrtm-services-contribuyentes/contactos/{municipalidadId}/{contribuyenteNumero}';
+  static readonly CrearUsingPost1Path = '/v1/nsrtm-services-contribuyentes/contactos/{municipalidadId}/{contribuyenteNumero}';
 
   /**
-   * crear.
+   * Crear contacto de contribuyente.
    *
-   *
+   * Crea un contacto de contribuyente y si envía como contacto principal se retira el principal a los demás tipos de contactos.
    *
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
-   * To access only the response body, use `crearUsingPost()` instead.
+   * To access only the response body, use `crearUsingPost1()` instead.
    *
    * This method sends `application/json` and handles request body of type `application/json`.
    */
-  crearUsingPost$Response(params: {
+  crearUsingPost1$Response(params: {
 
     /**
      * municipalidadId
@@ -137,7 +137,7 @@ export class ContactoContribuyenteControllerService extends BaseService {
 ): Observable<StrictHttpResponse<{
 }>> {
 
-    const rb = new RequestBuilder(this.rootUrl, ContactoContribuyenteControllerService.CrearUsingPostPath, 'post');
+    const rb = new RequestBuilder(this.rootUrl, ContactoContribuyenteControllerService.CrearUsingPost1Path, 'post');
     if (params) {
       rb.path('municipalidadId', params.municipalidadId, {"style":"simple"});
       rb.path('contribuyenteNumero', params.contribuyenteNumero, {"style":"simple"});
@@ -158,16 +158,16 @@ export class ContactoContribuyenteControllerService extends BaseService {
   }
 
   /**
-   * crear.
+   * Crear contacto de contribuyente.
    *
-   *
+   * Crea un contacto de contribuyente y si envía como contacto principal se retira el principal a los demás tipos de contactos.
    *
    * This method provides access to only to the response body.
-   * To access the full response (for headers, for example), `crearUsingPost$Response()` instead.
+   * To access the full response (for headers, for example), `crearUsingPost1$Response()` instead.
    *
    * This method sends `application/json` and handles request body of type `application/json`.
    */
-  crearUsingPost(params: {
+  crearUsingPost1(params: {
 
     /**
      * municipalidadId
@@ -184,7 +184,7 @@ export class ContactoContribuyenteControllerService extends BaseService {
 ): Observable<{
 }> {
 
-    return this.crearUsingPost$Response(params).pipe(
+    return this.crearUsingPost1$Response(params).pipe(
       map((r: StrictHttpResponse<{
 }>) => r.body as {
 })
@@ -192,21 +192,21 @@ export class ContactoContribuyenteControllerService extends BaseService {
   }
 
   /**
-   * Path part for operation obtenerUsingGet
+   * Path part for operation consultarUsingGet
    */
-  static readonly ObtenerUsingGetPath = '/v1/nsrtm-services-contribuyentes/contactos/{municipalidadId}/{contribuyenteNumero}/{medConContribuyenteId}';
+  static readonly ConsultarUsingGetPath = '/v1/nsrtm-services-contribuyentes/contactos/{municipalidadId}/{contribuyenteNumero}/{medConContribuyenteId}';
 
   /**
-   * obtener.
+   * Consultar contacto de contribuyente por su ID.
    *
-   *
+   * Consultar contacto de contribuyente por smunicipalidad, código de contribuyente y código de contacto
    *
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
-   * To access only the response body, use `obtenerUsingGet()` instead.
+   * To access only the response body, use `consultarUsingGet()` instead.
    *
    * This method doesn't expect any request body.
    */
-  obtenerUsingGet$Response(params: {
+  consultarUsingGet$Response(params: {
 
     /**
      * municipalidadId
@@ -227,7 +227,7 @@ export class ContactoContribuyenteControllerService extends BaseService {
 ): Observable<StrictHttpResponse<{
 }>> {
 
-    const rb = new RequestBuilder(this.rootUrl, ContactoContribuyenteControllerService.ObtenerUsingGetPath, 'get');
+    const rb = new RequestBuilder(this.rootUrl, ContactoContribuyenteControllerService.ConsultarUsingGetPath, 'get');
     if (params) {
       rb.path('municipalidadId', params.municipalidadId, {"style":"simple"});
       rb.path('contribuyenteNumero', params.contribuyenteNumero, {"style":"simple"});
@@ -248,16 +248,16 @@ export class ContactoContribuyenteControllerService extends BaseService {
   }
 
   /**
-   * obtener.
+   * Consultar contacto de contribuyente por su ID.
    *
-   *
+   * Consultar contacto de contribuyente por smunicipalidad, código de contribuyente y código de contacto
    *
    * This method provides access to only to the response body.
-   * To access the full response (for headers, for example), `obtenerUsingGet$Response()` instead.
+   * To access the full response (for headers, for example), `consultarUsingGet$Response()` instead.
    *
    * This method doesn't expect any request body.
    */
-  obtenerUsingGet(params: {
+  consultarUsingGet(params: {
 
     /**
      * municipalidadId
@@ -278,7 +278,7 @@ export class ContactoContribuyenteControllerService extends BaseService {
 ): Observable<{
 }> {
 
-    return this.obtenerUsingGet$Response(params).pipe(
+    return this.consultarUsingGet$Response(params).pipe(
       map((r: StrictHttpResponse<{
 }>) => r.body as {
 })
@@ -286,21 +286,21 @@ export class ContactoContribuyenteControllerService extends BaseService {
   }
 
   /**
-   * Path part for operation actualizarUsingPut
+   * Path part for operation actualizarUsingPut1
    */
-  static readonly ActualizarUsingPutPath = '/v1/nsrtm-services-contribuyentes/contactos/{municipalidadId}/{contribuyenteNumero}/{medConContribuyenteId}';
+  static readonly ActualizarUsingPut1Path = '/v1/nsrtm-services-contribuyentes/contactos/{municipalidadId}/{contribuyenteNumero}/{medConContribuyenteId}';
 
   /**
-   * actualizar.
+   * Actualiza contacto de contribuyente.
    *
-   *
+   * Actualiza un contacto de contribuyente y si envía como contacto principal se retira el principal a los demás tipos de contactos.
    *
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
-   * To access only the response body, use `actualizarUsingPut()` instead.
+   * To access only the response body, use `actualizarUsingPut1()` instead.
    *
    * This method sends `application/json` and handles request body of type `application/json`.
    */
-  actualizarUsingPut$Response(params: {
+  actualizarUsingPut1$Response(params: {
 
     /**
      * municipalidadId
@@ -322,7 +322,7 @@ export class ContactoContribuyenteControllerService extends BaseService {
 ): Observable<StrictHttpResponse<{
 }>> {
 
-    const rb = new RequestBuilder(this.rootUrl, ContactoContribuyenteControllerService.ActualizarUsingPutPath, 'put');
+    const rb = new RequestBuilder(this.rootUrl, ContactoContribuyenteControllerService.ActualizarUsingPut1Path, 'put');
     if (params) {
       rb.path('municipalidadId', params.municipalidadId, {"style":"simple"});
       rb.path('contribuyenteNumero', params.contribuyenteNumero, {"style":"simple"});
@@ -344,16 +344,16 @@ export class ContactoContribuyenteControllerService extends BaseService {
   }
 
   /**
-   * actualizar.
+   * Actualiza contacto de contribuyente.
    *
-   *
+   * Actualiza un contacto de contribuyente y si envía como contacto principal se retira el principal a los demás tipos de contactos.
    *
    * This method provides access to only to the response body.
-   * To access the full response (for headers, for example), `actualizarUsingPut$Response()` instead.
+   * To access the full response (for headers, for example), `actualizarUsingPut1$Response()` instead.
    *
    * This method sends `application/json` and handles request body of type `application/json`.
    */
-  actualizarUsingPut(params: {
+  actualizarUsingPut1(params: {
 
     /**
      * municipalidadId
@@ -375,7 +375,7 @@ export class ContactoContribuyenteControllerService extends BaseService {
 ): Observable<{
 }> {
 
-    return this.actualizarUsingPut$Response(params).pipe(
+    return this.actualizarUsingPut1$Response(params).pipe(
       map((r: StrictHttpResponse<{
 }>) => r.body as {
 })
@@ -383,21 +383,21 @@ export class ContactoContribuyenteControllerService extends BaseService {
   }
 
   /**
-   * Path part for operation quitarUsingDelete
+   * Path part for operation anularUsingDelete1
    */
-  static readonly QuitarUsingDeletePath = '/v1/nsrtm-services-contribuyentes/contactos/{municipalidadId}/{contribuyenteNumero}/{medConContribuyenteId}';
+  static readonly AnularUsingDelete1Path = '/v1/nsrtm-services-contribuyentes/contactos/{municipalidadId}/{contribuyenteNumero}/{medConContribuyenteId}';
 
   /**
-   * quitar.
+   * Anula contacto de contribuyente.
    *
-   *
+   * Actualiza el estado del contribueynte a anulado
    *
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
-   * To access only the response body, use `quitarUsingDelete()` instead.
+   * To access only the response body, use `anularUsingDelete1()` instead.
    *
    * This method doesn't expect any request body.
    */
-  quitarUsingDelete$Response(params: {
+  anularUsingDelete1$Response(params: {
 
     /**
      * municipalidadId
@@ -418,7 +418,7 @@ export class ContactoContribuyenteControllerService extends BaseService {
 ): Observable<StrictHttpResponse<{
 }>> {
 
-    const rb = new RequestBuilder(this.rootUrl, ContactoContribuyenteControllerService.QuitarUsingDeletePath, 'delete');
+    const rb = new RequestBuilder(this.rootUrl, ContactoContribuyenteControllerService.AnularUsingDelete1Path, 'delete');
     if (params) {
       rb.path('municipalidadId', params.municipalidadId, {"style":"simple"});
       rb.path('contribuyenteNumero', params.contribuyenteNumero, {"style":"simple"});
@@ -439,16 +439,16 @@ export class ContactoContribuyenteControllerService extends BaseService {
   }
 
   /**
-   * quitar.
+   * Anula contacto de contribuyente.
    *
-   *
+   * Actualiza el estado del contribueynte a anulado
    *
    * This method provides access to only to the response body.
-   * To access the full response (for headers, for example), `quitarUsingDelete$Response()` instead.
+   * To access the full response (for headers, for example), `anularUsingDelete1$Response()` instead.
    *
    * This method doesn't expect any request body.
    */
-  quitarUsingDelete(params: {
+  anularUsingDelete1(params: {
 
     /**
      * municipalidadId
@@ -469,7 +469,7 @@ export class ContactoContribuyenteControllerService extends BaseService {
 ): Observable<{
 }> {
 
-    return this.quitarUsingDelete$Response(params).pipe(
+    return this.anularUsingDelete1$Response(params).pipe(
       map((r: StrictHttpResponse<{
 }>) => r.body as {
 })

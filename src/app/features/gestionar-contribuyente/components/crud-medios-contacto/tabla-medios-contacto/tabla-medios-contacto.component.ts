@@ -6,6 +6,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ContactoContribuyenteListaResponse } from 'src/app/api/contribuyente/models';
 import { MedioContactoTabla } from 'src/app/core/models/custom-contribuyente.model';
+import { CRUD_ACTION } from 'src/app/core/models/enums';
 
 @Component({
 	selector: 'tabla-medios-contacto',
@@ -27,10 +28,13 @@ export class TablaMediosContactoComponent implements OnInit {
 	}
 
 	@Input() loading? = false;
+	@Input() numeroDj = 0;
 
 	@Output() selected = new EventEmitter<ContactoContribuyenteListaResponse>();
 
 	_dataSource: MedioContactoTabla[] = [];
+
+	DELETE = CRUD_ACTION.DELETE;
 
 	// variables paginacion
 	tablePaginacion: MedioContactoTabla[] = [];
@@ -46,9 +50,16 @@ export class TablaMediosContactoComponent implements OnInit {
 
 	// Función
 	select(item: MedioContactoTabla) {
-		this.tablePaginacion.forEach((c) => {
-			c.selected = c.medConContribuyenteId === item.medConContribuyenteId;
+		// this.tablePaginacion.forEach((c) => {
+		// 	c.selected = c.medConContribuyenteId === item.medConContribuyenteId;
+		// });
+		// const { selected, ...rest } = item;
+		// this.selected.emit(rest);
+		this.tablePaginacion = this.tablePaginacion.map((tablleItem) => {
+			tablleItem.selected = false;
+			return tablleItem;
 		});
+		item.selected = true;
 		const { selected, ...rest } = item;
 		this.selected.emit(rest);
 	}

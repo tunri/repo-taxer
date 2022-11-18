@@ -33,7 +33,7 @@ export class ErrorCatchingInterceptor implements HttpInterceptor {
 				if (status >= 500) {
 					errorMsg.message = error.message;
 				} else if (status >= 400) {
-					errorMsg.message = error.error.message;
+					errorMsg.message = error.error.message || error.error.mensaje;
 				} else {
 					errorMsg.message = 'Error';
 				}

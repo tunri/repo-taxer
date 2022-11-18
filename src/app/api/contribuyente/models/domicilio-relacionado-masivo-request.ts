@@ -1,12 +1,14 @@
 /* tslint:disable */
 /* eslint-disable */
-export interface DomicilioRelacionadoRequest {
+export interface DomicilioRelacionadoMasivoRequest {
+  accion?: 'ACTUALIZAR' | 'CREAR' | 'ELIMINAR';
   carretera?: string;
   codCatastral?: string;
   departamentoId: number;
   desDomicilio?: string;
   desInterior?: string;
   distritoId: number;
+  domRelacionadoNumero?: number;
   edificacionId?: number;
   fuenteInfoId?: number;
   ingreso?: string;
@@ -22,6 +24,7 @@ export interface DomicilioRelacionadoRequest {
   piso?: string;
   provinciaId: number;
   referencia?: string;
+  relContribuyenteNumero?: number;
   subLote?: number;
   subZonaUrbanaId?: number;
   tipInteriorId?: number;

@@ -25,6 +25,7 @@ export interface DecJurContribuyenteResponse {
   nombreRazonSocial?: string;
   numDocIdentidad?: string;
   numDocIdentidadC?: string;
+  numRelacionados?: number;
   numeroDj?: number;
   textoCorreos?: string;
   textoNumContacto?: string;

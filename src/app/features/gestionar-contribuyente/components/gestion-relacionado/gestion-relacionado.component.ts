@@ -4,8 +4,8 @@ import { finalize, Subscription } from 'rxjs';
 import { AlertService } from 'src/app/shared/components/alert/alert.service';
 import { DialogUpsertDomicilioRelacionadoComponent } from './dialog-upsert-domicilio-relacionado/dialog-upsert-domicilio-relacionado.component';
 import { DialogUpsertRelacionadoComponent } from './dialog-upsert-relacionado/dialog-upsert-relacionado.component';
-import { RelacionadoBuscarResponse,
-  DomicilioRelacionadoResponse
+import { DomicilioRelacionadoBuscarResponse, RelacionadoBuscarResponse,
+
  } from 'src/app/api/contribuyente/models';
 import { RelacionadoControllerService } from 'src/app/api/contribuyente/services';
 import { DomicilioRelacionadoControllerService } from 'src/app/api/contribuyente/services';
@@ -23,8 +23,8 @@ export class GestionRelacionadoComponent implements OnInit, OnDestroy {
 
   dataSource: RelacionadoBuscarResponse[] = [];
   selectedItem: RelacionadoBuscarResponse | undefined = undefined;
-  dataSourceDomRel: DomicilioRelacionadoResponse[] = [];
-  selectedItemDomRel: DomicilioRelacionadoResponse | undefined = undefined;
+  dataSourceDomRel: DomicilioRelacionadoBuscarResponse[] = [];
+  selectedItemDomRel: DomicilioRelacionadoBuscarResponse | undefined = undefined;
   loading: boolean = false;
 
   subscription: Subscription | undefined;
@@ -56,7 +56,7 @@ export class GestionRelacionadoComponent implements OnInit, OnDestroy {
   private getRelacionado(): void {
     this.loading = true;
     this.relacionadoService
-      .listarUsingGet1({
+      .listarPorContribuyenteUsingGet3({
         municipalidadId: this.municipalidadId,
         contribuyenteNumero: this.numContribuyente,
       })
@@ -78,7 +78,7 @@ export class GestionRelacionadoComponent implements OnInit, OnDestroy {
   private getDomRelacionado(relContribuyenteNumero: number): void {
     this.loading = true;
     this.domicilioRelacionadoService
-      .listarUsingGet({
+      .listarPorRelacionadoUsingGet({
         municipalidadId: this.municipalidadId,
         contribuyenteNumero: this.numContribuyente,
         relContribuyenteNumero: relContribuyenteNumero
@@ -120,7 +120,7 @@ export class GestionRelacionadoComponent implements OnInit, OnDestroy {
     });
   }
 
-  onShowDialogDomRelUpsert(domRelSelected?: DomicilioRelacionadoResponse) {
+  onShowDialogDomRelUpsert(domRelSelected?: DomicilioRelacionadoBuscarResponse) {
     if(this.dataSourceDomRel.length > 0){
       this.alertService.warning("El Relacionado ya tiene un domicilio registrado.");
     }else{
@@ -154,7 +154,7 @@ export class GestionRelacionadoComponent implements OnInit, OnDestroy {
     if (relacionadoSelected) {
       const dialogRef = this.dialogConfirmService.confirm({
         callback: () =>
-          this.relacionadoService.anularUsingDelete4({
+          this.relacionadoService.anularUsingDelete6({
               municipalidadId: Number(relacionadoSelected.municipalidadId),
               contribuyenteNumero: Number(relacionadoSelected.contribuyenteNumero),
               relContribuyenteNumero: Number(relacionadoSelected.relContribuyenteNumero)
@@ -171,11 +171,11 @@ export class GestionRelacionadoComponent implements OnInit, OnDestroy {
     }
   }
 
-  onRemoveItemDomRel(domrelSelected?: DomicilioRelacionadoResponse) {
+  onRemoveItemDomRel(domrelSelected?: DomicilioRelacionadoBuscarResponse) {
     if (domrelSelected) {
       const dialogRef = this.dialogConfirmService.confirm({
         callback: () =>
-          this.domicilioRelacionadoService.anularUsingDelete3({
+          this.domicilioRelacionadoService.anularUsingDelete5({
               municipalidadId: Number(domrelSelected.municipalidadId),
               contribuyenteNumero: Number(domrelSelected.contribuyenteNumero),
               relContribuyenteNumero: Number(domrelSelected.relContribuyenteNumero),
@@ -198,7 +198,7 @@ export class GestionRelacionadoComponent implements OnInit, OnDestroy {
     this.onGetDomRelacionado(this.selectedItem);
   }
 
-  onDomRelSelectedItem(item: DomicilioRelacionadoResponse) {
+  onDomRelSelectedItem(item: DomicilioRelacionadoBuscarResponse) {
     this.selectedItemDomRel = item;
   }
 

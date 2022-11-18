@@ -91,7 +91,7 @@ export class CrudDomicilioComponent implements OnInit {
     if (domicilioSelected) {
       const dialogRef = this.dialogConfirmService.confirm({
         callback: () =>
-          this.domicilioContribuyenteControllerService.anularUsingDelete2({
+          this.domicilioContribuyenteControllerService.anularUsingDelete4({
             municipalidadId: this.municipalidadId,
             contribuyenteNumero: Number(domicilioSelected.contribuyenteNumero),
             domicilioContribuyenteNumero: Number(

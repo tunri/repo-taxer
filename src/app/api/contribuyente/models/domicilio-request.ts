@@ -1,12 +1,10 @@
 /* tslint:disable */
 /* eslint-disable */
 export interface DomicilioRequest {
-  accion?: 'ACTUALIZAR' | 'CREAR' | 'ELIMINAR';
   departamentoId: number;
   descripcionDomicilio?: string;
   descripcionInterior?: string;
   distritoId: number;
-  domicilioContribuyenteNumero: number;
   edificacionId?: number;
   estructurado?: number;
   fuenteInformacionId?: number;

@@ -2,8 +2,8 @@ import { Component, Input, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { finalize } from 'rxjs';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
-import { 
-  TIP_PREDIO_ID, 
+import {
+  TIP_PREDIO_ID,
   TIP_VIA_ID,
   TIP_ZONA_URBANA_ID,
   TIP_SUBZONA_URBANA_ID,
@@ -13,11 +13,11 @@ import {
 import { ComunControllerService } from 'src/app/api/datoscomunes/services';
 import { AlertService } from 'src/app/shared/components/alert/alert.service';
 import { ValidationFormService } from 'src/app/core/services/validation-form.service';
-import { 
+import {
   DepartamentoControllerService,
   ProvinciaControllerService,
   DistritoControllerService } from 'src/app/api/ubigeo/services';
-import { DomicilioRelacionadoRequest, DomicilioRelacionadoResponse } from 'src/app/api/contribuyente/models';
+import { DomicilioRelacionadoBuscarResponse, DomicilioRelacionadoRequest } from 'src/app/api/contribuyente/models';
 import { DomicilioRelacionadoControllerService } from 'src/app/api/contribuyente/services';
 
 
@@ -27,7 +27,7 @@ import { DomicilioRelacionadoControllerService } from 'src/app/api/contribuyente
   styleUrls: ['./dialog-upsert-domicilio-relacionado.component.scss']
 })
 export class DialogUpsertDomicilioRelacionadoComponent implements OnInit {
-  @Input() public domRel!: DomicilioRelacionadoResponse;
+  @Input() public domRel!: DomicilioRelacionadoBuscarResponse;
   @Input() public municipalidadId!: number;
   @Input() public numContribuyente!: number;
   @Input() public numRelacionado!: number;
@@ -76,7 +76,7 @@ export class DialogUpsertDomicilioRelacionadoComponent implements OnInit {
   });
 
   constructor(
-    public activeModal: NgbActiveModal, 
+    public activeModal: NgbActiveModal,
     private fb: FormBuilder,
     private comunControllerService: ComunControllerService,
     private alertService: AlertService,
@@ -87,7 +87,7 @@ export class DialogUpsertDomicilioRelacionadoComponent implements OnInit {
     private validationFormService: ValidationFormService) {}
 
   ngOnInit(): void {
-    this.inicializarSelectores();    
+    this.inicializarSelectores();
   }
 
   private inicializarSelectores(): void {
@@ -99,9 +99,9 @@ export class DialogUpsertDomicilioRelacionadoComponent implements OnInit {
     this.getTipoZonaUrbana();
     this.getTipoSubZona();
     this.getTipoEdificacion();
-    this.getTipoInterior();    
+    this.getTipoInterior();
   }
- 
+
   invalidControl(input: AbstractControl) {
     return this.validationFormService.isControlInvalid(input, this.submitted);
   }
@@ -168,7 +168,7 @@ export class DialogUpsertDomicilioRelacionadoComponent implements OnInit {
         this.departamentos = response;
       },
     });
-  } 
+  }
   changeDepartamento(item:any):void{
     if(this.isEmptyField("departamentoId")) return;
     this.getProvincias(this.getValue("departamentoId"));
@@ -215,7 +215,7 @@ onSubmit(): void {
 }
 
 private mapToPayload(): DomicilioRelacionadoRequest {
-  const { 
+  const {
     departamentoId,
     provinciaId,
     distritoId,
@@ -245,15 +245,15 @@ private mapToPayload(): DomicilioRelacionadoRequest {
     referencia
   } = this.formulario.value;
   //const folios = Number(folio);
-  
-  return {    
+
+  return {
     // municipalidadId: this.municipalidadId,
     // contribuyenteNumero: this.numContribuyente,
-    relContribuyenteNumero: this.numRelacionado,
+    // relContribuyenteNumero: this.numRelacionado,
     departamentoId: departamentoId,
     desInterior: desInterior,
     // descripcionDomicilio: '',
-    distritoId: distritoId,    
+    distritoId: distritoId,
     edificacionId: edificacionId,
     // estructurado: 0,
     fuenteInfoId: 1,
@@ -264,12 +264,12 @@ private mapToPayload(): DomicilioRelacionadoRequest {
     letra2: letra2,
     // longitud: 0,
     lote: lote,
-    manzana: manzana,    
+    manzana: manzana,
     numero1: numeroPrincipal,
     numero2: numeroAlterno,
     piso: piso,
     provinciaId: provinciaId,
-    referencia: referencia,    
+    referencia: referencia,
     subLote: subLote,
     subZonaUrbanaId: subZonaId,
     // tipDomicilioId: tipoDomicilioId,
@@ -282,7 +282,7 @@ private mapToPayload(): DomicilioRelacionadoRequest {
     viaProvinciaId: 0,
     zonaUrbanaId: 1, //zonaUrbanaId
     // activo: 1
-    domRelacionadoNumero: 0,
+    // domRelacionadoNumero: 0,
   };
 }
 
@@ -290,10 +290,11 @@ private crearDomicilioRelacionado(payload: DomicilioRelacionadoRequest): void {
   this.loading = true;
   console.log(payload);
   this.domicilioRelacionadoService
-    .crearUsingPost4({
+    .crearUsingPost5({
       body: payload,
       contribuyenteNumero: this.numContribuyente,
       municipalidadId: this.municipalidadId,
+	  relContribuyenteNumero: 1,
     })
     .pipe(finalize(() => (this.loading = false)))
     .subscribe({
@@ -321,7 +322,7 @@ private crearDomicilioRelacionado(payload: DomicilioRelacionadoRequest): void {
 }
 
  isEmptyField(name:string){
-  return this.formulario.controls[name].value==null || this.formulario.controls[name].value==""; 
+  return this.formulario.controls[name].value==null || this.formulario.controls[name].value=="";
 }
 
 close(response?: any) {

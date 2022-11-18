@@ -1,13 +1,23 @@
 /* tslint:disable */
 /* eslint-disable */
-export interface DomicilioRelacionadoRequest {
+export interface DomicilioRelacionadoEntity {
+  activo?: number;
+  agenciaCreacion?: number;
+  agenciaModificacion?: number;
+  areaCreacion?: number;
+  areaModificacion?: number;
   carretera?: string;
   codCatastral?: string;
-  departamentoId: number;
+  contribuyenteNumero?: number;
+  departamentoId?: number;
   desDomicilio?: string;
   desInterior?: string;
-  distritoId: number;
+  distritoId?: number;
+  domRelacionadoNumero?: number;
   edificacionId?: number;
+  estructurado?: number;
+  fechaCreacion?: string;
+  fechaModificacion?: string;
   fuenteInfoId?: number;
   ingreso?: string;
   kilometro?: string;
@@ -15,18 +25,24 @@ export interface DomicilioRelacionadoRequest {
   letra2?: string;
   lote?: string;
   manzana?: string;
+  municipalidadId?: number;
   nombrePredio?: string;
   numero1?: number;
   numero2?: number;
   parcela?: string;
   piso?: string;
-  provinciaId: number;
+  provinciaId?: number;
   referencia?: string;
+  relContribuyenteNumero?: number;
   subLote?: number;
   subZonaUrbanaId?: number;
+  terminalCreacion?: string;
+  terminalModificacion?: string;
   tipInteriorId?: number;
   tipPreRusticoId?: number;
-  tipPredioId: number;
+  tipPredioId?: number;
+  usuarioCreacion?: number;
+  usuarioModificacion?: number;
   viaDepartamentoId?: number;
   viaDistritoId?: number;
   viaId?: number;

@@ -1,16 +1,16 @@
 /* tslint:disable */
 /* eslint-disable */
-import { ContactoContribuyenteRequest } from './contacto-contribuyente-request';
+import { ContactoContribuyenteMasivoRequest } from './contacto-contribuyente-masivo-request';
 import { ContribuyentePersonaRequest } from './contribuyente-persona-request';
-import { DocumentoSustentoRequest } from './documento-sustento-request';
-import { DomicilioRelacionadoRequest } from './domicilio-relacionado-request';
-import { DomicilioRequest } from './domicilio-request';
-import { RelacionadoPersonaRequest } from './relacionado-persona-request';
+import { DocumentoSustentoMasivoRequest } from './documento-sustento-masivo-request';
+import { DomicilioMasivoRequest } from './domicilio-masivo-request';
+import { DomicilioRelacionadoMasivoRequest } from './domicilio-relacionado-masivo-request';
+import { RelacionadoPersonaMasivoRequest } from './relacionado-persona-masivo-request';
 export interface DeclaracionJuradaContribuyente {
-  contactos?: Array<ContactoContribuyenteRequest>;
+  contactos?: Array<ContactoContribuyenteMasivoRequest>;
   contribuyente?: ContribuyentePersonaRequest;
-  domicilioRelacionado?: Array<DomicilioRelacionadoRequest>;
-  domicilios?: Array<DomicilioRequest>;
-  relacionados?: Array<RelacionadoPersonaRequest>;
-  sustentos?: Array<DocumentoSustentoRequest>;
+  domicilioRelacionado?: Array<DomicilioRelacionadoMasivoRequest>;
+  domicilios?: Array<DomicilioMasivoRequest>;
+  relacionados?: Array<RelacionadoPersonaMasivoRequest>;
+  sustentos?: Array<DocumentoSustentoMasivoRequest>;
 }

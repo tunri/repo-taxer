@@ -39,7 +39,8 @@
 				</div>
 			</div>
 			<!-- TABS -->
-			<ul ngbNav #nav="ngbNav" [(activeId)]="activeTab" class="nav-tabs d-flex flex-nowrap">
+			<ul ngbNav #nav="ngbNav" [(activeId)]="activeTab" class="nav-tabs d-flex flex-nowrap"
+				(activeIdChange)="onChangeActiveTab($event)">
 				<li [ngbNavItem]="1">
 					<a ngbNavLink class="px-3" ngbTooltip="Datos del contribuyente" placement="bottom">
 						<span class="feather icon-file-text icon-md"></span>
@@ -47,7 +48,8 @@
 					</a>
 					<ng-template ngbNavContent>
 						<taxer-datos-contribuyente #contribuyente [municipalidadId]="municipalidadId"
-							[numContribuyente]="numContribuyente">
+							[numContribuyente]="numContribuyente" [contribuyente]="datosContribuyente"
+							[loading]="loadingDatosContribuyente">
 						</taxer-datos-contribuyente>
 					</ng-template>
 				</li>
@@ -78,7 +80,8 @@
 						<span class="ms-1">Medios de contacto</span>
 					</a>
 					<ng-template ngbNavContent>
-						<crud-medios-contacto [numContribuyente]="numContribuyente" [municipalidadId]="municipalidadId">
+						<crud-medios-contacto [numContribuyente]="numContribuyente" [municipalidadId]="municipalidadId"
+							[numeroDj]="numeroDj">
 						</crud-medios-contacto>
 					</ng-template>
 				</li>
@@ -88,7 +91,8 @@
 						<span class="ms-1">Sustento</span>
 					</a>
 					<ng-template ngbNavContent>
-						<crud-sustento [numContribuyente]="numContribuyente" [municipalidadId]="municipalidadId">
+						<crud-sustento [numContribuyente]="numContribuyente" [municipalidadId]="municipalidadId"
+							[numeroDj]="numeroDj">
 						</crud-sustento>
 					</ng-template>
 				</li>

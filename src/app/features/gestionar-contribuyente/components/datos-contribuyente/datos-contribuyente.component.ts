@@ -3,7 +3,16 @@
  * @author jerson
  */
 
-import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import {
+	Component,
+	EventEmitter,
+	Input,
+	OnChanges,
+	OnDestroy,
+	OnInit,
+	Output,
+	SimpleChanges,
+} from '@angular/core';
 import {
 	AbstractControl,
 	FormBuilder,
@@ -21,8 +30,10 @@ import {
 	SLUG_PERSONA_NATURAL,
 } from 'src/app/core/data/datos-comunes';
 import { IDatosContribuyente } from 'src/app/core/models/custom-contribuyente.model';
+import { ContribuyenteStorageSingleton } from 'src/app/core/services/contribuyente-storage';
 import { ValidationFormService } from 'src/app/core/services/validation-form.service';
 import { AlertService } from 'src/app/shared/components/alert/alert.service';
+import { toNgDateStruct } from 'src/app/utils/calendar';
 import { formToPayload, payloadToForm } from './datos-contribuyente.utils';
 
 const ID_RUC = 2;
@@ -33,19 +44,27 @@ const ID_DNI = 1;
 	templateUrl: './datos-contribuyente.component.html',
 	styleUrls: ['./datos-contribuyente.component.scss'],
 })
-export class DatosContribuyenteComponent implements OnInit, OnDestroy {
+export class DatosContribuyenteComponent
+	implements OnInit, OnDestroy, OnChanges
+{
 	@Input() municipalidadId!: number;
 	@Input() numContribuyente?: number;
+	@Input() contribuyente?: any;
+	@Input() loading?: boolean;
+
+	@Output() actualizarNumeroDj = new EventEmitter();
 
 	submitted = false;
-	loading: boolean = false;
+	// loading: boolean = false;
 	onDestroy$ = new Subject<boolean>();
 
 	// Campos sin binding, readonly
 	numeroDj: number | null = null;
 	fechaDj: string | null = null;
 	personaId: number = 0;
-	numOperacionId:number = 0;
+	numOperacionId: number = 0;
+
+	contribuyenteStorage = ContribuyenteStorageSingleton.getInstance();
 
 	// Datos de Declaracion
 	formulario: FormGroup = this.fb.group({
@@ -58,7 +77,7 @@ export class DatosContribuyenteComponent implements OnInit, OnDestroy {
 		// Tipo Contribuyente
 		tipPersonaId: [1, Validators.required],
 		// Segmentacion, api
-		segContribuyenteId: ['', Validators.required],
+		segContribuyenteId: [1, Validators.required],
 		// Fecha de Presentación
 		fecInscripcion: [null, Validators.required],
 		//Tipo de Documento
@@ -124,14 +143,18 @@ export class DatosContribuyenteComponent implements OnInit, OnDestroy {
 			this.formulario.get('tipPersonaId')?.value
 		);
 
-		if (this.numContribuyente) {
-			this.getDatosContribuyente(this.numContribuyente);
-		}
+		this.onChangeFallecio(this.formulario.get('fallecio')?.value);
 	}
 
 	ngOnDestroy(): void {
 		this.onDestroy$.next(true);
 		this.onDestroy$.complete();
+	}
+
+	ngOnChanges(changes: SimpleChanges): void {
+		if (changes['contribuyente']?.currentValue) {
+			this.poblarFormulario(changes['contribuyente']?.currentValue);
+		}
 	}
 
 	/**
@@ -147,17 +170,26 @@ export class DatosContribuyenteComponent implements OnInit, OnDestroy {
 			if (this.numContribuyente) {
 				payload.personaId = this.personaId;
 				payload.numOperacionId = this.numOperacionId;
-				return this.contribuyenteControllerService.actualizarUsingPut1({
+				return this.contribuyenteControllerService.actualizarUsingPut2({
 					contribuyenteNumero: this.numContribuyente,
 					municipalidadId: this.municipalidadId,
 					body: payload,
 				});
 			}
 
-			return this.contribuyenteControllerService.crearUsingPost1({
+			return this.contribuyenteControllerService.crearUsingPost2({
 				body: payload,
 				municipalidadId: this.municipalidadId,
 			});
+		}
+
+		return null;
+	}
+
+	onNexLocalStorage() {
+		this.submitted = true;
+		if (this.formulario.valid) {
+			return formToPayload(this.formulario.getRawValue());
 		}
 
 		return null;
@@ -182,6 +214,13 @@ export class DatosContribuyenteComponent implements OnInit, OnDestroy {
 	onChangeFallecio(value: any) {
 		if (value) {
 			this.fecFallecimiento.enable();
+
+			if (this.contribuyente?.fecNacimiento) {
+				this.fecFallecimiento.setValue(
+					toNgDateStruct(this.contribuyente.fecNacimiento)
+				);
+			}
+			//
 		} else {
 			this.fecFallecimiento.disable();
 			this.fecFallecimiento.reset();
@@ -209,9 +248,7 @@ export class DatosContribuyenteComponent implements OnInit, OnDestroy {
 
 		if (id === SLUG_PERSONA_JURIDICA) {
 			this.hasRequired(['razonSocial']);
-		}
-
-		if (id === SLUG_PERSONA_NATURAL) {
+		} else {
 			this.hasRequired([
 				'nombres',
 				'fecNacimiento',
@@ -249,24 +286,6 @@ export class DatosContribuyenteComponent implements OnInit, OnDestroy {
 		});
 	}
 
-	private getDatosContribuyente(numContribuyente: number) {
-		this.loading = true;
-		this.contribuyenteControllerService
-			.consultarUsingGet({
-				municipalidadId: this.municipalidadId,
-				contribuyenteNumero: numContribuyente,
-			})
-			.pipe(finalize(() => (this.loading = false)))
-			.subscribe({
-				next: (response: any) => {
-					this.poblarFormulario(response.data[0]);
-				},
-				error: (error) => {
-					this.alertService.error(error);
-				},
-			});
-	}
-
 	private poblarFormulario(data: IDatosContribuyente) {
 		const { numeroDj, fechaDj, personaId, numOperacionId } = data;
 		const initialValues = payloadToForm(data);
@@ -277,8 +296,6 @@ export class DatosContribuyenteComponent implements OnInit, OnDestroy {
 		this.numOperacionId = numOperacionId || 0;
 
 		this.formulario.patchValue(initialValues);
-
-		//
 	}
 
 	// Agrupa los metodos para hidratar datos a selectores (API's)

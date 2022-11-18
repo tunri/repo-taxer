@@ -33,9 +33,9 @@ export class DocumentoSustentoControllerService extends BaseService {
   static readonly ListarPorContribuyenteUsingGet1Path = '/v1/nsrtm-services-contribuyentes/sustentos/listarPorContribuyente/{municipalidadId}/{contribuyenteNumero}';
 
   /**
-   * listarPorContribuyente.
+   * Listar documento de sustento por ID de contribuyente.
    *
-   *
+   * Listar documento de sustento por código de municipalidad y código de contribuyente.
    *
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
    * To access only the response body, use `listarPorContribuyenteUsingGet1()` instead.
@@ -76,9 +76,9 @@ export class DocumentoSustentoControllerService extends BaseService {
   }
 
   /**
-   * listarPorContribuyente.
+   * Listar documento de sustento por ID de contribuyente.
    *
-   *
+   * Listar documento de sustento por código de municipalidad y código de contribuyente.
    *
    * This method provides access to only to the response body.
    * To access the full response (for headers, for example), `listarPorContribuyenteUsingGet1$Response()` instead.
@@ -106,21 +106,21 @@ export class DocumentoSustentoControllerService extends BaseService {
   }
 
   /**
-   * Path part for operation crearUsingPost2
+   * Path part for operation crearUsingPost3
    */
-  static readonly CrearUsingPost2Path = '/v1/nsrtm-services-contribuyentes/sustentos/{municipalidadId}/{contribuyenteNumero}';
+  static readonly CrearUsingPost3Path = '/v1/nsrtm-services-contribuyentes/sustentos/{municipalidadId}/{contribuyenteNumero}';
 
   /**
-   * crear.
+   * Crear documento de sustento de contribuyente.
    *
-   *
+   * Crear documento de sustento de contribuyente.
    *
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
-   * To access only the response body, use `crearUsingPost2()` instead.
+   * To access only the response body, use `crearUsingPost3()` instead.
    *
    * This method sends `application/json` and handles request body of type `application/json`.
    */
-  crearUsingPost2$Response(params: {
+  crearUsingPost3$Response(params: {
 
     /**
      * municipalidadId
@@ -137,7 +137,7 @@ export class DocumentoSustentoControllerService extends BaseService {
 ): Observable<StrictHttpResponse<{
 }>> {
 
-    const rb = new RequestBuilder(this.rootUrl, DocumentoSustentoControllerService.CrearUsingPost2Path, 'post');
+    const rb = new RequestBuilder(this.rootUrl, DocumentoSustentoControllerService.CrearUsingPost3Path, 'post');
     if (params) {
       rb.path('municipalidadId', params.municipalidadId, {"style":"simple"});
       rb.path('contribuyenteNumero', params.contribuyenteNumero, {"style":"simple"});
@@ -158,16 +158,16 @@ export class DocumentoSustentoControllerService extends BaseService {
   }
 
   /**
-   * crear.
+   * Crear documento de sustento de contribuyente.
    *
-   *
+   * Crear documento de sustento de contribuyente.
    *
    * This method provides access to only to the response body.
-   * To access the full response (for headers, for example), `crearUsingPost2$Response()` instead.
+   * To access the full response (for headers, for example), `crearUsingPost3$Response()` instead.
    *
    * This method sends `application/json` and handles request body of type `application/json`.
    */
-  crearUsingPost2(params: {
+  crearUsingPost3(params: {
 
     /**
      * municipalidadId
@@ -184,7 +184,7 @@ export class DocumentoSustentoControllerService extends BaseService {
 ): Observable<{
 }> {
 
-    return this.crearUsingPost2$Response(params).pipe(
+    return this.crearUsingPost3$Response(params).pipe(
       map((r: StrictHttpResponse<{
 }>) => r.body as {
 })
@@ -192,21 +192,21 @@ export class DocumentoSustentoControllerService extends BaseService {
   }
 
   /**
-   * Path part for operation obtenerUsingGet1
+   * Path part for operation consultarUsingGet2
    */
-  static readonly ObtenerUsingGet1Path = '/v1/nsrtm-services-contribuyentes/sustentos/{municipalidadId}/{contribuyenteNumero}/{docSusContribuyenteId}';
+  static readonly ConsultarUsingGet2Path = '/v1/nsrtm-services-contribuyentes/sustentos/{municipalidadId}/{contribuyenteNumero}/{docSusContribuyenteId}';
 
   /**
-   * obtener.
+   * Consular documento de sustento de contribuyente.
    *
-   *
+   * Consular documento de sustento de contribuyente.
    *
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
-   * To access only the response body, use `obtenerUsingGet1()` instead.
+   * To access only the response body, use `consultarUsingGet2()` instead.
    *
    * This method doesn't expect any request body.
    */
-  obtenerUsingGet1$Response(params: {
+  consultarUsingGet2$Response(params: {
 
     /**
      * municipalidadId
@@ -227,7 +227,7 @@ export class DocumentoSustentoControllerService extends BaseService {
 ): Observable<StrictHttpResponse<{
 }>> {
 
-    const rb = new RequestBuilder(this.rootUrl, DocumentoSustentoControllerService.ObtenerUsingGet1Path, 'get');
+    const rb = new RequestBuilder(this.rootUrl, DocumentoSustentoControllerService.ConsultarUsingGet2Path, 'get');
     if (params) {
       rb.path('municipalidadId', params.municipalidadId, {"style":"simple"});
       rb.path('contribuyenteNumero', params.contribuyenteNumero, {"style":"simple"});
@@ -248,16 +248,16 @@ export class DocumentoSustentoControllerService extends BaseService {
   }
 
   /**
-   * obtener.
+   * Consular documento de sustento de contribuyente.
    *
-   *
+   * Consular documento de sustento de contribuyente.
    *
    * This method provides access to only to the response body.
-   * To access the full response (for headers, for example), `obtenerUsingGet1$Response()` instead.
+   * To access the full response (for headers, for example), `consultarUsingGet2$Response()` instead.
    *
    * This method doesn't expect any request body.
    */
-  obtenerUsingGet1(params: {
+  consultarUsingGet2(params: {
 
     /**
      * municipalidadId
@@ -278,7 +278,7 @@ export class DocumentoSustentoControllerService extends BaseService {
 ): Observable<{
 }> {
 
-    return this.obtenerUsingGet1$Response(params).pipe(
+    return this.consultarUsingGet2$Response(params).pipe(
       map((r: StrictHttpResponse<{
 }>) => r.body as {
 })
@@ -286,21 +286,21 @@ export class DocumentoSustentoControllerService extends BaseService {
   }
 
   /**
-   * Path part for operation actualizarUsingPut2
+   * Path part for operation actualizarUsingPut3
    */
-  static readonly ActualizarUsingPut2Path = '/v1/nsrtm-services-contribuyentes/sustentos/{municipalidadId}/{contribuyenteNumero}/{docSusContribuyenteId}';
+  static readonly ActualizarUsingPut3Path = '/v1/nsrtm-services-contribuyentes/sustentos/{municipalidadId}/{contribuyenteNumero}/{docSusContribuyenteId}';
 
   /**
-   * actualizar.
+   * Actualizar documento de sustento de contribuyente.
    *
-   *
+   * Actualizar documento de sustento de contribuyente.
    *
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
-   * To access only the response body, use `actualizarUsingPut2()` instead.
+   * To access only the response body, use `actualizarUsingPut3()` instead.
    *
    * This method sends `application/json` and handles request body of type `application/json`.
    */
-  actualizarUsingPut2$Response(params: {
+  actualizarUsingPut3$Response(params: {
 
     /**
      * municipalidadId
@@ -322,7 +322,7 @@ export class DocumentoSustentoControllerService extends BaseService {
 ): Observable<StrictHttpResponse<{
 }>> {
 
-    const rb = new RequestBuilder(this.rootUrl, DocumentoSustentoControllerService.ActualizarUsingPut2Path, 'put');
+    const rb = new RequestBuilder(this.rootUrl, DocumentoSustentoControllerService.ActualizarUsingPut3Path, 'put');
     if (params) {
       rb.path('municipalidadId', params.municipalidadId, {"style":"simple"});
       rb.path('contribuyenteNumero', params.contribuyenteNumero, {"style":"simple"});
@@ -344,16 +344,16 @@ export class DocumentoSustentoControllerService extends BaseService {
   }
 
   /**
-   * actualizar.
+   * Actualizar documento de sustento de contribuyente.
    *
-   *
+   * Actualizar documento de sustento de contribuyente.
    *
    * This method provides access to only to the response body.
-   * To access the full response (for headers, for example), `actualizarUsingPut2$Response()` instead.
+   * To access the full response (for headers, for example), `actualizarUsingPut3$Response()` instead.
    *
    * This method sends `application/json` and handles request body of type `application/json`.
    */
-  actualizarUsingPut2(params: {
+  actualizarUsingPut3(params: {
 
     /**
      * municipalidadId
@@ -375,7 +375,7 @@ export class DocumentoSustentoControllerService extends BaseService {
 ): Observable<{
 }> {
 
-    return this.actualizarUsingPut2$Response(params).pipe(
+    return this.actualizarUsingPut3$Response(params).pipe(
       map((r: StrictHttpResponse<{
 }>) => r.body as {
 })
@@ -383,21 +383,21 @@ export class DocumentoSustentoControllerService extends BaseService {
   }
 
   /**
-   * Path part for operation anularUsingDelete1
+   * Path part for operation anularUsingDelete3
    */
-  static readonly AnularUsingDelete1Path = '/v1/nsrtm-services-contribuyentes/sustentos/{municipalidadId}/{contribuyenteNumero}/{docSusContribuyenteId}';
+  static readonly AnularUsingDelete3Path = '/v1/nsrtm-services-contribuyentes/sustentos/{municipalidadId}/{contribuyenteNumero}/{docSusContribuyenteId}';
 
   /**
-   * anular.
+   * Anular documento de sustento de contribuyente.
    *
-   *
+   * Anular documento de sustento de contribuyente.
    *
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
-   * To access only the response body, use `anularUsingDelete1()` instead.
+   * To access only the response body, use `anularUsingDelete3()` instead.
    *
    * This method doesn't expect any request body.
    */
-  anularUsingDelete1$Response(params: {
+  anularUsingDelete3$Response(params: {
 
     /**
      * municipalidadId
@@ -418,7 +418,7 @@ export class DocumentoSustentoControllerService extends BaseService {
 ): Observable<StrictHttpResponse<{
 }>> {
 
-    const rb = new RequestBuilder(this.rootUrl, DocumentoSustentoControllerService.AnularUsingDelete1Path, 'delete');
+    const rb = new RequestBuilder(this.rootUrl, DocumentoSustentoControllerService.AnularUsingDelete3Path, 'delete');
     if (params) {
       rb.path('municipalidadId', params.municipalidadId, {"style":"simple"});
       rb.path('contribuyenteNumero', params.contribuyenteNumero, {"style":"simple"});
@@ -439,16 +439,16 @@ export class DocumentoSustentoControllerService extends BaseService {
   }
 
   /**
-   * anular.
+   * Anular documento de sustento de contribuyente.
    *
-   *
+   * Anular documento de sustento de contribuyente.
    *
    * This method provides access to only to the response body.
-   * To access the full response (for headers, for example), `anularUsingDelete1$Response()` instead.
+   * To access the full response (for headers, for example), `anularUsingDelete3$Response()` instead.
    *
    * This method doesn't expect any request body.
    */
-  anularUsingDelete1(params: {
+  anularUsingDelete3(params: {
 
     /**
      * municipalidadId
@@ -469,7 +469,7 @@ export class DocumentoSustentoControllerService extends BaseService {
 ): Observable<{
 }> {
 
-    return this.anularUsingDelete1$Response(params).pipe(
+    return this.anularUsingDelete3$Response(params).pipe(
       map((r: StrictHttpResponse<{
 }>) => r.body as {
 })
